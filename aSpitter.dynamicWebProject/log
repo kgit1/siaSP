@@ -13,3 +13,6 @@ at WebContent-> WEB-INF - create new folder view - to hold all our pages
 
 at WebContent create new folder - resources to hold our images and css
 so in WebContent-> resources - create folders images and css
+
+at Java Resources -> src - create packages for controllers, dao, services 
+and entity(model)
