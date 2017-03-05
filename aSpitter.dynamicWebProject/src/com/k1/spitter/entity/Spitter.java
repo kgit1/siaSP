@@ -106,6 +106,8 @@ public class Spitter {
 		return "Spitter [id=" + id + ", userName=" + userName + ", password=" + password + ", fullName=" + fullName
 				+ ", email=" + email + ", updateByEmail=" + updateByEmail + "]";
 	}
+
+	// create table in mysql
 	// create table spitter (
 	// id int not null auto_increment primary key,
 	// username varchar(25) not null,
@@ -114,6 +116,15 @@ public class Spitter {
 	// email varchar(50) not null,
 	// update_by_email boolean not null
 	// );
+
+	// fill table with data in mysql
+	// insert into spitter (username, password, fullname, email,
+	// update_by_email) values
+	// ('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false);
+	// insert into spitter (username, password, fullname, email,
+	// update_by_email) values
+	// ('artnames', 'password', 'Art Names', 'artnames@habuma.com', false);
+
 }
 
 // @Entity
