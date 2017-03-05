@@ -1,6 +1,11 @@
 create new Dynamic Web Project
 
 put libs to WebContent-> WEB-INF -> lib
+  hibernate required libs 
++ commons-dbcp for BasicDataSource
++ commons-pool2 for connections pool for dataSource
++ commons-logging
++ mysql-connector-java
 
 put spring context xml to WebContent-> WEB-INF
 
@@ -16,3 +21,7 @@ so in WebContent-> resources - create folders images and css
 
 at Java Resources -> src - create packages for controllers, dao, services 
 and entity(model)
+
+test database
+put hibernate configuration with hibernate and database properties
+ - hibernate.cfg.xml to root src
