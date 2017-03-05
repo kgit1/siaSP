@@ -7,6 +7,14 @@ put libs to WebContent-> WEB-INF -> lib
 + commons-logging
 + mysql-connector-java
 
+test database
+
+test database with simple connection in DbTest.class
+
+test database with hibernate connection in HibernateDbTest.classs
+put hibernate configuration with hibernate and database properties
+ - hibernate.cfg.xml to root src
+
 put spring context xml to WebContent-> WEB-INF
 
 at WebContent - create new jsp -> create index.jsp
@@ -22,6 +30,3 @@ so in WebContent-> resources - create folders images and css
 at Java Resources -> src - create packages for controllers, dao, services 
 and entity(model)
 
-test database
-put hibernate configuration with hibernate and database properties
- - hibernate.cfg.xml to root src
