@@ -84,3 +84,86 @@ public class DbTestHibernateSelect {
 		DbTestHibernateMethods.printSpitters(spittersByNameAndEmail3);
 	}
 }
+
+
+//14.16. Tips & Tricks
+//
+//You can count the number of query results without returning them:
+//
+//( (Integer) session.createQuery("select count(*) from ....").iterate().next() ).intValue()
+//To order a result by the size of a collection, use the following query:
+//
+//select usr.id, usr.name
+//from User as usr
+//    left join usr.messages as msg
+//group by usr.id, usr.name
+//order by count(msg)
+//If your database supports subselects, you can place a condition upon selection size in the where clause of your query:
+//
+//from User usr where size(usr.messages) >= 1
+//If your database does not support subselects, use the following query:
+//
+//select usr.id, usr.name
+//from User usr.name
+//    join usr.messages msg
+//group by usr.id, usr.name
+//having count(msg) >= 1
+//As this solution cannot return a User with zero messages because of the inner join, the following form is also useful:
+//
+//select usr.id, usr.name
+//from User as usr
+//    left join usr.messages as msg
+//group by usr.id, usr.name
+//having count(msg) = 0
+//Properties of a JavaBean can be bound to named query parameters:
+//
+//Query q = s.createQuery("from foo Foo as foo where foo.name=:name and foo.size=:size");
+//q.setProperties(fooBean); // fooBean has getName() and getSize()
+//List foos = q.list();
+//Collections are pageable by using the Query interface with a filter:
+//
+//Query q = s.createFilter( collection, "" ); // the trivial filter
+//q.setMaxResults(PAGE_SIZE);
+//q.setFirstResult(PAGE_SIZE * pageNumber);
+//List page = q.list();
+//Collection elements can be ordered or grouped using a query filter:
+//
+//Collection orderedCollection = s.filter( collection, "order by this.amount" );
+//Collection counts = s.filter( collection, "select this.type, count(this) group by this.type" );
+//You can find the size of a collection without initializing it:
+//
+//( (Integer) session.createQuery("select count(*) from ....").iterate().next() ).intValue();
+//14.17. Components
+//
+//Components can be used similarly to the simple value types that are used in HQL queries. They can appear in the select clause as follows:
+//
+//select p.name from Person p
+//select p.name.first from Person p
+//where the Person's name property is a component. Components can also be used in the where clause:
+//
+//from Person p where p.name = :name
+//from Person p where p.name.first = :firstName
+//Components can also be used in the order by clause:
+//
+//from Person p order by p.name
+//from Person p order by p.name.first
+//Another common use of components is in row value constructors.
+//
+//14.18. Row value constructor syntax
+//
+//HQL supports the use of ANSI SQL row value constructor syntax, sometimes referred to AS tuple syntax, even though the underlying database may not support that notion. Here, we are generally referring to multi-valued comparisons, typically associated with components. Consider an entity Person which defines a name component:
+//
+//from Person p where p.name.first='John' and p.name.last='Jingleheimer-Schmidt'
+//That is valid syntax although it is a little verbose. You can make this more concise by using row value constructor syntax:
+//
+//from Person p where p.name=('John', 'Jingleheimer-Schmidt')
+//It can also be useful to specify this in the select clause:
+//
+//select p.name from Person p
+//Using row value constructor syntax can also be beneficial when using subqueries that need to compare against multiple values:
+//
+//from Cat as cat
+//where not ( cat.name, cat.color ) in (
+//    select cat.name, cat.color from DomesticCat cat
+//)
+//One thing to consider when deciding if you want to use this syntax, is that the query will be dependent upon the ordering of the component sub-properties in the metadata.
