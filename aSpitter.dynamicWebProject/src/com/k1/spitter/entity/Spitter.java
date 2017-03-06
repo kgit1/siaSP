@@ -51,31 +51,24 @@ public class Spitter {
 	// INSERT INTO DateEvent ( timestamp, id )
 	// VALUES ( '2015-12-29 16:54:04.544', 1 )
 
-	@Column(name = "`date`")
-//	@Temporal(TemporalType.DATE)
-	private Date date;
-	// Hibernate generates the following INSERT statement:
-	// Only the year, month and the day field were saved into the database.
-	// INSERT INTO DateEvent ( timestamp, id )
-	// VALUES ( '2015-12-29', 1 )
-	
-	public Date getDate() {
-        return this.date;
-    }
-
-    public void setDate(Date date) {
-        // force java.sql.Timestamp to be set as a java.util.Date
-        this.date = new Date(date.getTime());
-    }
-
-	@Column(name = "`time`")
-	@Temporal(TemporalType.TIME)
-	private Date time;
-	// Hibernate will issue an INSERT statement containing the hour, minutes and
-	// seconds.
-	// INSERT INTO DateEvent ( timestamp, id )
-	// VALUES ( '16:51:58', 1 )
-	////////////
+	//////////////////// DOSN'T WORK, PUTS NOTHING TO MYSQL TABLE//////////////
+	// @Column(name = "`date`")
+	// // @Temporal(TemporalType.DATE)
+	// private Date date;
+	// // Hibernate generates the following INSERT statement:
+	// // Only the year, month and the day field were saved into the database.
+	// // INSERT INTO DateEvent ( timestamp, id )
+	// // VALUES ( '2015-12-29', 1 )
+	//
+	// @Column(name = "`time`")
+	// @Temporal(TemporalType.TIME)
+	// private Date time;
+	// // Hibernate will issue an INSERT statement containing the hour, minutes
+	// and
+	// // seconds.
+	// // INSERT INTO DateEvent ( timestamp, id )
+	// // VALUES ( '16:51:58', 1 )
+	/////////////////////////////////////////////////////////////////////////////
 
 	// empty constructor
 	public Spitter() {
@@ -143,8 +136,10 @@ public class Spitter {
 	@Override
 	public String toString() {
 		return "Spitter [id=" + id + ", userName=" + userName + ", password=" + password + ", fullName=" + fullName
-				+ ", email=" + email + ", updateByEmail=" + updateByEmail + ", timestamp=" + timestamp + ", date="
-				+ /**date +*/ ", time=" + time + "]";
+				+ ", email=" + email + ", updateByEmail=" + updateByEmail + ", timestamp="
+				+ timestamp /*
+							 * + ", date=" + date + ", time=" + time
+							 */ + "]";
 	}
 
 	// create table in mysql
