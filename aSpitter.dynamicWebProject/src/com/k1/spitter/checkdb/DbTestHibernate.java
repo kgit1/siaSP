@@ -42,14 +42,14 @@ public class DbTestHibernate {
 		// @Column name value
 		// select all from table,
 		// equals SQL "select * from Spitter"
-		List<Spitter> spittersAll = session.createQuery("from Spitter").getResultList();
-		// select all with username "habuma",
-		// equals SQL "select * from spitter where username='habuma'"
-		List<Spitter> spittersByName = session.createQuery("from Spitter s where s.userName='habuma'").getResultList();
-		// select all with username "habuma",
-		// equals SQL "select * from spitter where email='habuma'"
-		List<Spitter> spittersByEmail = session.createQuery("from Spitter s where s.email='artnames@habuma.com'")
-				.getResultList();
+//		List<Spitter> spittersAll = session.createQuery("from Spitter").getResultList();
+//		// select all with username "habuma",
+//		// equals SQL "select * from spitter where username='habuma'"
+//		List<Spitter> spittersByName = session.createQuery("from Spitter s where s.userName='habuma'").getResultList();
+//		// select all with username "habuma",
+//		// equals SQL "select * from spitter where email='habuma'"
+//		List<Spitter> spittersByEmail = session.createQuery("from Spitter s where s.email='artnames@habuma.com'")
+//				.getResultList();
 
 		/////////////////////// INSERT/////////////////////////////
 		// (username, password, fullname, email, update_by_email) values
@@ -73,15 +73,15 @@ public class DbTestHibernate {
 		// better way to wrap all it try{}finally{factory.close();} block
 		factory.close();
 
-		for (Spitter spitter : spittersAll) {
-			System.out.println(spitter);
-		}
-		for (Spitter spitter : spittersByName) {
-			System.out.println(spitter);
-		}
-		for (Spitter spitter : spittersByEmail) {
-			System.out.println(spitter);
-		}
+//		for (Spitter spitter : spittersAll) {
+//			System.out.println(spitter);
+//		}
+//		for (Spitter spitter : spittersByName) {
+//			System.out.println(spitter);
+//		}
+//		for (Spitter spitter : spittersByEmail) {
+//			System.out.println(spitter);
+//		}
 	}
 
 }

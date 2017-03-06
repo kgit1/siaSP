@@ -1,11 +1,15 @@
 package com.k1.spitter.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 //to show hibernate that there is model class
 @Entity
@@ -37,6 +41,41 @@ public class Spitter {
 
 	@Column(name = "update_by_email")
 	private boolean updateByEmail;
+
+	///////////
+	@Column(name = "`timestamp`")
+	@Temporal(TemporalType.TIME)
+	private Date timestamp;
+	// Hibernate will include both the DATE, the TIME and the nanoseconds in the
+	// INSERT statement:
+	// INSERT INTO DateEvent ( timestamp, id )
+	// VALUES ( '2015-12-29 16:54:04.544', 1 )
+
+	@Column(name = "`date`")
+//	@Temporal(TemporalType.DATE)
+	private Date date;
+	// Hibernate generates the following INSERT statement:
+	// Only the year, month and the day field were saved into the database.
+	// INSERT INTO DateEvent ( timestamp, id )
+	// VALUES ( '2015-12-29', 1 )
+	
+	public Date getDate() {
+        return this.date;
+    }
+
+    public void setDate(Date date) {
+        // force java.sql.Timestamp to be set as a java.util.Date
+        this.date = new Date(date.getTime());
+    }
+
+	@Column(name = "`time`")
+	@Temporal(TemporalType.TIME)
+	private Date time;
+	// Hibernate will issue an INSERT statement containing the hour, minutes and
+	// seconds.
+	// INSERT INTO DateEvent ( timestamp, id )
+	// VALUES ( '16:51:58', 1 )
+	////////////
 
 	// empty constructor
 	public Spitter() {
@@ -104,7 +143,8 @@ public class Spitter {
 	@Override
 	public String toString() {
 		return "Spitter [id=" + id + ", userName=" + userName + ", password=" + password + ", fullName=" + fullName
-				+ ", email=" + email + ", updateByEmail=" + updateByEmail + "]";
+				+ ", email=" + email + ", updateByEmail=" + updateByEmail + ", timestamp=" + timestamp + ", date="
+				+ /**date +*/ ", time=" + time + "]";
 	}
 
 	// create table in mysql
