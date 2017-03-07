@@ -34,7 +34,7 @@ public class DbTestHibernateInsert {
 		Session session = factory.getCurrentSession();
 
 		// start transaction
-		session.beginTransaction();
+		// session.beginTransaction();
 
 		/////////////////////// INSERT/////////////////////////////
 		// (username, password, fullname, email, update_by_email) values
@@ -45,20 +45,23 @@ public class DbTestHibernateInsert {
 		Spitter spitter2 = new Spitter("paul", "qwerty", "benson", "benson@yahoo.com", false);
 		Spitter spitter3 = new Spitter("iren", "qwerty", "donaldson", "iren@yahoo.com", false);
 		// insert spitter using available connection session
-		session.save(spitter1);
-		// commit saving(will close session)
-		session.getTransaction().commit();
-		// get new session
-		session = factory.getCurrentSession();
-		// begin transaction
-		session.beginTransaction();
-		// insert spitters
-		session.save(spitter2);
-		session.save(spitter3);
-		// commit saving(will close session)
-		session.getTransaction().commit();
+		// session.save(spitter1);
+		// // commit saving(will close session)
+		// session.getTransaction().commit();
+		// // get new session
+		// session = factory.getCurrentSession();
+		// // begin transaction
+		// session.beginTransaction();
+		// // insert spitters
+		// session.save(spitter2);
+		// session.save(spitter3);
+		// // commit saving(will close session)
+		// session.getTransaction().commit();
 
-		DbTestHibernateMethods.printSpitters(DbTestHibernateMethods.spittersByName(factory,"paul"));
+		DbTestHibernateMethods.spittersInsert(factory, new Spitter("vorik", "aaaaa", "grin", "gv@gmail.com", false));
+
+//		DbTestHibernateMethods.printSpitters(DbTestHibernateMethods.spittersByName(factory, "paul"));
+		DbTestHibernateMethods.printSpitters(DbTestHibernateMethods.spittersAll(factory));
 
 		// don't forget to close factory at the end
 		// spring will take on himself handling session open and close, but when
