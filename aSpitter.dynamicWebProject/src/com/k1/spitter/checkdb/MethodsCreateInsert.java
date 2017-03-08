@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 
 import com.k1.spitter.entity.Spitter;
 
-public class MethodsInsert {
+public class MethodsCreateInsert {
 
 	/////////////////////// INSERT/////////////////////////////
 	// (username, password, fullname, email, update_by_email) values

@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 
 import com.k1.spitter.entity.Spitter;
 
-public class MethodsSelect {
+public class MethodsReadSelect {
 
 	/////////////////////// SELECT/////////////////////////////
 	// remember in query quotes in java - field name must equals to name in

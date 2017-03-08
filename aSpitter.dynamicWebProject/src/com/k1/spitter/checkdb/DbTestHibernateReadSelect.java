@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 import com.k1.spitter.entity.Spitter;
 
 //hibernate criteria (to read)https://www.tutorialspoint.com/hibernate/hibernate_criteria_queries.htm
-public class DbTestHibernateSelect {
+public class DbTestHibernateReadSelect {
 
 	public static void main(String[] args) {
 

@@ -8,7 +8,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.k1.spitter.entity.Spitter;
 
-public class DbTestHibernateInsert {
+public class DbTestHibernateCreateInsert {
 
 	public static void main(String[] args) {
 
@@ -58,11 +58,11 @@ public class DbTestHibernateInsert {
 		// // commit saving(will close session)
 		// session.getTransaction().commit();
 
-		MethodsInsert.spittersInsert(factory, new Spitter("vorik", "aaaaa", "grin", "gv@gmail.com", false));
+		MethodsCreateInsert.spittersInsert(factory, new Spitter("vorik", "aaaaa", "grin", "gv@gmail.com", false));
 
 		// DbTestHibernateMethods.printSpitters(DbTestHibernateMethods.spittersByName(factory,
 		// "paul"));
-		MethodsPrint.printSpitters(MethodsSelect.spittersAll(factory));
+		MethodsPrint.printSpitters(MethodsReadSelect.spittersAll(factory));
 
 		// don't forget to close factory at the end
 		// spring will take on himself handling session open and close, but when
