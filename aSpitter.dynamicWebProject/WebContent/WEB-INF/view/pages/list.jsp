@@ -8,8 +8,7 @@
 </head>
 <body>
 
-<p1>HOME</p1>
-<a href="home/list">LIST</a>
+<p6>LIST HERE</p6>
 
 </body>
 </html>

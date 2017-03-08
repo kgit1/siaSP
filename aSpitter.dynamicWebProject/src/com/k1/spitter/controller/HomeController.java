@@ -23,6 +23,7 @@ public class HomeController {
 	// @RequestMapping(path-"/list". method=RequestMethod.POST)
 	// same as
 	// PostMapping("/list")
+	
 	@GetMapping("/home")
 	public String home() {
 		return "home";
