@@ -83,6 +83,8 @@ public class DbTestHibernateSelect {
 		// DbTestHibernateMethods.printSpitters(spittersByNameAndEmail1);
 		MethodsPrint.printSpitters(spittersByNameAndEmail2);
 		MethodsPrint.printSpitters(spittersByNameAndEmail3);
+
+		factory.close();
 	}
 }
 
