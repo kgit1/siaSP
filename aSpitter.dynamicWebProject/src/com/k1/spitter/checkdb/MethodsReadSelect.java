@@ -1,7 +1,9 @@
 package com.k1.spitter.checkdb;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -20,10 +22,16 @@ public class MethodsReadSelect {
 	public static List<Spitter> spittersAll(SessionFactory factory) {
 		// get current session
 		Session session = factory.getCurrentSession();
+		List<Spitter> spitters = new ArrayList<>();
 		// start transaction
-		session.beginTransaction();
-		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
-		session.close();
+		try {
+			session.beginTransaction();
+			spitters = session.createQuery("from Spitter").getResultList();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 		return spitters;
 	}
 
