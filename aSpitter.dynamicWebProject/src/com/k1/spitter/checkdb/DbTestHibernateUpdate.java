@@ -13,20 +13,15 @@ public class DbTestHibernateUpdate {
 
 	public static void main(String[] args) {
 
-		// class SessionFactory
-		// reads the hibernate config file
-		// creates Session object
-		// heavy-weight object
-		// only create once in your app
+		// class SessionFactory reads the hibernate config file
+		// creates Session object heavy-weight object only create once in your
+		// app
 
-		// Session
-		// wraps a JDBC connection
-		// main object used to save\retrieve objects
-		// short-lived object
-		// retrieved from Seccion factory
+		// Session wraps a JDBC connection main object used to save\retrieve
+		// objects
+		// short-lived object retrieved from Seccion factory
 
-		// create session factory
-		// if configure() is empty -
+		// create session factory if configure() is empty -
 		// will use default "hibernate.cfg.xml" from src root
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Spitter.class)
 				.buildSessionFactory();
@@ -62,20 +57,12 @@ public class DbTestHibernateUpdate {
 		// and just commit transaction
 		session.getTransaction().commit();
 
+		// change email by id
 		MethodsUpdate.spittersUpdateEmail(factory, 5, "chunLin@gmail.com");
+		// change name by id
 		MethodsUpdate.spittersUpdateName(factory, 3, "mathilda");
+		// change fullname by id
 		MethodsUpdate.spittersUpdateFullName(factory, 6, "fullName");
-
-		// // create session
-		// session = factory.getCurrentSession();
-		//
-		// // start transaction
-		// session.beginTransaction();
-		// spitter1 = session.get(Spitter.class, spitterId);
-		// // spitter2 = MethodsSelect.spitterById(factory, 5);
-		// System.out.println("Updated");
-		// System.out.println(spitter1);
-		// // System.out.println(spitter2);
 
 		factory.close();
 
