@@ -58,10 +58,11 @@ public class DbTestHibernateInsert {
 		// // commit saving(will close session)
 		// session.getTransaction().commit();
 
-		DbTestHibernateMethods.spittersInsert(factory, new Spitter("vorik", "aaaaa", "grin", "gv@gmail.com", false));
+		MethodsInsert.spittersInsert(factory, new Spitter("vorik", "aaaaa", "grin", "gv@gmail.com", false));
 
-//		DbTestHibernateMethods.printSpitters(DbTestHibernateMethods.spittersByName(factory, "paul"));
-		DbTestHibernateMethods.printSpitters(DbTestHibernateMethods.spittersAll(factory));
+		// DbTestHibernateMethods.printSpitters(DbTestHibernateMethods.spittersByName(factory,
+		// "paul"));
+		MethodsPrint.printSpitters(MethodsSelect.spittersAll(factory));
 
 		// don't forget to close factory at the end
 		// spring will take on himself handling session open and close, but when

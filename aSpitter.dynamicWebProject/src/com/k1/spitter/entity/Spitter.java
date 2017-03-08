@@ -85,6 +85,7 @@ public class Spitter {
 	}
 
 	// generate getters, setters and toString for all fields
+
 	public int getId() {
 		return id;
 	}
@@ -131,6 +132,14 @@ public class Spitter {
 
 	public void setUpdateByEmail(boolean updateByEmail) {
 		this.updateByEmail = updateByEmail;
+	}
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	@Override

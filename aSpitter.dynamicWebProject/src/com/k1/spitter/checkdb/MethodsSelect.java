@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 
 import com.k1.spitter.entity.Spitter;
 
-public class DbTestHibernateMethods {
+public class MethodsSelect {
 
 	/////////////////////// SELECT/////////////////////////////
 	// remember in query quotes in java - field name must equals to name in
@@ -27,8 +27,20 @@ public class DbTestHibernateMethods {
 		return spitters;
 	}
 
-	// select all with username "habuma",
-	// equals SQL "select * from spitter where username='habuma'"
+	// select user with id = 1
+	// equals SQL "select * from spitter where id='1'"
+	public static Spitter spitterById(SessionFactory factory, int id) {
+		// get current session
+		Session session = factory.getCurrentSession();
+		// start transaction
+		session.beginTransaction();
+		Spitter spitter = session.get(Spitter.class, id);
+		session.close();
+		return spitter;
+	}
+
+	// select all with username habuma
+	// equals SQL "select * from spitter where userName='habuma'"
 	// List<Spitter> spittersByName = session.createQuery("from Spitter s where
 	// s.userName='habuma'").getResultList();
 	public static List<Spitter> spittersByName(SessionFactory factory, String name) {
@@ -41,8 +53,8 @@ public class DbTestHibernateMethods {
 		return spitters;
 	}
 
-	// select all with username "habuma",
-	// equals SQL "select * from spitter where email='habuma'"
+	// select all with email "artnames@habuma.com",
+	// equals SQL "select * from spitter where email='artnames@habuma.com'"
 	// List<Spitter> spittersByEmail = session.createQuery("from Spitter s where
 	// s.email='artnames@habuma.com'")
 	// .getResultList();
@@ -69,25 +81,5 @@ public class DbTestHibernateMethods {
 				.getResultList();
 		session.close();
 		return spitters;
-	}
-
-	/////////////////////// INSERT/////////////////////////////
-	// (username, password, fullname, email, update_by_email) values
-	// ('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false)
-	public static void spittersInsert(SessionFactory factory, Spitter spitter) {
-		// get current session
-		Session session = factory.getCurrentSession();
-		// start transaction
-		session.beginTransaction();
-		// save spitter to database
-		session.save(spitter);
-		// force transaction
-		session.getTransaction().commit();
-	}
-
-	public static void printSpitters(List<Spitter> spitters) {
-		for (Spitter spitter : spitters) {
-			System.out.println(spitter);
-		}
 	}
 }

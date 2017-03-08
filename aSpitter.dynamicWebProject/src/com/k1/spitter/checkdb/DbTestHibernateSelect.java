@@ -81,8 +81,8 @@ public class DbTestHibernateSelect {
 		System.err.println("=================");
 		// DbTestHibernateMethods.printSpitters(spittersByNameAndEmail);
 		// DbTestHibernateMethods.printSpitters(spittersByNameAndEmail1);
-		DbTestHibernateMethods.printSpitters(spittersByNameAndEmail2);
-		DbTestHibernateMethods.printSpitters(spittersByNameAndEmail3);
+		MethodsPrint.printSpitters(spittersByNameAndEmail2);
+		MethodsPrint.printSpitters(spittersByNameAndEmail3);
 	}
 }
 
