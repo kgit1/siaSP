@@ -20,16 +20,23 @@ public class PagesController {
 	SessionFactory factory;
 
 	@Transactional
-	//get spitters list and send it to page by adding as attribute to model
+	// get spitters list and send it to page by adding as attribute to model
 	@GetMapping("/home/list")
 	public String printList(Model theModel) {
 		Session session = factory.getCurrentSession();
-//		session.beginTransaction();
+		// session.beginTransaction();
 		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
-//		for(Spitter spitter: spitters){
-//			System.out.println(spitter);
-//		}
+		// for(Spitter spitter: spitters){
+		// System.out.println(spitter);
+		// }
 		theModel.addAttribute("spitters", spitters);
 		return "pages/list";
+	}
+
+	@GetMapping("reg")
+	public String reg(Model theModel) {
+		Spitter spitter = new Spitter();
+		theModel.addAttribute("spitter",spitter);
+		return "pages/reg";
 	}
 }

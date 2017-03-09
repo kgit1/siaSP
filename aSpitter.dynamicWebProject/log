@@ -133,8 +133,23 @@ add mvc namespace - for SpringMVC properties and annotations
 
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 	
+	//////////////FIRST PAGE////////////
+	create index.jsp in the Web-Content root 
+	in Dispatcher Servlet we define it as welcome-page
+	on index.jsp we create redirect to first page of our app
+	<% response.sendRedirect("home"); %>
 	
+	create HomeController for our first page
+	@GetMapping("/home")
+	public String home() {
+		return "home";
+	}
+	
+	add links on first page to our other pages like "list" and "registration"
+	
+	////////////////LIST///////////////
 	create new controller to map jsp page with list
+	
 	//get spitters list and send it to page by adding as attribute to model
 	@GetMapping("/home/list")
 	public String printList(Model theModel) {
@@ -149,9 +164,67 @@ add mvc namespace - for SpringMVC properties and annotations
 	add <!-- add jstl tags library  -->
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 	to begining of jsp page
+	
+	add table to recreate look of our db table on list page
+	
+	<p6>LIST HERE</p6>
+	<hr>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>UserName</th>
+			<th>FullName</th>
+			<th>Password</th>
+			<th>Email</th>
+			<th>EmailUpdate</th>
+			<th>Creation/Update time</th>
+			<th>Creation/Update Date</th>
+			<th>Creation/Update Time</th>
+		</tr>
+		<td><a>dfsdf</a></td>
 
+		<!-- foreach iterator which will iterato throug list "spitters" 
+		sended by adding attribute to model 
+		items="${spitters} <- customers name from MVC theModel-->
+		<c:forEach var="spitter" items="${spitters}">
+			<tr>
+				<%-- <td>Employee ID: <c:out value="${spitter.id}"/></td> --%>
+				<td>${spitter.id}</td>
+				<!-- will call spitters.getUserName() -->
+				<td>${spitter.userName}</td>
+				<!-- will call spitters.getFullName() -->
+				<td>${spitter.fullName}</td>
+				<!-- will call spitters.getPassword() -->
+				<td>${spitter.password}</td>
+				<!-- will call spitters.getEmail() -->
+				<td>${spitter.email}</td>
+				<!-- will call spitters.getUpdateByEmail() -->
+				<td>${spitter.updateByEmail}</td>
+				<!-- will call spitters.getTimestamp() -->
+				<td>${spitter.timestamp}</td>
+				<!-- will call spitters.getTimestamp() -->
+				<td>${spitter.date}</td>
+				<!-- will call spitters.getTimestamp() -->
+				<td>${spitter.time}</td>
+			</tr>
+		</c:forEach>
+	</table>
 	
 	
+	////////////////REGISTRATION/////////////
+	create registration jsp
+	
+	create controller which redirects to registration page and sends empty 
+	spitter object
+	@GetMapping("reg")
+	public String reg(Model theModel) {
+		Spitter spitter = new Spitter();
+		theModel.addAttribute("spitter",spitter);
+		return "pages/reg";
+	}
+	
+	add to the registration jsp for form namespace
+	 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 	
 	
 	
