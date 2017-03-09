@@ -28,8 +28,8 @@ public class DbTestHibernateCreateInsert {
 		// create session
 		Session session = factory.getCurrentSession();
 
-		// start transaction
-		// session.beginTransaction();
+//		 start transaction
+		 session.beginTransaction();
 
 		/////////////////////// INSERT/////////////////////////////
 		// (username, password, fullname, email, update_by_email) values
@@ -40,18 +40,18 @@ public class DbTestHibernateCreateInsert {
 		Spitter spitter2 = new Spitter("paul", "qwerty", "benson", "benson@yahoo.com", false);
 		Spitter spitter3 = new Spitter("iren", "qwerty", "donaldson", "iren@yahoo.com", false);
 		// insert spitter using available connection session
-		// session.save(spitter1);
-		// // commit saving(will close session)
-		// session.getTransaction().commit();
-		// // get new session
-		// session = factory.getCurrentSession();
-		// // begin transaction
-		// session.beginTransaction();
-		// // insert spitters
-		// session.save(spitter2);
-		// session.save(spitter3);
-		// // commit saving(will close session)
-		// session.getTransaction().commit();
+		session.save(spitter1);
+		// commit saving(will close session)
+		session.getTransaction().commit();
+		// get new session
+		session = factory.getCurrentSession();
+		// begin transaction
+		session.beginTransaction();
+		// insert spitters
+		session.save(spitter2);
+		session.save(spitter3);
+		// commit saving(will close session)
+		session.getTransaction().commit();
 
 		MethodsCreateInsert.spittersInsert(factory, new Spitter("vorik", "aaaaa", "grin", "gv@gmail.com", false));
 

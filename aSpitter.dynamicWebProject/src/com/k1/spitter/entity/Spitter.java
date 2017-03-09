@@ -44,12 +44,20 @@ public class Spitter {
 
 	///////////
 	@Column(name = "`timestamp`")
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date timestamp;
 	// Hibernate will include both the DATE, the TIME and the nanoseconds in the
 	// INSERT statement:
 	// INSERT INTO DateEvent ( timestamp, id )
 	// VALUES ( '2015-12-29 16:54:04.544', 1 )
+	
+	@Column(name = "`date`")
+	@Temporal(TemporalType.DATE)
+	private Date date;
+	
+	@Column(name = "`time`")
+	@Temporal(TemporalType.TIME)
+	private Date time;
 
 	//////////////////// DOSN'T WORK, PUTS NOTHING TO MYSQL TABLE//////////////
 	// @Column(name = "`date`")
@@ -141,15 +149,40 @@ public class Spitter {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
 
 	@Override
 	public String toString() {
 		return "Spitter [id=" + id + ", userName=" + userName + ", password=" + password + ", fullName=" + fullName
-				+ ", email=" + email + ", updateByEmail=" + updateByEmail + ", timestamp="
-				+ timestamp /*
-							 * + ", date=" + date + ", time=" + time
-							 */ + "]";
+				+ ", email=" + email + ", updateByEmail=" + updateByEmail + ", timestamp=" + timestamp + ", date="
+				+ date + ", time=" + time + "]";
 	}
+	
+	
+
+//	@Override
+//	public String toString() {
+//		return "Spitter [id=" + id + ", userName=" + userName + ", password=" + password + ", fullName=" + fullName
+//				+ ", email=" + email + ", updateByEmail=" + updateByEmail + ", timestamp="
+//				+ timestamp /*
+//							 * + ", date=" + date + ", time=" + time
+//							 */ + "]";
+//	}
 
 	// create table in mysql
 	// create table spitter (
