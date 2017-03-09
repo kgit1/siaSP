@@ -32,7 +32,17 @@ public class DbTestHibernateDelete {
 		// start transaction
 		session.beginTransaction();
 
+		session.createQuery("delete from Spitter where id = 3").executeUpdate();
+		session.getTransaction().commit();
+
 		factory.close();
 
+	}
+
+	void deleteStudentById(SessionFactory factory, int id) {
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		session.createQuery("delete from Spitter where id=" + id).executeUpdate();
+		session.getTransaction().commit();
 	}
 }

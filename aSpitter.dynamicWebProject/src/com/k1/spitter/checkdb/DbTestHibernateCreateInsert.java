@@ -28,8 +28,8 @@ public class DbTestHibernateCreateInsert {
 		// create session
 		Session session = factory.getCurrentSession();
 
-//		 start transaction
-		 session.beginTransaction();
+		// start transaction
+		session.beginTransaction();
 
 		/////////////////////// INSERT/////////////////////////////
 		// (username, password, fullname, email, update_by_email) values
@@ -39,6 +39,14 @@ public class DbTestHibernateCreateInsert {
 		Spitter spitter1 = new Spitter("paul", "qwerty", "donaldson", "donaldson@yahoo.com", false);
 		Spitter spitter2 = new Spitter("paul", "qwerty", "benson", "benson@yahoo.com", false);
 		Spitter spitter3 = new Spitter("iren", "qwerty", "donaldson", "iren@yahoo.com", false);
+		Spitter spitter4 = new Spitter("iren", "qwerty", "donaldson", "iren@yahoo.com", false);
+		Spitter spitter5 = new Spitter("habuma", "qwerty", "Craig Walls", "craig@habuma.com", false);
+		Spitter spitter6 = new Spitter("habuma", "qwerty1", "Craig Walls", "craig@habuma.com", false);
+		Spitter spitter7 = new Spitter("habuma", "qwerty11", "Craig Walls", "craig@habuma.com", false);
+		Spitter spitter8 = new Spitter("artnames", "qwerty", "Art Names", "artnames@habuma.com", false);
+		Spitter spitter9 = new Spitter("artnames", "qwerty", "Art Names", "artnames@habuma.com", false);
+		Spitter spitter10 = new Spitter("artnames", "qwerty", "Art Names", "artnames@habuma.com", false);
+		Spitter spitter11 = new Spitter("artnames", "qwerty", "Art", "artnames@habuma.com", false);
 		// insert spitter using available connection session
 		session.save(spitter1);
 		// commit saving(will close session)
@@ -50,6 +58,15 @@ public class DbTestHibernateCreateInsert {
 		// insert spitters
 		session.save(spitter2);
 		session.save(spitter3);
+		session.save(spitter4);
+		session.save(spitter5);
+		session.save(spitter6);
+		session.save(spitter7);
+		session.save(spitter8);
+		session.save(spitter9);
+		session.save(spitter10);
+		session.save(spitter11);
+		
 		// commit saving(will close session)
 		session.getTransaction().commit();
 

@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 @Entity
 // can be skipped if class name matches table name
 @Table(name = "spitter")
-public class Spitter {
+public class Spitter implements Comparable<Spitter> {
 
 	// marks id value
 	// means primary key for database
@@ -50,11 +50,11 @@ public class Spitter {
 	// INSERT statement:
 	// INSERT INTO DateEvent ( timestamp, id )
 	// VALUES ( '2015-12-29 16:54:04.544', 1 )
-	
+
 	@Column(name = "`date`")
 	@Temporal(TemporalType.DATE)
 	private Date date;
-	
+
 	@Column(name = "`time`")
 	@Temporal(TemporalType.TIME)
 	private Date time;
@@ -149,7 +149,7 @@ public class Spitter {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
-	
+
 	public Date getDate() {
 		return date;
 	}
@@ -172,17 +172,28 @@ public class Spitter {
 				+ ", email=" + email + ", updateByEmail=" + updateByEmail + ", timestamp=" + timestamp + ", date="
 				+ date + ", time=" + time + "]";
 	}
-	
-	
 
-//	@Override
-//	public String toString() {
-//		return "Spitter [id=" + id + ", userName=" + userName + ", password=" + password + ", fullName=" + fullName
-//				+ ", email=" + email + ", updateByEmail=" + updateByEmail + ", timestamp="
-//				+ timestamp /*
-//							 * + ", date=" + date + ", time=" + time
-//							 */ + "]";
-//	}
+	@Override
+	public int compareTo(Spitter spitter) {
+		if (this.getUserName().compareTo(spitter.getUserName()) == 0) {
+			if (this.getFullName().compareTo(spitter.getFullName()) == 0) {
+				return this.getEmail().compareTo(spitter.getEmail());
+			}
+			return this.getFullName().compareTo(spitter.getFullName());
+		}
+		return this.getUserName().compareTo(spitter.getUserName());
+	}
+
+	// @Override
+	// public String toString() {
+	// return "Spitter [id=" + id + ", userName=" + userName + ", password=" +
+	// password + ", fullName=" + fullName
+	// + ", email=" + email + ", updateByEmail=" + updateByEmail + ",
+	// timestamp="
+	// + timestamp /*
+	// * + ", date=" + date + ", time=" + time
+	// */ + "]";
+	// }
 
 	// create table in mysql
 	// create table spitter (

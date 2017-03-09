@@ -1,6 +1,7 @@
 package com.k1.spitter.checkdb;
 
 import java.util.List;
+import java.util.TreeSet;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -31,29 +32,34 @@ public class DbTestHibernateWork {
 		Session session = factory.openSession();
 
 		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+		TreeSet<Spitter> spittersSet = new TreeSet<>(spitters);
+		
+		for(Spitter sp : spittersSet){
+			System.out.println(sp);
+		}
 
 		//////// TRUNCATE
 		// SET FOREIGN_KEY_CHECKS = 0;
 		// TRUNCATE table1;
 		// SET FOREIGN_KEY_CHECKS = 1;
 
-		session.beginTransaction();
-		session.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
-		session.createNativeQuery("truncate table Spitter").executeUpdate();
-		session.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
-		session.getTransaction().commit();
+//		session.beginTransaction();
+//		session.createNativeQuery("SET FOREIGN_KEY_CHECKS = 0").executeUpdate();
+//		session.createNativeQuery("truncate table Spitter").executeUpdate();
+//		session.createNativeQuery("SET FOREIGN_KEY_CHECKS = 1").executeUpdate();
+//		session.getTransaction().commit();
 		/////////////////////
 
-		session = factory.openSession();
-		session.beginTransaction();
-
-		for (Spitter spitter : spitters) {
-			spitter.setTime(null);
-			spitter.setDate(null);
-			spitter.setTimestamp(null);
-			session.save(spitter);
-		}
-		session.getTransaction().commit();
+//		session = factory.openSession();
+//		session.beginTransaction();
+//
+//		for (Spitter spitter : spitters) {
+//			spitter.setTime(null);
+//			spitter.setDate(null);
+//			spitter.setTimestamp(null);
+//			session.save(spitter);
+//		}
+//		session.getTransaction().commit();
 
 		// start transaction
 		// session.beginTransaction();
