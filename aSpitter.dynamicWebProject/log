@@ -151,6 +151,7 @@ add mvc namespace - for SpringMVC properties and annotations
 	create new controller to map jsp page with list
 	
 	//get spitters list and send it to page by adding as attribute to model
+	@Transactional
 	@GetMapping("/home/list")
 	public String printList(Model theModel) {
 		Session session = factory.getCurrentSession();
@@ -226,5 +227,46 @@ add mvc namespace - for SpringMVC properties and annotations
 	add to the registration jsp for form namespace
 	 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 	
+	add form to hold table with inputs and submit buttons and fields
+	
+	<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
+		<table>
+			<tbody>
+				<tr>
+					<td><label>UserName</label></td>
+					<td><form:input path="userName" /></td>
+				</tr>
+				<tr>
+					<td><label>FullName</label></td>
+					<td><form:input path="fullName" /></td>
+				</tr>
+				<tr>
+					<td><label>Age</label></td>
+					<td><form:input path="age"/></td>
+				<tr>
+					<td><label>Password</label></td>
+					<td><form:password path="password" /></td>
+				</tr>
+				<tr>
+					<td><label>Email</label></td>
+					<td><form:input path="email" /></td>
+				</tr>
+				<tr>
+					<td><label></label></td>
+					<td><input type="submit" value="Save" /></td>
+				</tr>
+			</tbody>
+		</table>
+	</form:form>
+	
+	add save controller which save spitter to db and redirect us 
+	to spitters list
+	@Transactional
+	@PostMapping("/saveSpitter")
+	public String saveSpitter(@ModelAttribute("spitter") Spitter spitter) {
+		Session session = factory.getCurrentSession();
+		session.save(spitter);
+		return "redirect:/home/list";
+	}
 	
 	

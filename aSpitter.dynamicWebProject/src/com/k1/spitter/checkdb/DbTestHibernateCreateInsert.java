@@ -36,17 +36,17 @@ public class DbTestHibernateCreateInsert {
 		// ('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false)
 
 		// create spitters to insert to database
-		Spitter spitter1 = new Spitter("paul", "qwerty", "donaldson", "donaldson@yahoo.com", false);
-		Spitter spitter2 = new Spitter("paul", "qwerty", "benson", "benson@yahoo.com", false);
-		Spitter spitter3 = new Spitter("iren", "qwerty", "donaldson", "iren@yahoo.com", false);
-		Spitter spitter4 = new Spitter("iren", "qwerty", "donaldson", "iren@yahoo.com", false);
-		Spitter spitter5 = new Spitter("habuma", "qwerty", "Craig Walls", "craig@habuma.com", false);
-		Spitter spitter6 = new Spitter("habuma", "qwerty1", "Craig Walls", "craig@habuma.com", false);
-		Spitter spitter7 = new Spitter("habuma", "qwerty11", "Craig Walls", "craig@habuma.com", false);
-		Spitter spitter8 = new Spitter("artnames", "qwerty", "Art Names", "artnames@habuma.com", false);
-		Spitter spitter9 = new Spitter("artnames", "qwerty", "Art Names", "artnames@habuma.com", false);
-		Spitter spitter10 = new Spitter("artnames", "qwerty", "Art Names", "artnames@habuma.com", false);
-		Spitter spitter11 = new Spitter("artnames", "qwerty", "Art", "artnames@habuma.com", false);
+		Spitter spitter1 = new Spitter("paul", "qwerty", 22,"donaldson", "donaldson@yahoo.com", false);
+		Spitter spitter2 = new Spitter("paul", "qwerty", 22,"benson", "benson@yahoo.com", false);
+		Spitter spitter3 = new Spitter("iren", "qwerty", 22,"donaldson", "iren@yahoo.com", false);
+		Spitter spitter4 = new Spitter("iren", "qwerty", 22,"donaldson", "iren@yahoo.com", false);
+		Spitter spitter5 = new Spitter("habuma", "qwerty", 22,"Craig Walls", "craig@habuma.com", false);
+		Spitter spitter6 = new Spitter("habuma", "qwerty1", 22,"Craig Walls", "craig@habuma.com", false);
+		Spitter spitter7 = new Spitter("habuma", "qwerty11", 22,"Craig Walls", "craig@habuma.com", false);
+		Spitter spitter8 = new Spitter("artnames", "qwerty", 22,"Art Names", "artnames@habuma.com", false);
+		Spitter spitter9 = new Spitter("artnames", "qwerty", 22,"Art Names", "artnames@habuma.com", false);
+		Spitter spitter10 = new Spitter("artnames", "qwerty", 22,"Art Names", "artnames@habuma.com", false);
+		Spitter spitter11 = new Spitter("artnames", "qwerty", 22,"Art", "artnames@habuma.com", false);
 		// insert spitter using available connection session
 		session.save(spitter1);
 		// commit saving(will close session)
@@ -70,7 +70,7 @@ public class DbTestHibernateCreateInsert {
 		// commit saving(will close session)
 		session.getTransaction().commit();
 
-		MethodsCreateInsert.spittersInsert(factory, new Spitter("vorik", "aaaaa", "grin", "gv@gmail.com", false));
+		MethodsCreateInsert.spittersInsert(factory, new Spitter("vorik", "aaaaa", 22,"grin", "gv@gmail.com", false));
 
 		// DbTestHibernateMethods.printSpitters(DbTestHibernateMethods.spittersByName(factory,
 		// "paul"));

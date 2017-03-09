@@ -17,6 +17,7 @@
 			<th>Id</th>
 			<th>UserName</th>
 			<th>FullName</th>
+			<th>Age</th>
 			<th>Password</th>
 			<th>Email</th>
 			<th>EmailUpdate</th>
@@ -24,7 +25,6 @@
 			<th>Creation/Update Date</th>
 			<th>Creation/Update Time</th>
 		</tr>
-		<td><a>dfsdf</a></td>
 
 		<!-- foreach iterator which will iterato throug list "spitters" 
 		sended by adding attribute to model 
@@ -37,6 +37,8 @@
 				<td>${spitter.userName}</td>
 				<!-- will call spitters.getFullName() -->
 				<td>${spitter.fullName}</td>
+				<!-- will call spitter.getAge() -->
+				<td>${spitter.age}</td>
 				<!-- will call spitters.getPassword() -->
 				<td>${spitter.password}</td>
 				<!-- will call spitters.getEmail() -->
@@ -44,11 +46,11 @@
 				<!-- will call spitters.getUpdateByEmail() -->
 				<td>${spitter.updateByEmail}</td>
 				<!-- will call spitters.getTimestamp() -->
-				<td>${spitter.timestamp}</td>
-				<!-- will call spitters.getTimestamp() -->
 				<td>${spitter.date}</td>
 				<!-- will call spitters.getTimestamp() -->
 				<td>${spitter.time}</td>
+				<!-- will call spitters.getTimestamp() -->
+				<td>${spitter.timestamp}</td>
 			</tr>
 		</c:forEach>
 	</table>

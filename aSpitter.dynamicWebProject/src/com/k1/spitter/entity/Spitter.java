@@ -36,6 +36,9 @@ public class Spitter implements Comparable<Spitter> {
 	@Column(name = "fullname")
 	private String fullName;
 
+	@Column(name = "age")
+	private int age;
+
 	@Column(name = "email")
 	private String email;
 
@@ -43,14 +46,6 @@ public class Spitter implements Comparable<Spitter> {
 	private boolean updateByEmail;
 
 	///////////
-	@Column(name = "`timestamp`")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date timestamp;
-	// Hibernate will include both the DATE, the TIME and the nanoseconds in the
-	// INSERT statement:
-	// INSERT INTO DateEvent ( timestamp, id )
-	// VALUES ( '2015-12-29 16:54:04.544', 1 )
-
 	@Column(name = "`date`")
 	@Temporal(TemporalType.DATE)
 	private Date date;
@@ -58,6 +53,14 @@ public class Spitter implements Comparable<Spitter> {
 	@Column(name = "`time`")
 	@Temporal(TemporalType.TIME)
 	private Date time;
+
+	@Column(name = "`timestamp`")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date timestamp;
+	// Hibernate will include both the DATE, the TIME and the nanoseconds in the
+	// INSERT statement:
+	// INSERT INTO DateEvent ( timestamp, id )
+	// VALUES ( '2015-12-29 16:54:04.544', 1 )
 
 	//////////////////// DOSN'T WORK, PUTS NOTHING TO MYSQL TABLE//////////////
 	// @Column(name = "`date`")
@@ -83,10 +86,11 @@ public class Spitter implements Comparable<Spitter> {
 	}
 
 	// constructor with fields but not id(primary key)
-	public Spitter(String userName, String password, String fullName, String email, boolean updateByEmail) {
+	public Spitter(String userName, String password, int age, String fullName, String email, boolean updateByEmail) {
 		super();
 		this.userName = userName;
 		this.password = password;
+		this.age=age;
 		this.fullName = fullName;
 		this.email = email;
 		this.updateByEmail = updateByEmail;
@@ -166,11 +170,19 @@ public class Spitter implements Comparable<Spitter> {
 		this.time = time;
 	}
 
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
 	@Override
 	public String toString() {
 		return "Spitter [id=" + id + ", userName=" + userName + ", password=" + password + ", fullName=" + fullName
-				+ ", email=" + email + ", updateByEmail=" + updateByEmail + ", timestamp=" + timestamp + ", date="
-				+ date + ", time=" + time + "]";
+				+ ", age=" + age + ", email=" + email + ", updateByEmail=" + updateByEmail + ", date=" + date
+				+ ", time=" + time + ", timestamp=" + timestamp + "]";
 	}
 
 	@Override
