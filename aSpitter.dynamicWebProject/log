@@ -133,3 +133,25 @@ add mvc namespace - for SpringMVC properties and annotations
 
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 	
+	
+	create new controller to map jsp page with list
+	//get spitters list and send it to page by adding as attribute to model
+	@GetMapping("/home/list")
+	public String printList(Model theModel) {
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+		theModel.addAllAttributes(spitters);
+		return "pages/list";
+	}
+	
+	add jstl libs to WebContent-> WEB-INF -> lib
+	add <!-- add jstl tags library  -->
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+	to begining of jsp page
+
+	
+	
+	
+	
+	
