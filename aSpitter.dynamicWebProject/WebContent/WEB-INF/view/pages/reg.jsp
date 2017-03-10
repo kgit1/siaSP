@@ -10,8 +10,15 @@
 <body>
 	<h3>REGISTRATION</h3>
 
+	<!-- on form load - spring will execute getters to populate fields -->
+	<!-- on form submit - spring will use setters to change field's values -->
 	<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
 		<table>
+
+			<!-- need to associate this data with customer id, when we use this form 
+	to update current customer -->
+			<form:hidden path="id" />
+
 			<tbody>
 				<tr>
 					<td><label>UserName</label></td>
@@ -23,7 +30,7 @@
 				</tr>
 				<tr>
 					<td><label>Age</label></td>
-					<td><form:input path="age"/></td>
+					<td><form:input path="age" /></td>
 				<tr>
 					<td><label>Password</label></td>
 					<td><form:password path="password" /></td>

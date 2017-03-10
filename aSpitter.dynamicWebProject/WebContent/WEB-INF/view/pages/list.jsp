@@ -31,6 +31,20 @@
 		items="${spitters} <- customers name from MVC theModel-->
 		<c:forEach var="spitter" items="${spitters}">
 			<tr>
+
+				<!-- construct an "udpate" link with customer id --->
+				<!--var - variable name to use somewhere,--->
+				<!--value - urlpath which will be given,--->
+				<!--c:param name - name of parameter added to model,--->
+				<!--value - value of parameter added to model, in our case - spitter's id--->
+				<c:url var="updateLink" value="/showFormForUpdate">
+					<c:param name="spitterId" value="${spitter.id}" />
+				</c:url>
+
+				<c:url var="deleteLink" value="spitter/delete">
+					<c:param name="spitterId" value="${spitter.id}" />
+				</c:url>
+
 				<%-- <td>Employee ID: <c:out value="${spitter.id}"/></td> --%>
 				<td>${spitter.id}</td>
 				<!-- will call spitters.getUserName() -->
@@ -51,6 +65,11 @@
 				<td>${spitter.time}</td>
 				<!-- will call spitters.getTimestamp() -->
 				<td>${spitter.timestamp}</td>
+
+				<!-- display the update and delete link -->
+				<!-- will call updateLink variable from this page -->
+				<td><a href="${updateLink}">UPDATE</a> | <!-- will call updateLink variable from this page -->
+					<a href="${deleteLink}">DELETE</a></td>
 			</tr>
 		</c:forEach>
 	</table>

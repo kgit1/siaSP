@@ -150,14 +150,19 @@ add mvc namespace - for SpringMVC properties and annotations
 	////////////////LIST///////////////
 	create new controller to map jsp page with list
 	
-	//get spitters list and send it to page by adding as attribute to model
 	@Transactional
+	// get spitters list and send it to page by adding as attribute to model
 	@GetMapping("/home/list")
 	public String printList(Model theModel) {
+		// get current hibernate session
 		Session session = factory.getCurrentSession();
-		session.beginTransaction();
+
+		// get spitters from db
 		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
-		theModel.addAllAttributes(spitters);
+
+		// add spitters list to model which will go to return page
+		theModel.addAttribute("spitters", spitters);
+		// lead to list page
 		return "pages/list";
 	}
 	
@@ -229,7 +234,14 @@ add mvc namespace - for SpringMVC properties and annotations
 	
 	add form to hold table with inputs and submit buttons and fields
 	
+	<!-- on form load - spring will execute getters to populate fields -->
+<!-- on form submit - spring will use setters to change field's values -->
 	<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
+	
+	<!-- need to associate this data with customer id, when we use this form 
+	to update current customer -->
+	<form:hidden path="id"/>
+	
 		<table>
 			<tbody>
 				<tr>
@@ -264,9 +276,67 @@ add mvc namespace - for SpringMVC properties and annotations
 	@Transactional
 	@PostMapping("/saveSpitter")
 	public String saveSpitter(@ModelAttribute("spitter") Spitter spitter) {
+		// get current hibernate session
 		Session session = factory.getCurrentSession();
-		session.save(spitter);
+		// save or update
+		session.saveOrUpdate(spitter);
+		// redirect to list page, redirect will recreate page with new
+		// independent model
 		return "redirect:/home/list";
 	}
 	
+	
+	////////////////BUTTONS///////////////
+	add update, delete, and search buttons to "list" page
+	
+	to create update and delete buttons in list, which will use spitter.id to
+	define affected spitter - we use c:url	
+	<c:url> JSTL tag is used for url formatting or you can say url encoding. 
+	This is mainly used when we need to open a JSP page based on the user 
+	input or based on the value of a variable.
+	
+	<!-- construct an "udpate" link with customer id --->
+		<!--var - variable name to use somewhere,--->
+		<!--value - urlpath which will be given,--->
+		<!--c:param name - name of parameter added to model,--->
+		<!--value - value of parameter added to model, in our case - spitter's id--->
+		<c:url var="updateLink" value="spitter/showFormForUpdate">
+			<c:param name="spitterId" value="${spitter.id}" />
+		</c:url>
+
+		<c:url var="deleteLink" value="spitter/delete">
+			<c:param name="spitterId" value="${spitter.id}" />
+		</c:url>
+		
+	and than create buttons in table  depending on this created url's
+		<!-- display the update and delete link -->
+		<!-- will call updateLink variable from this page -->
+		<td><a href="${updateLink}">UPDATE</a> | <!-- will call updateLink variable from this page -->
+			<a href="${deleteLink}">DELETE</a></td>
+			
+	than create controllers to use this buttons
+	
+	@Transactional
+	@GetMapping("showFormForUpdate")
+	// here we sent to method parameter id, requesting it from model by
+	// @RequestParam("spitterId") int id
+	public String showFormForUpdate(@RequestParam("spitterId") int id, Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		// create spitter and transfer certain spitter from db, received by id
+		Spitter spitter = session.get(Spitter.class, id);
+		// set timestamp time and date in our spitter to null, because they
+		// automatically created by db
+		spitter.setTimestamp(null);
+		spitter.setTime(null);
+		spitter.setDate(null);
+
+		// add spitter as attribute to model by addAttribute() method which
+		// requests as params - objects name in model and object
+		theModel.addAttribute("spitter", spitter);
+
+		// lead us with model next to reg page
+		return "pages/reg";
+	}
 	
