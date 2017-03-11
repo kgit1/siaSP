@@ -18,12 +18,7 @@
 			<th>UserName</th>
 			<th>FullName</th>
 			<th>Age</th>
-			<th>Password</th>
-			<th>Email</th>
-			<th>EmailUpdate</th>
-			<th>Creation/Update time</th>
-			<th>Creation/Update Date</th>
-			<th>Creation/Update Time</th>
+			<th>Creation/Update</th>
 			<th>UPDATE</th>
 			<th>DELETE</th>
 			<th>INFO</th>
@@ -52,7 +47,7 @@
 					<c:param name="spitterId" value="${spitter.id}" />
 				</c:url>
 
-				<%-- <td>Employee ID: <c:out value="${spitter.id}"/></td> --%>
+				<%-- <td>Spitter ID: <c:out value="${spitter.id}"/></td> --%>
 				<td>${spitter.id}</td>
 				<!-- will call spitters.getUserName() -->
 				<td>${spitter.userName}</td>
@@ -60,18 +55,8 @@
 				<td>${spitter.fullName}</td>
 				<!-- will call spitter.getAge() -->
 				<td>${spitter.age}</td>
-				<!-- will call spitters.getPassword() -->
-				<td>${spitter.password}</td>
-				<!-- will call spitters.getEmail() -->
-				<td>${spitter.email}</td>
-				<!-- will call spitters.getUpdateByEmail() -->
-				<td>${spitter.updateByEmail}</td>
 				<!-- will call spitters.getTimestamp() -->
 				<td>${spitter.date}</td>
-				<!-- will call spitters.getTimestamp() -->
-				<td>${spitter.time}</td>
-				<!-- will call spitters.getTimestamp() -->
-				<td>${spitter.timestamp}</td>
 
 				<!-- display the update and delete link -->
 				<!-- will call updateLink variable from this page -->
@@ -87,6 +72,7 @@
 	<iframe
 		src="//coub.com/embed/shkq1?muted=false&autostart=false&originalSize=false&startWithHD=false"
 		allowfullscreen="true" frameborder="0" width="530" height="452"></iframe>
+		<img src="${pageContext.request.contextPath}/resources/images/how spring mvc.jpg">
 
 
 </body>

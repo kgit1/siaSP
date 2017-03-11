@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>${spitter.userName} ${spitter.fullName}</title>
 </head>
 <body>
 
@@ -25,10 +25,6 @@
 			<th>Update</th>
 			<th>Delete</th>
 		</tr>
-		<!-- foreach iterator which will iterate through list "spitters" 
-		sended by adding attribute to model 
-		items="${spitters} <- customers name from MVC theModel-->
-		<%-- 		<c:forEach var="spitter" items="${spitters}"> --%>
 		<tr>
 			<c:url var="updatelink" value="/showFormForUpdate">
 				<c:param name="spitterId" value="${spitter.id}" />
@@ -36,22 +32,34 @@
 			<c:url var="deletelink" value="/delete">
 				<c:param name="spitterId" value="${spitter.id}" />
 			</c:url>
+			<%-- <td>Spitter ID: <c:out value="${spitter.id}"/></td> --%>
 			<td>${spitter.id}</td>
+			<!-- will call spitters.getUserName() -->
 			<td>${spitter.userName}</td>
+			<!-- will call spitters.getFullName() -->
 			<td>${spitter.fullName}</td>
+			<!-- will call spitter.getAge() -->
 			<td>${spitter.age}</td>
+			<!-- will call spitters.getPassword() -->
 			<td>${spitter.password}</td>
+			<!-- will call spitters.getEmail() -->
 			<td>${spitter.email}</td>
+			<!-- will call spitters.getUpdateByEmail() -->
 			<td>${spitter.updateByEmail}</td>
+			<!-- will call spitters.getTimestamp() -->
 			<td>${spitter.date}</td>
+			<!-- will call spitters.getTimestamp() -->
 			<td>${spitter.time}</td>
+			<!-- will call spitters.getTimestamp() -->
 			<td>${spitter.timestamp}</td>
+
+			<!-- display the update and delete link -->
+			<!-- will call updateLink variable from this page -->
 			<td><a href="${updateLink}">UPDATE</a></td>
-			<td><a href="${deletelink}"
+			<!-- will call deleteLink variable from this page -->
+			<td><a href="${deleteLink}"
 				onclick="if(!(confirm('Are you sure you want to delete this customer?'))) return false">DELETE</a></td>
 		</tr>
-
-		<%-- 		</c:forEach> --%>
 	</table>
 
 </body>

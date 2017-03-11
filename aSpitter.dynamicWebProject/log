@@ -30,13 +30,46 @@ so in WebContent-> resources - create folders images and css
 at Java Resources -> src - create packages for controllers, dao, services 
 and entity(model)
 
+/////////////////////SPRING MVC///////////
+
+request from web page of our app will be handled in first by DIspatcherServlet,
+than he will found controller which fits to request,
+that controller will do work, than pack together model with procedure name 
+depends on which DispatcherServlet with help of resolver will found jsp 
+page on which data will be presented
+
+so first configure DespatcherServlet
+
 add web.xml to WebContent -> WEB-INF
 where we configure Dispatcher Servlet which manages all requests between view and controller
 in which we assign welcome file and indicates where spring configuration is, 
 and maps "/" to be default path
 
-***********************************************
-SPRING
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>spring-mvc-crud-demo</display-name>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/spring-mvc-crud-demo-servlet.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>
+
 
 put libs to WebContent-> WEB-INF -> lib
 spring libs
@@ -148,6 +181,7 @@ add mvc namespace - for SpringMVC properties and annotations
 	add links on first page to our other pages like "list" and "registration"
 	
 	////////////////LIST///////////////
+	
 	create new controller to map jsp page with list
 	
 	@Transactional
@@ -167,7 +201,7 @@ add mvc namespace - for SpringMVC properties and annotations
 	}
 	
 	add jstl libs to WebContent-> WEB-INF -> lib
-	add <!-- add jstl tags library  -->
+	add <!-- add jstl tags namespace  -->
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 	to begining of jsp page
 	
@@ -177,47 +211,65 @@ add mvc namespace - for SpringMVC properties and annotations
 	<hr>
 	<table>
 		<tr>
-			<th>Id</th>
+			<th>ID</th>
 			<th>UserName</th>
 			<th>FullName</th>
-			<th>Password</th>
-			<th>Email</th>
-			<th>EmailUpdate</th>
-			<th>Creation/Update time</th>
-			<th>Creation/Update Date</th>
-			<th>Creation/Update Time</th>
+			<th>Age</th>
+			<th>Creation/Update</th>
+			<th>UPDATE</th>
+			<th>DELETE</th>
+			<th>INFO</th>
 		</tr>
-		<td><a>dfsdf</a></td>
 
-		<!-- foreach iterator which will iterato throug list "spitters" 
+		<!-- foreach iterator which will iterate through list "spitters" 
 		sended by adding attribute to model 
 		items="${spitters} <- customers name from MVC theModel-->
 		<c:forEach var="spitter" items="${spitters}">
 			<tr>
-				<%-- <td>Employee ID: <c:out value="${spitter.id}"/></td> --%>
+
+				<!-- construct an "udpate" link with customer id --->
+				<!--var - variable name to use somewhere,--->
+				<!--value - urlpath which will be given,--->
+				<!--c:param name - name of parameter added to model,--->
+				<!--value - value of parameter added to model, in our case - spitter's id--->
+				<c:url var="updateLink" value="/showFormForUpdate">
+					<c:param name="spitterId" value="${spitter.id}" />
+				</c:url>
+
+				<c:url var="deleteLink" value="/delete">
+					<c:param name="spitterId" value="${spitter.id}" />
+				</c:url>
+
+				<c:url var="fullInfo" value="/info">
+					<c:param name="spitterId" value="${spitter.id}" />
+				</c:url>
+
+				<%-- <td>Spitter ID: <c:out value="${spitter.id}"/></td> --%>
 				<td>${spitter.id}</td>
 				<!-- will call spitters.getUserName() -->
 				<td>${spitter.userName}</td>
 				<!-- will call spitters.getFullName() -->
 				<td>${spitter.fullName}</td>
-				<!-- will call spitters.getPassword() -->
-				<td>${spitter.password}</td>
-				<!-- will call spitters.getEmail() -->
-				<td>${spitter.email}</td>
-				<!-- will call spitters.getUpdateByEmail() -->
-				<td>${spitter.updateByEmail}</td>
-				<!-- will call spitters.getTimestamp() -->
-				<td>${spitter.timestamp}</td>
+				<!-- will call spitter.getAge() -->
+				<td>${spitter.age}</td>
 				<!-- will call spitters.getTimestamp() -->
 				<td>${spitter.date}</td>
-				<!-- will call spitters.getTimestamp() -->
-				<td>${spitter.time}</td>
+
+				<!-- display the update and delete link -->
+				<!-- will call updateLink variable from this page -->
+				<td><a href="${updateLink}">UPDATE</a></td>
+				<!-- will call deleteLink variable from this page -->
+				<td><a href="${deleteLink}"
+					onclick="if(!(confirm('Are you sure you want to delete this customer?'))) return false">DELETE</a></td>
+				<!-- will call fullInfo variable from this page -->
+				<td><a href="${fullInfo}">INFO</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 	
 	
 	////////////////REGISTRATION/////////////
+	
 	create registration jsp
 	
 	create controller which redirects to registration page and sends empty 
@@ -231,6 +283,9 @@ add mvc namespace - for SpringMVC properties and annotations
 	
 	add to the registration jsp for form namespace
 	 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+	 
+	 add to header 
+	<title>${spitter.userName} ${spitter.fullName}</title>
 	
 	add form to hold table with inputs and submit buttons and fields
 	
@@ -287,6 +342,7 @@ add mvc namespace - for SpringMVC properties and annotations
 	
 	
 	////////////////BUTTONS///////////////
+	
 	add update, delete, and search buttons to "list" page
 	
 	to create update and delete buttons in list, which will use spitter.id to
@@ -339,4 +395,90 @@ add mvc namespace - for SpringMVC properties and annotations
 		// lead us with model next to reg page
 		return "pages/reg";
 	}
+	
+	
+	//////////////////SINGLE SPITTER/////////////////
+	
+	create new jsp page for single spitter with full info
+	
+	add <!-- add jstl tags namespace  -->
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+	to begining of jsp page
+	
+	add to header 
+	<title>${spitter.userName} ${spitter.fullName}</title>
+	
+	add table to represent spitter's info
+	
+		<table>
+		<tr>
+			<th>ID</th>
+			<th>UserName</th>
+			<th>FullName</th>
+			<th>Age</th>
+			<th>Password</th>
+			<th>Email</th>
+			<th>EmailUpdate</th>
+			<th>Creation/Update date</th>
+			<th>Creation/Update time</th>
+			<th>Creation/Update date+time</th>
+			<th>Update</th>
+			<th>Delete</th>
+		</tr>
+		<tr>
+			<c:url var="updatelink" value="/showFormForUpdate">
+				<c:param name="spitterId" value="${spitter.id}" />
+			</c:url>
+			<c:url var="deletelink" value="/delete">
+				<c:param name="spitterId" value="${spitter.id}" />
+			</c:url>
+			<%-- <td>Spitter ID: <c:out value="${spitter.id}"/></td> --%>
+			<td>${spitter.id}</td>
+			<!-- will call spitters.getUserName() -->
+			<td>${spitter.userName}</td>
+			<!-- will call spitters.getFullName() -->
+			<td>${spitter.fullName}</td>
+			<!-- will call spitter.getAge() -->
+			<td>${spitter.age}</td>
+			<!-- will call spitters.getPassword() -->
+			<td>${spitter.password}</td>
+			<!-- will call spitters.getEmail() -->
+			<td>${spitter.email}</td>
+			<!-- will call spitters.getUpdateByEmail() -->
+			<td>${spitter.updateByEmail}</td>
+			<!-- will call spitters.getTimestamp() -->
+			<td>${spitter.date}</td>
+			<!-- will call spitters.getTimestamp() -->
+			<td>${spitter.time}</td>
+			<!-- will call spitters.getTimestamp() -->
+			<td>${spitter.timestamp}</td>
+
+			<!-- display the update and delete link -->
+			<!-- will call updateLink variable from this page -->
+			<td><a href="${updateLink}">UPDATE</a></td>
+			<!-- will call deleteLink variable from this page -->
+			<td><a href="${deleteLink}"
+				onclick="if(!(confirm('Are you sure you want to delete this customer?'))) return false">DELETE</a></td>
+		</tr>
+	</table>
+	
+	add controller to handle this page
+	@Transactional
+	@GetMapping("info")
+	public String fullInfoOnSpitter(@RequestParam("spitterId") int id, Model theModel) {
+		Session session = factory.getCurrentSession();
+		Spitter spitter = session.get(Spitter.class, id);
+		theModel.addAttribute("spitter", spitter);
+		return "pages/spitterFullInfo";
+	}
+	
+	
+	///////TILES//////////////////////
+	
+	
+	
+	
+	
+	
+	
 	

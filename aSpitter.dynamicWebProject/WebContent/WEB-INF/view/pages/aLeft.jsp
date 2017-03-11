@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" 
+href="${pageContext.request.contextPath}/resources/css/wrap.css">
 <title>Insert title here</title>
 </head>
 <body>
+<div class="aLeft">LEFT HERE</div>
 
 </body>
 </html>
