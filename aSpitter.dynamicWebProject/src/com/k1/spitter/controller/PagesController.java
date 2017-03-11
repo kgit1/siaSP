@@ -92,4 +92,13 @@ public class PagesController {
 		return "redirect:home/list";
 	}
 
+	@Transactional
+	@GetMapping("info")
+	public String fullInfoOnSpitter(@RequestParam("spitterId") int id, Model theModel) {
+		Session session = factory.getCurrentSession();
+		Spitter spitter = session.get(Spitter.class, id);
+		theModel.addAttribute("spitter", spitter);
+		return "pages/spitterFullInfo";
+	}
+
 }

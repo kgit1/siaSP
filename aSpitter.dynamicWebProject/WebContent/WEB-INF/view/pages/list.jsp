@@ -14,7 +14,7 @@
 	<hr>
 	<table>
 		<tr>
-			<th>Id</th>
+			<th>ID</th>
 			<th>UserName</th>
 			<th>FullName</th>
 			<th>Age</th>
@@ -24,9 +24,12 @@
 			<th>Creation/Update time</th>
 			<th>Creation/Update Date</th>
 			<th>Creation/Update Time</th>
+			<th>UPDATE</th>
+			<th>DELETE</th>
+			<th>INFO</th>
 		</tr>
 
-		<!-- foreach iterator which will iterato throug list "spitters" 
+		<!-- foreach iterator which will iterate through list "spitters" 
 		sended by adding attribute to model 
 		items="${spitters} <- customers name from MVC theModel-->
 		<c:forEach var="spitter" items="${spitters}">
@@ -42,6 +45,10 @@
 				</c:url>
 
 				<c:url var="deleteLink" value="/delete">
+					<c:param name="spitterId" value="${spitter.id}" />
+				</c:url>
+
+				<c:url var="fullInfo" value="/info">
 					<c:param name="spitterId" value="${spitter.id}" />
 				</c:url>
 
@@ -68,9 +75,12 @@
 
 				<!-- display the update and delete link -->
 				<!-- will call updateLink variable from this page -->
-				<td><a href="${updateLink}">UPDATE</a> | <!-- will call updateLink variable from this page -->
-					<a href="${deleteLink}"
+				<td><a href="${updateLink}">UPDATE</a></td>
+				<!-- will call deleteLink variable from this page -->
+				<td><a href="${deleteLink}"
 					onclick="if(!(confirm('Are you sure you want to delete this customer?'))) return false">DELETE</a></td>
+				<!-- will call fullInfo variable from this page -->
+				<td><a href="${fullInfo}">INFO</a></td>
 			</tr>
 		</c:forEach>
 	</table>
