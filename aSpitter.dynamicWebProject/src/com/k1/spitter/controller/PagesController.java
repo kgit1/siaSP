@@ -84,4 +84,12 @@ public class PagesController {
 		return "pages/reg";
 	}
 
+	@Transactional
+	@GetMapping("delete")
+	public String deleteSpitter(@RequestParam("spitterId") int id) {
+		Session session = factory.getCurrentSession();
+		session.createQuery("delete from Spitter where id=" + id).executeUpdate();
+		return "redirect:home/list";
+	}
+
 }

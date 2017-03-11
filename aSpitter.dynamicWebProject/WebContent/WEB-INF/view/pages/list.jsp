@@ -41,7 +41,7 @@
 					<c:param name="spitterId" value="${spitter.id}" />
 				</c:url>
 
-				<c:url var="deleteLink" value="spitter/delete">
+				<c:url var="deleteLink" value="/delete">
 					<c:param name="spitterId" value="${spitter.id}" />
 				</c:url>
 
@@ -69,11 +69,14 @@
 				<!-- display the update and delete link -->
 				<!-- will call updateLink variable from this page -->
 				<td><a href="${updateLink}">UPDATE</a> | <!-- will call updateLink variable from this page -->
-					<a href="${deleteLink}">DELETE</a></td>
+					<a href="${deleteLink}"
+					onclick="if(!(confirm('Are you sure you want to delete this customer?'))) return false">DELETE</a></td>
 			</tr>
 		</c:forEach>
 	</table>
-
+	<iframe
+		src="//coub.com/embed/shkq1?muted=false&autostart=false&originalSize=false&startWithHD=false"
+		allowfullscreen="true" frameborder="0" width="530" height="452"></iframe>
 
 
 </body>
