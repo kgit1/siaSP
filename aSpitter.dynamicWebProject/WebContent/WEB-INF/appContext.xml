@@ -21,11 +21,13 @@
 	<mvc:annotation-driven />
 
 	<!-- Define Spring MVC view resolver -->
-<!-- 	<bean id="viewResolver2" -->
-<!-- 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
-<!-- 		<property name="prefix" value="/WEB-INF/view/" /> -->
-<!-- 		<property name="suffix" value=".jsp" /> -->
-<!-- 	</bean> -->
+	<!-- We shut down mvc resolver, because we need to work with tiles, and 
+		tiles resolver cant work properly same time with this resolver -->
+	<!-- <bean id="viewResolver2" -->
+	<!-- class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
+	<!-- <property name="prefix" value="/WEB-INF/view/" /> -->
+	<!-- <property name="suffix" value=".jsp" /> -->
+	<!-- </bean> -->
 
 	<!-- Step 1: Define Database DataSource / connection pool -->
 	<!-- dataSource MySql connection -->
@@ -90,10 +92,10 @@
 
 	<!-- Tiles configuration -->
 	<bean id="viewResolver1"
-		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" >
-<!-- 				<property name="prefix" value="/WEB-INF/view/" /> -->
-<!-- 		<property name="suffix" value=".jsp" /> -->
-</bean>
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+		<!-- <property name="prefix" value="/WEB-INF/view/" /> -->
+		<!-- <property name="suffix" value=".jsp" /> -->
+	</bean>
 
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
