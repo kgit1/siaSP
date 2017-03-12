@@ -481,6 +481,108 @@ add mvc namespace - for SpringMVC properties and annotations
 	
 	///////TILES//////////////////////
 	
+	add tiles libs to WebContent-> WEB-INF -> lib
+	+slf4j-api-1.7.6
+	+commons-beanutils-1.8.0
+	+commons-digester-2.0
+	+jcl-over-slf4j-1.7.6
+	
+	add tiles beans to appContext.xml
+	
+	<!-- Step 6: Setup tiles -->
+	<bean id="viewResolver"  
+        class="org.springframework.web.servlet.view.UrlBasedViewResolver">  
+        <property name="viewClass">  
+            <value>  
+                org.springframework.web.servlet.view.tiles2.TilesView  
+            </value>  
+        </property>  
+    </bean>
+      
+    <bean id="tilesConfigurer"  
+        class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">  
+        <property name="definitions">  
+            <list>  
+                <value>/WEB-INF/tiles.xml</value>  
+            </list>  
+        </property>  
+    </bean>  
+    
+    add tiles.xml at Web-Content-> WEB-INF root
+    
+    add to tiles.xml
+    
+    <?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">  
+<tiles-definitions>  
+    <definition name="base.definition"  
+        template="/WEB-INF/jsp/layout.jsp">  
+        <put-attribute name="title" value="" />  
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />  
+        <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />  
+        <put-attribute name="body" value="" />  
+        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />  
+    </definition>  
+  
+    <definition name="contact" extends="base.definition">  
+        <put-attribute name="title" value="Contact Manager" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/contact.jsp" />  
+    </definition>  
+  
+    <definition name="hello" extends="base.definition">  
+        <put-attribute name="title" value="Hello Spring MVC" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/hello.jsp" />  
+    </definition>  
+  
+</tiles-definitions>  
+
+	add layout.jsp to WebContent-> WEB-INF-> view-> tiles
+	to configure tiles disposal
+	
+	<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><tiles:insertAttribute name="title" ignore="true" /></title>
+</head>
+
+<body>
+	<div class="tilesHeader">
+		<tiles:insertAttribute name="header" />
+	</div>
+
+	<div class="tilesLeft">
+		<tiles:insertAttribute name="left" />
+	</div>
+
+	<div class="tilesBody">
+		<tiles:insertAttribute name="body" />
+	</div>
+
+	<div class="tilesRight">
+		<tiles:insertAttribute name="right" />
+	</div>
+
+	<div class="tilesFooter">
+		<tiles:insertAttribute name="footer" />
+	</div>
+
+</body>
+</html>
+
+	add aHeader, aLeft, aRight, aBottom jsps 
+	to WebContent-> WEB-INF-> view-> tiles
+	
+	add tiles.css to WebContent-> resources-> css
+
+
+    
+	
+	 
 	
 	
 	

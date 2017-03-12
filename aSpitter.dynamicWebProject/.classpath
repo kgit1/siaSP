@@ -106,5 +106,29 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-dbcp2-2.1.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-1.2.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-api-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-autotag-core-runtime-1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-compat-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-core-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-el-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-extras-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-freemarker-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-jsp-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-mvel-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-ognl-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-request-api-1.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-request-freemarker-1.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-request-jsp-1.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-request-mustache-1.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-request-servlet-1.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-request-servlet-wildcard-1.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-request-velocity-1.0.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-servlet-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-template-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-velocity-3.0.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-digester-2.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jcl-over-slf4j-1.7.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

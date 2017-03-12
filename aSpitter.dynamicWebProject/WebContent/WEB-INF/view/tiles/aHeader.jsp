@@ -9,6 +9,7 @@ href="${pageContext.request.contextPath}/resources/css/wrap.css">
 <title>Insert title here</title>
 </head>
 <body>
+<h2>Header</h2>  
 <div class="aHeader">HEADER HERE</div>
 
 </body>

@@ -1,0 +1,20 @@
+.tilesHeader{
+	height:300px;
+	border:solid pink 1px;
+}
+
+.tilesLeft{
+	float:left;
+}
+
+.tilesBody{
+	float:left;
+}
+
+.tilesRight{
+	float:left
+}
+
+.tilesFooter{
+	clear:both;
+}

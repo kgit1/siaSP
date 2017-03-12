@@ -13,16 +13,19 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- Add support for component scanning -->
+	<!-- The context:component-scan element defines the base-package where DispatcherServlet 
+		will search the controller class. -->
 	<context:component-scan base-package="com.k1.spitter" />
+
 	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven />
 
 	<!-- Define Spring MVC view resolver -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/view/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+<!-- 	<bean -->
+<!-- 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
+<!-- 		<property name="prefix" value="/WEB-INF/view/" /> -->
+<!-- 		<property name="suffix" value=".jsp" /> -->
+<!-- 	</bean> -->
 
 	<!-- Step 1: Define Database DataSource / connection pool -->
 	<!-- dataSource MySql connection -->
@@ -32,7 +35,8 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/spitter?zeroDateTimeBehavior=convertToNull" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/spitter?zeroDateTimeBehavior=convertToNull" />
 		<property name="username" value="root" />
 		<property name="password" value="123456" />
 	</bean>
@@ -57,7 +61,7 @@
 
 	<!-- Step 3: Setup Hibernate transaction manager -->
 	<!-- transactions for Hibernate -->
-	<!-- transactionmanager default name for transaction managers, can be changed 
+	<!-- transactionManager default name for transaction managers, can be changed 
 		if required, but better not -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
@@ -69,7 +73,47 @@
 	<!-- Step 4: Enable configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
+	<!-- Step 6: Mark location for all supporting resources like css and images -->
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+
+	<!-- Step 6: Setup tiles -->
+	<!-- <bean id="viewResolver" -->
+	<!-- class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
+	<!-- <property name="prefix" value="/WEB-INF/view/" /> -->
+	<!-- <property name="suffix" value=".jsp" /> -->
+	<!-- <property name="viewClass"> -->
+	<!-- <value> -->
+	<!-- org.springframework.web.servlet.view.tiles3.TilesView -->
+	<!-- </value> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<!-- Tiles configuration -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- id="tilesViewResolver" -->
+
+	<!-- <bean id="viewResolver" -->
+	<!-- class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
+	<!-- <property name="viewClass"> -->
+	<!-- <value>org.springframework.web.servlet.view.tiles3.TilesView</value> -->
+	<!-- </property> -->
+	<!-- <property name="prefix" value="/WEB-INF/view/" /> -->
+	<!-- <property name="suffix" value=".jsp" /> -->
+	<!-- </bean> -->
+
+
+
 
 </beans>
 
