@@ -26,7 +26,7 @@ public class HomeController {
 	
 	@GetMapping("/home")
 	public String home() {
-		return "/WEB-INF/view/home.jsp";
+		return "home";
 	}
 
 }

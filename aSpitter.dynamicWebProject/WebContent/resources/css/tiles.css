@@ -1,6 +1,7 @@
 .tilesHeader{
 	height:300px;
 	border:solid pink 1px;
+	background: red;
 }
 
 .tilesLeft{

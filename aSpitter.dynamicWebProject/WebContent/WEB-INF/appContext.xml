@@ -21,7 +21,7 @@
 	<mvc:annotation-driven />
 
 	<!-- Define Spring MVC view resolver -->
-<!-- 	<bean -->
+<!-- 	<bean id="viewResolver2" -->
 <!-- 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
 <!-- 		<property name="prefix" value="/WEB-INF/view/" /> -->
 <!-- 		<property name="suffix" value=".jsp" /> -->
@@ -89,8 +89,11 @@
 	<!-- </bean> -->
 
 	<!-- Tiles configuration -->
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+	<bean id="viewResolver1"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" >
+<!-- 				<property name="prefix" value="/WEB-INF/view/" /> -->
+<!-- 		<property name="suffix" value=".jsp" /> -->
+</bean>
 
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">

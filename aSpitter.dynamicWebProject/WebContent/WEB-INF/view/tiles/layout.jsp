@@ -8,6 +8,9 @@
 <link type="text\css"
 rel="stylesheet"
 href="${pageContext.request.contextPath}/resources/css/tiles.css">
+<link type="text\css"
+rel="stylesheet"
+href="resources/css/tiles.css">
 </head>
 
 <body>

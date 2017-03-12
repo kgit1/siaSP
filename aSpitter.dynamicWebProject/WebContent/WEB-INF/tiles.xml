@@ -6,25 +6,25 @@
 <tiles-definitions>
 
 <!-- Base Definition -->
-	<definition name="base.definition" template="tiles/layout.jsp">
+	<definition name="base.definition" template="/WEB-INF/view/tiles/layout.jsp">
 		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="tiles/aHeader.jsp" />
-		<put-attribute name="left" value="tiles/aLeft.jsp" />
+		<put-attribute name="header" value="/WEB-INF/view/tiles/aHeader.jsp" />
+		<put-attribute name="left" value="/WEB-INF/view/tiles/aLeft.jsp" />
 		 <put-attribute name="body" value="" />  
-		<put-attribute name="right" value="tiles/aRight.jsp" />
-		<put-attribute name="footer" value="tiles/aFooter.jsp" />
+		<put-attribute name="right" value="/WEB-INF/view/tiles/aRight.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/tiles/aFooter.jsp" />
 	</definition>
 	
 	<!-- List Page -->
 	<definition name="home" extends="base.definition">
 		<put-attribute name="title" value="Home" />
-		<put-attribute name="body" value="home.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/home.jsp" />
 	</definition>
 
 <!-- List Page -->
-	<definition name="home/list" extends="base.definition">
+	<definition name="pages/list" extends="base.definition">
 		<put-attribute name="title" value="List Of Spitters" />
-		<put-attribute name="body" value="/pages/list.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/list.jsp" />
 	</definition>
 
 <!-- Reg Page -->
