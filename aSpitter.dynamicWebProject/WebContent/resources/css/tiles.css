@@ -3,7 +3,7 @@ html, .container {
 }
 
 body {
-	background: green;
+	background: #0e4a2b;
 /* 	margin:0 auto 0 auto; */
 }
 
@@ -15,7 +15,7 @@ body {
 }
 .center {
 	min-height: 800px; height : 100%;
-	background: aqua;
+	background: #f1f1f1;
 	overflow: hidden;
 	height: 100%;
 	margin: 0 auto 0 auto;
@@ -24,7 +24,7 @@ body {
 
 .tilesHeader {
 	height: 100px;
-	border: solid pink 2px;
+	border: solid #c1c1c1 1px;
 	margin: 5px;
 	padding: 4px;
 	background: red;
@@ -34,7 +34,7 @@ body {
 	width: 167px;
 	min-height: 800px;
 	height: 100%;
-	border: solid pink 2px;
+	border: solid #c1c1c1 1px;
 	margin: 5px;
 	padding: 4px;
 	background: orange;
@@ -47,19 +47,18 @@ body {
 	width: 700px;
 	min-height: 800px;
 	overflow: auto;
-	border: solid pink 2px;
+	border: solid #c1c1c1 1px;
 	margin: 5px;
 	padding: 4px;
 	float: left;
 	margin: 5px;
-	border: solid pink 2px;
 }
 
 .tilesRight {
 	width: 267px;
 	min-height: 800px;
 	height: 100%;
-	border: solid pink 2px;
+	border: solid #c1c1c1 1px;
 	margin: 5px;
 	padding: 4px;
 	background: yellow;
@@ -69,7 +68,7 @@ body {
 
 .tilesFooter {
 	height: 200px;
-	border: solid pink 2px;
+	border: solid #c1c1c1 1px;
 	margin: 5px;
 	padding: 4px;
 	background: blue;
