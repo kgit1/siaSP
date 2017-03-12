@@ -11,26 +11,26 @@
 
 <body>
 	<div class="wrap">
-	<div class="tilesHeader">
-		<tiles:insertAttribute name="header" />
-	</div>
-
-	<div class="center">
-		<div class="tilesLeft">
-			<tiles:insertAttribute name="left" />
+		<div class="tilesHeader">
+			<tiles:insertAttribute name="header" />
 		</div>
 
-		<div class="tilesBody">
-			<tiles:insertAttribute name="body" />
-		</div>
+		<div class="center">
+			<div class="tilesLeft">
+				<tiles:insertAttribute name="left" />
+			</div>
 
-		<div class="tilesRight">
-			<tiles:insertAttribute name="right" />
+			<div class="tilesBody">
+				<tiles:insertAttribute name="body" />
+			</div>
+
+			<div class="tilesRight">
+				<tiles:insertAttribute name="right" />
+			</div>
 		</div>
-	</div>
-	<div class="tilesFooter">
-		<tiles:insertAttribute name="footer" />
-	</div>
+		<div class="tilesFooter">
+			<tiles:insertAttribute name="footer" />
+		</div>
 	</div>
 
 </body>

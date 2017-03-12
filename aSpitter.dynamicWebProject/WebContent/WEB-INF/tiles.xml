@@ -2,35 +2,41 @@
 <!DOCTYPE tiles-definitions PUBLIC
   "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-       
+
 <tiles-definitions>
 
-<!-- Base Definition -->
+	<!-- Base Definition -->
 	<definition name="base.definition" template="/WEB-INF/view/tiles/layout.jsp">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/view/tiles/aHeader.jsp" />
 		<put-attribute name="left" value="/WEB-INF/view/tiles/aLeft.jsp" />
-		 <put-attribute name="body" value="" />  
+		<put-attribute name="body" value="" />
 		<put-attribute name="right" value="/WEB-INF/view/tiles/aRight.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/view/tiles/aFooter.jsp" />
 	</definition>
-	
+
 	<!-- List Page -->
 	<definition name="home" extends="base.definition">
 		<put-attribute name="title" value="Home" />
 		<put-attribute name="body" value="/WEB-INF/view/home.jsp" />
 	</definition>
 
-<!-- List Page -->
+	<!-- List Page -->
 	<definition name="pages/list" extends="base.definition">
 		<put-attribute name="title" value="List Of Spitters" />
 		<put-attribute name="body" value="/WEB-INF/view/pages/list.jsp" />
 	</definition>
 
-<!-- Reg Page -->
-<!-- 	<definition name="spitter" extends="base.definition"> -->
-<!-- 		<put-attribute name="title" value="Hello Spring MVC" /> -->
-<!-- 		<put-attribute name="body" value="/WEB-INF/jsp/hello.jsp" /> -->
-<!-- 	</definition> -->
+	<!-- Reg Page -->
+	<definition name="pages/reg" extends="base.definition">
+		<put-attribute name="title" value="Spitter page" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/reg.jsp" />
+	</definition>
+
+	<!-- SpitterFull Page -->
+	<definition name="pages/spitterFullInfo" extends="base.definition">
+		<put-attribute name="title" value="Spitter page" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/spitterFullInfo.jsp" />
+	</definition>
 
 </tiles-definitions>  

@@ -9,6 +9,47 @@ put libs to WebContent-> WEB-INF -> lib
 
 test database
 
+create and populate MySql database 
+drop table if exists spittle;
+drop table if exists spitter;
+
+create table spitter (
+  id int not null auto_increment primary key,
+  username varchar(25) not null,
+  password varchar(25) not null,
+  fullname varchar(100) not null,
+  email varchar(50) not null,
+  update_by_email boolean not null
+);
+
+create table spittle (
+  id int not null auto_increment primary key,
+  spitter_id integer not null,
+  spittleText varchar(2000) not null,
+  postedTime date not null,
+  foreign key (spitter_id) references spitter(id)
+);
+
+alter table spitter add timestamp timestamp;
+alter table spitter add date timestamp;
+alter table spitter add time timestamp;
+
+insert into spitter (username, password, fullname, email, update_by_email) values 
+('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
+('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
+('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
+('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false);
+insert into spitter (username, password, fullname, email, update_by_email) values 
+('artnames', 'password', 'Art Names', 'artnames@habuma.com', false);
+
+insert into spittle (spitter_id, spittleText, postedTime) values 
+(1, 'Have you read Spring in Action 3? I hear it is awesome!', '2010-06-09');
+insert into spittle (spitter_id, spittleText, postedTime) values 
+(2, 'Trying out Spring''s new expression language.', '2010-06-11');
+insert into spittle (spitter_id, spittleText, postedTime) values 
+(1, 'Who''s going to SpringOne/2GX this year?', '2010-06-19');
+
+
 test database with simple connection in DbTest.class
 
 test database with hibernate connection in HibernateDbTest.classs
@@ -490,6 +531,8 @@ add mvc namespace - for SpringMVC properties and annotations
 	add tiles beans to appContext.xml
 	
 	<!-- Step 6: Setup tiles -->
+	<!-- add tiles viewResolver, and don't forget to comment SpringMvc 
+	viewResolver, because they can't work together-->
 	<bean id="viewResolver"  
         class="org.springframework.web.servlet.view.UrlBasedViewResolver">  
         <property name="viewClass">  
@@ -513,29 +556,46 @@ add mvc namespace - for SpringMVC properties and annotations
     add to tiles.xml
     
     <?xml version="1.0" encoding="UTF-8" ?>  
-<!DOCTYPE tiles-definitions PUBLIC  
-       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
-       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">  
-<tiles-definitions>  
-    <definition name="base.definition"  
-        template="/WEB-INF/jsp/layout.jsp">  
-        <put-attribute name="title" value="" />  
-        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />  
-        <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />  
-        <put-attribute name="body" value="" />  
-        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />  
-    </definition>  
-  
-    <definition name="contact" extends="base.definition">  
-        <put-attribute name="title" value="Contact Manager" />  
-        <put-attribute name="body" value="/WEB-INF/jsp/contact.jsp" />  
-    </definition>  
-  
-    <definition name="hello" extends="base.definition">  
-        <put-attribute name="title" value="Hello Spring MVC" />  
-        <put-attribute name="body" value="/WEB-INF/jsp/hello.jsp" />  
-    </definition>  
-  
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Base Definition -->
+	<definition name="base.definition" template="/WEB-INF/view/tiles/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/view/tiles/aHeader.jsp" />
+		<put-attribute name="left" value="/WEB-INF/view/tiles/aLeft.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="right" value="/WEB-INF/view/tiles/aRight.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/view/tiles/aFooter.jsp" />
+	</definition>
+
+	<!-- List Page -->
+	<definition name="home" extends="base.definition">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/WEB-INF/view/home.jsp" />
+	</definition>
+
+	<!-- List Page -->
+	<definition name="pages/list" extends="base.definition">
+		<put-attribute name="title" value="List Of Spitters" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/list.jsp" />
+	</definition>
+
+	<!-- Reg Page -->
+	<definition name="pages/reg" extends="base.definition">
+		<put-attribute name="title" value="Spitter page" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/reg.jsp" />
+	</definition>
+
+	<!-- SpitterFull Page -->
+	<definition name="pages/spitterFullInfo" extends="base.definition">
+		<put-attribute name="title" value="Spitter page" />
+		<put-attribute name="body" value="/WEB-INF/view/pages/spitterFullInfo.jsp" />
+	</definition>
+
 </tiles-definitions>  
 
 	add layout.jsp to WebContent-> WEB-INF-> view-> tiles
@@ -548,38 +608,120 @@ add mvc namespace - for SpringMVC properties and annotations
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/tiles.css">
 </head>
 
 <body>
-	<div class="tilesHeader">
-		<tiles:insertAttribute name="header" />
-	</div>
+	<div class="wrap">
+		<div class="tilesHeader">
+			<tiles:insertAttribute name="header" />
+		</div>
 
-	<div class="tilesLeft">
-		<tiles:insertAttribute name="left" />
-	</div>
+		<div class="center">
+			<div class="tilesLeft">
+				<tiles:insertAttribute name="left" />
+			</div>
 
-	<div class="tilesBody">
-		<tiles:insertAttribute name="body" />
-	</div>
+			<div class="tilesBody">
+				<tiles:insertAttribute name="body" />
+			</div>
 
-	<div class="tilesRight">
-		<tiles:insertAttribute name="right" />
-	</div>
-
-	<div class="tilesFooter">
-		<tiles:insertAttribute name="footer" />
+			<div class="tilesRight">
+				<tiles:insertAttribute name="right" />
+			</div>
+		</div>
+		<div class="tilesFooter">
+			<tiles:insertAttribute name="footer" />
+		</div>
 	</div>
 
 </body>
 </html>
+
 
 	add aHeader, aLeft, aRight, aBottom jsps 
 	to WebContent-> WEB-INF-> view-> tiles
 	
 	add tiles.css to WebContent-> resources-> css
 
+	html, .container {
+	height: 100%;
+}
 
+body {
+	background: green;
+/* 	margin:0 auto 0 auto; */
+}
+
+.wrap{
+	width: 1200px;
+/* 	float:left; */
+/* 	height:auto; */
+	margin:0 auto 0 auto;
+}
+.center {
+	min-height: 800px; height : 100%;
+	background: aqua;
+	overflow: hidden;
+	height: 100%;
+	margin: 0 auto 0 auto;
+/* 	margin:5px; */
+}
+
+.tilesHeader {
+	height: 100px;
+	border: solid pink 2px;
+	margin: 5px;
+	padding: 4px;
+	background: red;
+}
+
+.tilesLeft {
+	width: 167px;
+	min-height: 800px;
+	height: 100%;
+	border: solid pink 2px;
+	margin: 5px;
+	padding: 4px;
+	background: orange;
+	float: left;
+	background: orange;
+	overflow: auto;
+}
+
+.tilesBody {
+	width: 700px;
+	min-height: 800px;
+	overflow: auto;
+	border: solid pink 2px;
+	margin: 5px;
+	padding: 4px;
+	float: left;
+	margin: 5px;
+	border: solid pink 2px;
+}
+
+.tilesRight {
+	width: 267px;
+	min-height: 800px;
+	height: 100%;
+	border: solid pink 2px;
+	margin: 5px;
+	padding: 4px;
+	background: yellow;
+	position: relative;
+	float: right;
+}
+
+.tilesFooter {
+	height: 200px;
+	border: solid pink 2px;
+	margin: 5px;
+	padding: 4px;
+	background: blue;
+	clear: both;
+}
     
 	
 	 
