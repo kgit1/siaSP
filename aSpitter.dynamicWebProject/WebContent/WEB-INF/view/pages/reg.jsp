@@ -23,10 +23,12 @@
 				<tr>
 					<td><label>UserName</label></td>
 					<td><form:input path="userName" /></td>
+					<td><form:errors path="userName" cssClass="error" /></td>
 				</tr>
 				<tr>
 					<td><label>FullName</label></td>
 					<td><form:input path="fullName" /></td>
+					<td><form:errors path="fullName" cssClass="error" /></td>
 				</tr>
 				<tr>
 					<td><label>Age</label></td>

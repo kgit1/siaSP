@@ -824,9 +824,11 @@ You can use Maven to download the P6Spy dependency into your pom.xml
 
 ////////////////VALIDATION DATA/////////////////
 
-add validation lib to WebContent-> WEB-INF -> lib 
-	validation-api-1.1.0.Final
-	
+add validation libs to WebContent-> WEB-INF -> lib 
+	+validation-api-1.1.0.Final
+	+hibernate-validator-5.4.0.Final
+	+hibernate-validator-annotation-processor-5.4.0.Final
+	+hibernate-validator-cdi-5.4.0.Final
 	
 
     

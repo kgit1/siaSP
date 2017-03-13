@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 //to show hibernate that there is model class
 @Entity
@@ -27,21 +31,27 @@ public class Spitter implements Comparable<Spitter> {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "username", unique=true)
-	@Size(min=3, max=20, message="Username must be between 3 and 20 characters long")
-	
+	@Column(name = "username", unique = true)
+	@NotNull(message = "Can't be empty")
+	@Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters long")
+	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric with no spaces")
 	private String userName;
 
 	@Column(name = "password")
+	@Size(min = 6, max = 9, message = "Password must be at least 6 characters long, and not longer than 20")
 	private String password;
 
 	@Column(name = "fullname")
+	@Size(min = 3, max = 50, message = "YOur full name must be between 3 and 50 characters long")
 	private String fullName;
 
 	@Column(name = "age")
+	@NotNull(message = "Can't be 0")
+	@Min(18)
 	private int age;
 
 	@Column(name = "email")
+	@Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", message = "Invalid email address")
 	private String email;
 
 	@Column(name = "update_by_email")
@@ -92,7 +102,7 @@ public class Spitter implements Comparable<Spitter> {
 		super();
 		this.userName = userName;
 		this.password = password;
-		this.age=age;
+		this.age = age;
 		this.fullName = fullName;
 		this.email = email;
 		this.updateByEmail = updateByEmail;
