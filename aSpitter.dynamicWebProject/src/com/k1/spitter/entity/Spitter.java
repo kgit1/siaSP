@@ -27,7 +27,7 @@ public class Spitter implements Comparable<Spitter> {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "username")
+	@Column(name = "username", unique=true)
 	private String userName;
 
 	@Column(name = "password")
