@@ -28,6 +28,8 @@ public class Spitter implements Comparable<Spitter> {
 	private int id;
 
 	@Column(name = "username", unique=true)
+	@Size(min=3, max=20, message="Username must be between 3 and 20 characters long")
+	
 	private String userName;
 
 	@Column(name = "password")
