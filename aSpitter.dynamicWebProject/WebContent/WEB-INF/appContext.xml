@@ -53,11 +53,12 @@
 		<property name="packagesToScan" value="com.k1.spitter" />
 		<property name="hibernateProperties">
 			<props>
-				<!-- tells hibernate which dialect use to talk with database -->
+				<!-- which dialect use to talk with database -->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<!-- tells hibernate to show sql queries -->
+				<!-- to show sql queries -->
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.format_sql">true</prop>
+				<!--to format sql queries -->
+				<!-- <prop key="hibernate.format_sql">true</prop> -->
 			</props>
 		</property>
 	</bean>
