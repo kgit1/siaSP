@@ -10,14 +10,14 @@ public class HomeController {
 	// add requestMapping to give link for our method
 	// @RequestMapping("/list") - work for all HTTP request methods
 
-	// usual choise
+	// usual choice
 	// GET method - good for debaging, bookmarks,email url
-	// limitation on data lenght near 1000 signs
+	// limitation on data length near 1000 signs
 	// @RequestMapping(path-"/list". method=RequestMethod.GET)
 	// same as
 	// GetMapping("/list")
 
-	// choise for paswords and files
+	// choice for passwords and files
 	// POST method - bad for bookmarks, no limits on data length,
 	// also can send binary data(like when u need to save file)
 	// @RequestMapping(path-"/list". method=RequestMethod.POST)
