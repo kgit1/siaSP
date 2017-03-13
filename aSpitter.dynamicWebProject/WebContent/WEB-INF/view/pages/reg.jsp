@@ -18,7 +18,7 @@
 			<!-- need to associate this data with customer id, when we use this form 
 	to update current customer -->
 			<form:hidden path="id" />
-
+			<form:errors path="*" cssClass="error" />
 			<tbody>
 				<tr>
 					<td><label>UserName</label></td>
@@ -33,13 +33,16 @@
 				<tr>
 					<td><label>Age</label></td>
 					<td><form:input path="age" /></td>
+					<form:errors path="age" cssClass="error" />
 				<tr>
 					<td><label>Password</label></td>
 					<td><form:password path="password" /></td>
+					<form:errors path="password" cssClass="error" />
 				</tr>
 				<tr>
 					<td><label>Email</label></td>
 					<td><form:input path="email" /></td>
+					<form:errors path="email" cssClass="error" />
 				</tr>
 				<tr>
 					<td><label></label></td>

@@ -830,9 +830,95 @@ add validation libs to WebContent-> WEB-INF -> lib
 	+hibernate-validator-annotation-processor-5.4.0.Final
 	+hibernate-validator-cdi-5.4.0.Final
 	
-
-    
 	
+	add validation parameters to Entity class with 
+	@NotNull @Size @Min @Max @Pattern etc like 
+	
+	@Column(name = "username", unique = true)
+	@NotNull(message = "Can't be empty")
+	@Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters long")
+	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric with no spaces")
+	private String userName;
+
+	@Column(name = "password")
+	@Size(min = 6, max = 9, message = "Password must be at least 6 characters long, and not longer than 20")
+	private String password;
+
+	@Column(name = "fullname")
+	@Size(min = 3, max = 50, message = "YOur full name must be between 3 and 50 characters long")
+	private String fullName;
+
+	@Column(name = "age")
+	@NotNull(message = "Can't be 0")
+	@Min(18)
+	private int age;
+
+	@Column(name = "email")
+	@Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", message = "Invalid email address")
+	private String email;
+	
+    
+    add validation to controller with help of @Valid and BindingResults class like
+    
+    @Transactional
+	@PostMapping("/saveSpitter")
+		public String saveSpitter(@Valid @ModelAttribute("spitter")  Spitter spitter, BindingResult bindingResult) {
+		
+		if(bindingResult.hasErrors()){
+			return "pages/reg";
+		}
+		
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+		// save or update
+		session.saveOrUpdate(spitter);
+		// redirect to list page, redirect will recreate page with new
+		// independent model
+		return "redirect:/home/list";
+	}
+	
+	
+	add errors to jsp.page with <form:errors path="fieldName" cssClass="error"/>
+	
+	<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
+		<table>
+
+			<!-- need to associate this data with customer id, when we use this form 
+	to update current customer -->
+			<form:hidden path="id" />
+			<form:errors path="*" cssClass="error" />
+			<tbody>
+				<tr>
+					<td><label>UserName</label></td>
+					<td><form:input path="userName" /></td>
+					<td><form:errors path="userName" cssClass="error" /></td>
+				</tr>
+				<tr>
+					<td><label>FullName</label></td>
+					<td><form:input path="fullName" /></td>
+					<td><form:errors path="fullName" cssClass="error" /></td>
+				</tr>
+				<tr>
+					<td><label>Age</label></td>
+					<td><form:input path="age" /></td>
+					<form:errors path="age" cssClass="error" />
+				<tr>
+					<td><label>Password</label></td>
+					<td><form:password path="password" /></td>
+					<form:errors path="password" cssClass="error" />
+				</tr>
+				<tr>
+					<td><label>Email</label></td>
+					<td><form:input path="email" /></td>
+					<form:errors path="email" cssClass="error" />
+				</tr>
+				<tr>
+					<td><label></label></td>
+					<td><input type="submit" value="Save" /></td>
+				</tr>
+			</tbody>
+		</table>
+	</form:form>
 	 
 	
 	

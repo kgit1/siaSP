@@ -52,7 +52,6 @@ public class PagesController {
 
 	@Transactional
 	@PostMapping("/saveSpitter")
-//	public String saveSpitter(@Valid @ModelAttribute("spitter")  Spitter spitter, BindingResult bindingResult) {
 		public String saveSpitter(@Valid @ModelAttribute("spitter")  Spitter spitter, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()){
