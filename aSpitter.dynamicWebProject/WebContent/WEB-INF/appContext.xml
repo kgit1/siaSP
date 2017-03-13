@@ -57,6 +57,7 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<!-- tells hibernate to show sql queries -->
 				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
 			</props>
 		</property>
 	</bean>
@@ -79,17 +80,6 @@
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 
 	<!-- Step 6: Setup tiles -->
-	<!-- <bean id="viewResolver" -->
-	<!-- class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
-	<!-- <property name="prefix" value="/WEB-INF/view/" /> -->
-	<!-- <property name="suffix" value=".jsp" /> -->
-	<!-- <property name="viewClass"> -->
-	<!-- <value> -->
-	<!-- org.springframework.web.servlet.view.tiles3.TilesView -->
-	<!-- </value> -->
-	<!-- </property> -->
-	<!-- </bean> -->
-
 	<!-- Tiles configuration -->
 	<bean id="viewResolver1"
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
