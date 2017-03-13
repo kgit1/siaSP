@@ -858,7 +858,18 @@ add validation libs to WebContent-> WEB-INF -> lib
 	private String email;
 	
     
-    add validation to controller with help of @Valid and BindingResults class like
+    add validation to controller with help of @Valid and BindingResults class 
+    Simply adding `@Valid` tells Spring to validate the object.  
+    Notice we also add a “BindingResult” argument. This is Spring’s object 
+    that holds the result of the validation and binding and contains errors 
+    that may have occurred. The BindingResult must come right after the model 
+    object that is validated or else Spring will fail to validate the object 
+    and throw an exception.
+	When Spring sees “@Valid”, it tries to find the validator for the object 
+	being validated. Spring automatically picks up validation annotations if 
+	you have “mvc:annotation-driven” enabled. Spring then invokes the validator 
+	and puts any errors in the BindingResult and adds the BindingResult to 
+	the view model.
     
     @Transactional
 	@PostMapping("/saveSpitter")
@@ -878,7 +889,10 @@ add validation libs to WebContent-> WEB-INF -> lib
 	}
 	
 	
-	add errors to jsp.page with <form:errors path="fieldName" cssClass="error"/>
+	add errors to jsp.page with <form:errors> - is used to display BindingResult in JSP
+	If we use
+	<form:errors path="fieldName" cssClass="error"/>
+	then it will display field specific error and if we use <form:errors/> without field name, it will display all errors.
 	
 	<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
 		<table>
@@ -887,6 +901,7 @@ add validation libs to WebContent-> WEB-INF -> lib
 	to update current customer -->
 			<form:hidden path="id" />
 			<form:errors path="*" cssClass="error" />
+			<%-- 			<form:errors path="*" cssClass="error" element="error"/> --%>
 			<tbody>
 				<tr>
 					<td><label>UserName</label></td>
@@ -901,16 +916,16 @@ add validation libs to WebContent-> WEB-INF -> lib
 				<tr>
 					<td><label>Age</label></td>
 					<td><form:input path="age" /></td>
-					<form:errors path="age" cssClass="error" />
+					<td><form:errors path="age" cssClass="error" /></td>
 				<tr>
 					<td><label>Password</label></td>
 					<td><form:password path="password" /></td>
-					<form:errors path="password" cssClass="error" />
+					<td><form:errors path="password" cssClass="error" /></td>
 				</tr>
 				<tr>
 					<td><label>Email</label></td>
 					<td><form:input path="email" /></td>
-					<form:errors path="email" cssClass="error" />
+					<td><form:errors path="email" cssClass="error" /></td>
 				</tr>
 				<tr>
 					<td><label></label></td>
@@ -919,6 +934,41 @@ add validation libs to WebContent-> WEB-INF -> lib
 			</tbody>
 		</table>
 	</form:form>
+	
+	This is nice, but does not support internationalization. Plus, do we really want our messages in our Java objects? Fortunately, we can easily override the default messages in our message bundle. To do this, first set up a message bundle:
+
+	JavaConfig:
+	@Bean
+	public MessageSource messageSource() {
+	    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+	    messageSource.setBasename("messages");
+	    return messageSource;
+	}
+	XML Config:
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	    <property name="basename" value="messages"/>
+	</bean>
+	Now, create a file called “messages.properties” in “src/main/resources”. Now, we can override the default error messages. Error messages are resolved using the following pattern:
+	
+	{ValidationClass}.{modelObjectName}.{field}
+	For example, if the age field of our “subscriber” model object fails the “NotNull” validation, the “NotNull.subscriber.age” message would be looked up. If the message isn’t found, “NotNull.subscriber” would be looked for. Finally, if not found, “NotNull” message would be looked for. If that also isn’t found, the default message (what we saw above) would be rendered. With this convention in mind, let’s define our error messages:
+	
+	Size=the {0} field must be between {2} and {1} characters long
+	Size.subscriber.name=Name must be between {2} and {1} characters
+	Size.subscriber.phone=Phone must be at least {2} characters
+	 
+	Min.subscriber.age=You must be older than {1}
+	Max.subscriber.age= Sorry, you have to be younger than {1}
+	 
+	Email=Email address not valid
+	Past=Date must be in the past
+	 
+	NotEmpty=Field cannot be left blank
+	NotNull=Field cannot be left blank
+	 
+	typeMismatch=Invalid format
+	methodInvocation.myRequest.amount=Invalid format
+	Notice the use of {0}, {1}, etc. These are arguments that can be passed in to the message.
 	 
 	
 	

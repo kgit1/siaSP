@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>${spitter.userName} ${spitter.fullName} </title>
+<title>${spitter.userName}${spitter.fullName}</title>
 </head>
 <body>
 	<h3>REGISTRATION</h3>
@@ -19,6 +19,7 @@
 	to update current customer -->
 			<form:hidden path="id" />
 			<form:errors path="*" cssClass="error" />
+			<%-- 			<form:errors path="*" cssClass="error" element="error"/> --%>
 			<tbody>
 				<tr>
 					<td><label>UserName</label></td>
@@ -33,16 +34,16 @@
 				<tr>
 					<td><label>Age</label></td>
 					<td><form:input path="age" /></td>
-					<form:errors path="age" cssClass="error" />
+					<td><form:errors path="age" cssClass="error" /></td>
 				<tr>
 					<td><label>Password</label></td>
 					<td><form:password path="password" /></td>
-					<form:errors path="password" cssClass="error" />
+					<td><form:errors path="password" cssClass="error" /></td>
 				</tr>
 				<tr>
 					<td><label>Email</label></td>
 					<td><form:input path="email" /></td>
-					<form:errors path="email" cssClass="error" />
+					<td><form:errors path="email" cssClass="error" /></td>
 				</tr>
 				<tr>
 					<td><label></label></td>

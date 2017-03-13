@@ -42,12 +42,12 @@ public class Spitter implements Comparable<Spitter> {
 	private String password;
 
 	@Column(name = "fullname")
-	@Size(min = 3, max = 50, message = "YOur full name must be between 3 and 50 characters long")
+	@Size(min = 3, max = 50, message = "Your full name must be between 3 and 50 characters long")
 	private String fullName;
 
 	@Column(name = "age")
-	@NotNull(message = "Can't be 0")
-	@Min(18)
+	@NotNull
+	@Min(value = 18, message = "Must be >=18")
 	private int age;
 
 	@Column(name = "email")
@@ -208,16 +208,40 @@ public class Spitter implements Comparable<Spitter> {
 		return this.getUserName().compareTo(spitter.getUserName());
 	}
 
-	// @Override
-	// public String toString() {
-	// return "Spitter [id=" + id + ", userName=" + userName + ", password=" +
-	// password + ", fullName=" + fullName
-	// + ", email=" + email + ", updateByEmail=" + updateByEmail + ",
-	// timestamp="
-	// + timestamp /*
-	// * + ", date=" + date + ", time=" + time
-	// */ + "]";
-	// }
+	// validation examples
+	// @Size(
+	// min = 2,
+	// max = 14,
+	// message = "The license plate '${validatedValue}' must be between {min}
+	// and {max} characters long"
+	// )
+	// private String licensePlate;
+	//
+	// @NotEmpty(message = "Email must not be null")
+	// @Email
+	// private String email;
+	//
+	// @DateTimeFormat(pattern="MM/dd/yyyy")
+	// @NotNull @Past
+	// private Date birthday;
+	//
+	// @Min(
+	// value = 2,
+	// message = "There must be at least {value} seat${value > 1 ? 's' : ''}"
+	// )
+	// private int seatCount;
+	//
+	// @DecimalMax(
+	// value = "350",
+	// message = "The top speed ${formatter.format('%1$.2f', validatedValue)} is
+	// higher " +
+	// "than {value}"
+	// )
+	// private double topSpeed;
+	//
+	// @DecimalMax(value = "100000", message = "Price must not be higher than
+	// ${value}")
+	// private BigDecimal price;
 
 	// create table in mysql
 	// create table spitter (
