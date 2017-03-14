@@ -1,0 +1,47 @@
+html, body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+table {
+	border-collapse: collapse;
+	border-bottom: 1px solid gray;
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+
+th {
+	border-bottom: 1px solid gray;
+	background: #09c332;
+	padding: 10px;
+	color: #FFFFFF;
+	text-align: left;
+}
+
+tr {
+	border-top: 1px solid gray;
+	text-align: left;
+}
+
+td {
+	padding: 10px;
+}
+
+tr:nth-child(even) {
+	background: #FFFFFF
+}
+
+tr:nth-child(odd) {
+	background: #BBBBBB
+}
+
+tr:hover {
+	background-color: #f5f5f5
+}
+
+.spitter {
+	overflow-x: auto;
+}
+
+/* this will go to the 2nd column of a table directly  */
+/* table td+td { */
+/* 	background: red */
+/* } */

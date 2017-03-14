@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources//css/table.css">
 <title>List of Spitters</title>
 </head>
 <body>
@@ -56,6 +58,7 @@
 				<!-- will call spitter.getAge() -->
 				<td>${spitter.age}</td>
 				<!-- will call spitters.getTimestamp() -->
+				<!-- 				&nbsp = space -->
 				<td>${spitter.date}</td>
 
 				<!-- display the update and delete link -->
@@ -72,7 +75,8 @@
 	<iframe
 		src="//coub.com/embed/shkq1?muted=false&autostart=false&originalSize=false&startWithHD=false"
 		allowfullscreen="true" frameborder="0" width="530" height="452"></iframe>
-		<img src="${pageContext.request.contextPath}/resources/images/how spring mvc.jpg">
+	<img
+		src="${pageContext.request.contextPath}/resources/images/how spring mvc.jpg">
 
 
 </body>
