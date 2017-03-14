@@ -34,13 +34,13 @@ create new Dynamic Web Project
 	alter table spitter add date timestamp;
 	alter table spitter add time timestamp;
 	
-	insert into spitter (username, password, fullname, email, update_by_email) values 
-	('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
-	('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
-	('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
-	('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false);
-	insert into spitter (username, password, fullname, email, update_by_email) values 
-	('artnames', 'password', 'Art Names', 'artnames@habuma.com', false);
+	insert into spitter (username, password, fullname, age, email, update_by_email) values 
+	('habuma', 'password', 'Craig Walls', 19,'craig@habuma.com', false),
+	('habum', 'password', 'Craig Wal', 21, 'ig@habuma.com', false),
+	('habu', 'password', 'Cr Walls', 20, 'aig@habuma.com', false),
+	('hab', 'password', 'Walls', 35,'raig@habuma.com', false);
+	insert into spitter (username, password, fullname, age, email, update_by_email) values 
+	('artnames', 'password', 'Art Names', 46,'artnames@habuma.com', false);
 	
 	insert into spittle (spitter_id, spittleText, postedTime) values 
 	(1, 'Have you read Spring in Action 3? I hear it is awesome!', '2010-06-09');
