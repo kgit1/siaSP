@@ -2,6 +2,7 @@ package com.k1.spitter.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,19 +21,37 @@ public class Spittle {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
+	 (name = "id")
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "spitter_id")
+	@JoinColumn(name = "spitter_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Spitter spitter;
+
+	@Column(name = "spittleText")
+	@NotNull
+	@Size(min = 1, max = 140)
 	private String text;
 
+	@Column(name = "postedTime")
 	@DateTimeFormat(pattern = "hh:mma MMM d, YYYY")
 	private Date when;
+
+	public Spittle() {
+	}
 
 	public Spittle(Spitter spitter) {
 		this.spitter = spitter;
 	}
+
+	// public Long getSpittleId() {
+	// return spittleId;
+	// }
+	//
+	// public void setSpittleId(Long spittleId) {
+	// this.spittleId = spittleId;
+	// }
 
 	public Long getId() {
 		return id;
@@ -63,4 +84,15 @@ public class Spittle {
 	public void setWhen(Date when) {
 		this.when = when;
 	}
+
+	@Override
+	public String toString() {
+		return "Spittle [id=" + id + ", spitter=" + spitter + ", text=" + text + ", when=" + when + "]";
+	}
+
+	// @Override
+	// public String toString() {
+	// return "Spittle [spittleId=" + spittleId + ", spitter=" + spitter + ",
+	// text=" + text + ", when=" + when + "]";
+	// }
 }

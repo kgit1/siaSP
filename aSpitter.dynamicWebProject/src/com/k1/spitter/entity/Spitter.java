@@ -1,12 +1,16 @@
 package com.k1.spitter.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,6 +18,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Cascade;
 
 //to show hibernate that there is model class
 @Entity
@@ -56,8 +62,12 @@ public class Spitter implements Comparable<Spitter> {
 
 	@Column(name = "update_by_email")
 	private boolean updateByEmail;
+	
+	@OneToMany(mappedBy="spitter")
+//	@JoinTable(name="spittle")
+	public List<Spittle> spittles = new ArrayList<>();
 
-	///////////
+	///////////TIMESTAMP DATE//////////
 	@Column(name = "`date`")
 	@Temporal(TemporalType.DATE)
 	private Date date;

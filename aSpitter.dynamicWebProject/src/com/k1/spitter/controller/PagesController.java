@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.k1.spitter.entity.Spitter;
+import com.k1.spitter.entity.Spittle;
 
 @Controller
 public class PagesController {
@@ -52,12 +53,12 @@ public class PagesController {
 
 	@Transactional
 	@PostMapping("/saveSpitter")
-		public String saveSpitter(@Valid @ModelAttribute("spitter")  Spitter spitter, BindingResult bindingResult) {
-		
-		if(bindingResult.hasErrors()){
+	public String saveSpitter(@Valid @ModelAttribute("spitter") Spitter spitter, BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
 			return "pages/reg";
 		}
-		
+
 		// get current hibernate session
 		Session session = factory.getCurrentSession();
 		// save or update
@@ -104,6 +105,9 @@ public class PagesController {
 	public String fullInfoOnSpitter(@RequestParam("spitterId") int id, Model theModel) {
 		Session session = factory.getCurrentSession();
 		Spitter spitter = session.get(Spitter.class, id);
+		for (Spittle spittle : spitter.spittles) {
+			System.out.println(spittle);
+		}
 		theModel.addAttribute("spitter", spitter);
 		return "pages/spitterFullInfo";
 	}

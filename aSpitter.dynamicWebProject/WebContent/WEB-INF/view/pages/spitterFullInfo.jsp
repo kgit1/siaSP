@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>${spitter.userName} ${spitter.fullName}</title>
+<title>${spitter.userName}${spitter.fullName}</title>
 </head>
 <body>
 
@@ -60,6 +60,19 @@
 			<td><a href="${deleteLink}"
 				onclick="if(!(confirm('Are you sure you want to delete this customer?'))) return false">DELETE</a></td>
 		</tr>
+	</table>
+
+	<!-- 	Spittlesssss -->
+	<table>
+	table here
+		<c:forEach var="spittle" items="${spitters.spittles}">
+			<tr>
+				<td>spittle.id</td>
+				<td>spittle.spitter_id</td>
+				<td>spitle.spittleText</td>
+				<td>spitle.postedTime</td>
+			</tr>
+		</c:forEach>
 	</table>
 
 </body>
