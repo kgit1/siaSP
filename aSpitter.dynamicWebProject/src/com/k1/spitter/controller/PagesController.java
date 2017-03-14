@@ -109,6 +109,7 @@ public class PagesController {
 			System.out.println(spittle);
 		}
 		theModel.addAttribute("spitter", spitter);
+		theModel.addAttribute("spittles", spitter.spittles);
 		return "pages/spitterFullInfo";
 	}
 

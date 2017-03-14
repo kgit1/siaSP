@@ -13,7 +13,7 @@
 	<table>
 		<tr>
 			<th>ID</th>
-			<th>UserName</th>
+			<th>User</th>
 			<th>FullName</th>
 			<th>Age</th>
 			<th>Password</th>
@@ -64,13 +64,18 @@
 
 	<!-- 	Spittlesssss -->
 	<table>
-	table here
-		<c:forEach var="spittle" items="${spitters.spittles}">
+		<tr>
+			<th>ID</th>
+			<th>Spittle</th>
+			<th>Time</th>
+		</tr>
+		table here
+		<c:forEach var="spittle" items="${spittles}">
 			<tr>
-				<td>spittle.id</td>
-				<td>spittle.spitter_id</td>
-				<td>spitle.spittleText</td>
-				<td>spitle.postedTime</td>
+				<td>${spittle.id}</td>
+				<%-- 				<td>${spittle.spitter.id}</td> --%>
+				<td>${spittle.text}</td>
+				<td>${spittle.when}</td>
 			</tr>
 		</c:forEach>
 	</table>

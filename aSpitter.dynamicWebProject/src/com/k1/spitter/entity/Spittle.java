@@ -21,8 +21,7 @@ public class Spittle {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
-	 (name = "id")
+	@Column(name = "id")
 	private Long id;
 
 	@ManyToOne
@@ -44,14 +43,6 @@ public class Spittle {
 	public Spittle(Spitter spitter) {
 		this.spitter = spitter;
 	}
-
-	// public Long getSpittleId() {
-	// return spittleId;
-	// }
-	//
-	// public void setSpittleId(Long spittleId) {
-	// this.spittleId = spittleId;
-	// }
 
 	public Long getId() {
 		return id;
@@ -89,10 +80,4 @@ public class Spittle {
 	public String toString() {
 		return "Spittle [id=" + id + ", spitter=" + spitter + ", text=" + text + ", when=" + when + "]";
 	}
-
-	// @Override
-	// public String toString() {
-	// return "Spittle [spittleId=" + spittleId + ", spitter=" + spitter + ",
-	// text=" + text + ", when=" + when + "]";
-	// }
 }
