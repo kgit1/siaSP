@@ -14,7 +14,7 @@
 
 	<p6>LIST HERE</p6>
 	<hr>
-	<table>
+	<table class="spittersTable">
 		<tr>
 			<th>ID</th>
 			<th>UserName</th>

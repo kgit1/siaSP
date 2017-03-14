@@ -37,6 +37,10 @@ public class PagesController {
 
 		// add spitters list to model which will go to return page
 		theModel.addAttribute("spitters", spitters);
+		
+		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
+		theModel.addAttribute("spittles", spittles);
+		
 		// lead to list page
 		return "pages/list";
 	}
@@ -111,6 +115,16 @@ public class PagesController {
 		theModel.addAttribute("spitter", spitter);
 		theModel.addAttribute("spittles", spitter.spittles);
 		return "pages/spitterFullInfo";
+	}
+
+	@Transactional
+	@GetMapping("left")
+	public String fullInfoOnSpitterLeft(Model theModel) {
+		Session session = factory.getCurrentSession();
+		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
+		theModel.addAttribute("spittles", spittles);
+		System.out.println("LEFT");
+		return "tiles/aLeft";
 	}
 
 }
