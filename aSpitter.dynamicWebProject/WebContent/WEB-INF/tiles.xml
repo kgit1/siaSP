@@ -36,7 +36,8 @@
 	<!-- SpitterFull Page -->
 	<definition name="pages/spitterFullInfo" extends="base.definition">
 		<put-attribute name="title" value="Spitter page" />
-		<put-attribute name="body" value="/WEB-INF/view/pages/spitterFullInfo.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/view/pages/spitterFullInfo.jsp" />
 	</definition>
 
 </tiles-definitions>  

@@ -1,140 +1,143 @@
 create new Dynamic Web Project
 
-put libs to WebContent-> WEB-INF -> lib
-+ hibernate required libs 
-+ commons-dbcp for BasicDataSource
-+ commons-pool2 for connections pool for dataSource
-+ commons-logging
-+ mysql-connector-java
+	put libs to WebContent-> WEB-INF -> lib
+	+ hibernate required libs 
+	+ commons-dbcp for BasicDataSource
+	+ commons-pool2 for connections pool for dataSource
+	+ commons-logging
+	+ mysql-connector-java
+	
+	test database
 
-test database
-
-create and populate MySql database 
-drop table if exists spittle;
-drop table if exists spitter;
-
-create table spitter (
-  id int not null auto_increment primary key,
-  username varchar(25) not null,
-  password varchar(25) not null,
-  fullname varchar(100) not null,
-  email varchar(50) not null,
-  update_by_email boolean not null
-);
-
-create table spittle (
-  id int not null auto_increment primary key,
-  spitter_id integer not null,
-  spittleText varchar(2000) not null,
-  postedTime date not null,
-  foreign key (spitter_id) references spitter(id)
-);
-
-alter table spitter add timestamp timestamp;
-alter table spitter add date timestamp;
-alter table spitter add time timestamp;
-
-insert into spitter (username, password, fullname, email, update_by_email) values 
-('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
-('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
-('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
-('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false);
-insert into spitter (username, password, fullname, email, update_by_email) values 
-('artnames', 'password', 'Art Names', 'artnames@habuma.com', false);
-
-insert into spittle (spitter_id, spittleText, postedTime) values 
-(1, 'Have you read Spring in Action 3? I hear it is awesome!', '2010-06-09');
-insert into spittle (spitter_id, spittleText, postedTime) values 
-(2, 'Trying out Spring''s new expression language.', '2010-06-11');
-insert into spittle (spitter_id, spittleText, postedTime) values 
-(1, 'Who''s going to SpringOne/2GX this year?', '2010-06-19');
-
-
-test database with simple connection in DbTest.class
-
-test database with hibernate connection in HibernateDbTest.classs
-put hibernate configuration with hibernate and database properties
- - hibernate.cfg.xml to root src
-
-put spring context xml to WebContent-> WEB-INF
-
-at WebContent - create new jsp -> create index.jsp
-
-at index.jsp - put <% response.sendRedirect("home"); %>
-to make it redirecting to home.jsp mapped by "home" in controller
-
-at WebContent-> WEB-INF - create new folder view - to hold all our pages
-
-at WebContent create new folder - resources to hold our images and css
-so in WebContent-> resources - create folders images and css
-
-at Java Resources -> src - create packages for controllers, dao, services 
-and entity(model)
+	create and populate MySql database 
+	drop table if exists spittle;
+	drop table if exists spitter;
+	
+	create table spitter (
+	  id int not null auto_increment primary key,
+	  username varchar(25) not null,
+	  password varchar(25) not null,
+	  fullname varchar(100) not null,
+	  email varchar(50) not null,
+	  update_by_email boolean not null
+	);
+	
+	create table spittle (
+	  id int not null auto_increment primary key,
+	  spitter_id integer not null,
+	  spittleText varchar(2000) not null,
+	  postedTime date not null,
+	  foreign key (spitter_id) references spitter(id)
+	);
+	
+	alter table spitter add timestamp timestamp;
+	alter table spitter add date timestamp;
+	alter table spitter add time timestamp;
+	
+	insert into spitter (username, password, fullname, email, update_by_email) values 
+	('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
+	('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
+	('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false),
+	('habuma', 'password', 'Craig Walls', 'craig@habuma.com', false);
+	insert into spitter (username, password, fullname, email, update_by_email) values 
+	('artnames', 'password', 'Art Names', 'artnames@habuma.com', false);
+	
+	insert into spittle (spitter_id, spittleText, postedTime) values 
+	(1, 'Have you read Spring in Action 3? I hear it is awesome!', '2010-06-09');
+	insert into spittle (spitter_id, spittleText, postedTime) values 
+	(2, 'Trying out Spring''s new expression language.', '2010-06-11');
+	insert into spittle (spitter_id, spittleText, postedTime) values 
+	(1, 'Who''s going to SpringOne/2GX this year?', '2010-06-19');
+	
+	
+	test database with simple connection in DbTest.class
+	
+	test database with hibernate connection in HibernateDbTest.classs
+	put hibernate configuration with hibernate and database properties
+	 - hibernate.cfg.xml to root src
+	
+	put spring context xml to WebContent-> WEB-INF
+	
+	at WebContent - create new jsp -> create index.jsp
+	
+	at index.jsp - put <% response.sendRedirect("home"); %>
+	to make it redirecting to home.jsp mapped by "home" in controller
+	
+	at WebContent-> WEB-INF - create new folder view - to hold all our pages
+	
+	at WebContent create new folder - resources to hold our images and css
+	so in WebContent-> resources - create folders images and css
+	
+	at Java Resources -> src - create packages for controllers, dao, services 
+	and entity(model)
 
 /////////////////////SPRING MVC///////////
 
-request from web page of our app will be handled in first by DIspatcherServlet,
-than he will found controller which fits to request,
-that controller will do work, than pack together model with procedure name 
-depends on which DispatcherServlet with help of resolver will found jsp 
-page on which data will be presented
+	request from web page of our app will be handled in first by DIspatcherServlet,
+	than he will found controller which fits to request,
+	that controller will do work, than pack together model with procedure name 
+	depends on which DispatcherServlet with help of resolver will found jsp 
+	page on which data will be presented
+	
+	so first configure DespatcherServlet
 
-so first configure DespatcherServlet
+	add web.xml to WebContent -> WEB-INF
+	where we configure Dispatcher Servlet which manages all requests between view 
+	and controller
+	in which we assign welcome file and indicates where spring configuration is, 
+	and maps "/" to be default path
 
-add web.xml to WebContent -> WEB-INF
-where we configure Dispatcher Servlet which manages all requests between view 
-and controller
-in which we assign welcome file and indicates where spring configuration is, 
-and maps "/" to be default path
-
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>Spitter</display-name>
-
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
-
-  <servlet>
-    <servlet-name>dispatcher</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/appContext.xml</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>dispatcher</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-</web-app>
-
-
-put libs to WebContent-> WEB-INF -> lib
-spring libs
-
-put spring context.xml to webContent -> WEB-INF
-assign this context.xml location in web.xml
- <servlet>
-    <servlet-name>dispatcher</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/appContext.xml</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
+	<?xml version="1.0" encoding="UTF-8"?>
+	<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+	  <display-name>Spitter</display-name>
+	
+	  <welcome-file-list>
+	    <welcome-file>index.jsp</welcome-file>
+	    <welcome-file>index.html</welcome-file>
+	  </welcome-file-list>
+	
+	  <servlet>
+	    <servlet-name>dispatcher</servlet-name>
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	    <init-param>
+	      <param-name>contextConfigLocation</param-name>
+	      <param-value>/WEB-INF/appContext.xml</param-value>
+	    </init-param>
+	    <load-on-startup>1</load-on-startup>
+	  </servlet>
+	  
+	  <servlet-mapping>
+	    <servlet-name>dispatcher</servlet-name>
+	    <url-pattern>/</url-pattern>
+	  </servlet-mapping>
+	</web-app>
 
 
-in spring context.xml
-add tx namespace -transactions properties and annotations
-add mvc namespace - for SpringMVC properties and annotations
+	put libs to WebContent-> WEB-INF -> lib
+	spring libs
+	
+	put spring context.xml to webContent -> WEB-INF
+	assign this context.xml location in web.xml
+	 <servlet>
+	    <servlet-name>dispatcher</servlet-name>
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	    <init-param>
+	      <param-name>contextConfigLocation</param-name>
+	      <param-value>/WEB-INF/appContext.xml</param-value>
+	    </init-param>
+	    <load-on-startup>1</load-on-startup>
+	  </servlet>
 
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+
+	in spring context.xml
+	add tx namespace -transactions properties and annotations
+	add mvc namespace - for SpringMVC properties and annotations
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:context="http://www.springframework.org/schema/context"	
     xmlns:tx="http://www.springframework.org/schema/tx"    
@@ -311,7 +314,7 @@ add mvc namespace - for SpringMVC properties and annotations
 	</table>
 	
 	
-	////////////////REGISTRATION/////////////
+////////////////REGISTRATION/////////////
 	
 	create registration jsp
 	
@@ -333,7 +336,7 @@ add mvc namespace - for SpringMVC properties and annotations
 	add form to hold table with inputs and submit buttons and fields
 	
 	<!-- on form load - spring will execute getters to populate fields -->
-<!-- on form submit - spring will use setters to change field's values -->
+	<!-- on form submit - spring will use setters to change field's values -->
 	<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
 	
 	<!-- need to associate this data with customer id, when we use this form 
@@ -384,7 +387,7 @@ add mvc namespace - for SpringMVC properties and annotations
 	}
 	
 	
-	////////////////BUTTONS///////////////
+////////////////BUTTONS///////////////
 	
 	add update, delete, and search buttons to "list" page
 	
@@ -442,7 +445,7 @@ add mvc namespace - for SpringMVC properties and annotations
 	}
 	
 	
-	//////////////////SINGLE SPITTER/////////////////
+//////////////////SINGLE SPITTER/////////////////
 	
 	create new jsp page for single spitter with full info
 	
@@ -520,7 +523,7 @@ add mvc namespace - for SpringMVC properties and annotations
 	}
 	
 	
-	///////TILES//////////////////////
+///////////TILES//////////////////////
 	
 	add tiles libs to WebContent-> WEB-INF -> lib
 	+slf4j-api-1.7.6
@@ -555,297 +558,319 @@ add mvc namespace - for SpringMVC properties and annotations
     
     add to tiles.xml
     
-    <?xml version="1.0" encoding="UTF-8" ?>  
-<!DOCTYPE tiles-definitions PUBLIC
-  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
-  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-
-<tiles-definitions>
-
-	<!-- Base Definition -->
-	<definition name="base.definition" template="/WEB-INF/view/tiles/layout.jsp">
-		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/view/tiles/aHeader.jsp" />
-		<put-attribute name="left" value="/WEB-INF/view/tiles/aLeft.jsp" />
-		<put-attribute name="body" value="" />
-		<put-attribute name="right" value="/WEB-INF/view/tiles/aRight.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/view/tiles/aFooter.jsp" />
-	</definition>
-
-	<!-- List Page -->
-	<definition name="home" extends="base.definition">
-		<put-attribute name="title" value="Home" />
-		<put-attribute name="body" value="/WEB-INF/view/home.jsp" />
-	</definition>
-
-	<!-- List Page -->
-	<definition name="pages/list" extends="base.definition">
-		<put-attribute name="title" value="List Of Spitters" />
-		<put-attribute name="body" value="/WEB-INF/view/pages/list.jsp" />
-	</definition>
-
-	<!-- Reg Page -->
-	<definition name="pages/reg" extends="base.definition">
-		<put-attribute name="title" value="Spitter page" />
-		<put-attribute name="body" value="/WEB-INF/view/pages/reg.jsp" />
-	</definition>
-
-	<!-- SpitterFull Page -->
-	<definition name="pages/spitterFullInfo" extends="base.definition">
-		<put-attribute name="title" value="Spitter page" />
-		<put-attribute name="body" value="/WEB-INF/view/pages/spitterFullInfo.jsp" />
-	</definition>
-
-</tiles-definitions>  
+	<?xml version="1.0" encoding="UTF-8" ?>  
+	<!DOCTYPE tiles-definitions PUBLIC
+	  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+	  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+	
+	<tiles-definitions>
+	
+		<!-- Base Definition -->
+		<definition name="base.definition" template="/WEB-INF/view/tiles/layout.jsp">
+			<put-attribute name="title" value="" />
+			<put-attribute name="header" value="/WEB-INF/view/tiles/aHeader.jsp" />
+			<put-attribute name="left" value="/WEB-INF/view/tiles/aLeft.jsp" />
+			<put-attribute name="body" value="" />
+			<put-attribute name="right" value="/WEB-INF/view/tiles/aRight.jsp" />
+			<put-attribute name="footer" value="/WEB-INF/view/tiles/aFooter.jsp" />
+		</definition>
+	
+		<!-- List Page -->
+		<definition name="home" extends="base.definition">
+			<put-attribute name="title" value="Home" />
+			<put-attribute name="body" value="/WEB-INF/view/home.jsp" />
+		</definition>
+	
+		<!-- List Page -->
+		<definition name="pages/list" extends="base.definition">
+			<put-attribute name="title" value="List Of Spitters" />
+			<put-attribute name="body" value="/WEB-INF/view/pages/list.jsp" />
+		</definition>
+	
+		<!-- Reg Page -->
+		<definition name="pages/reg" extends="base.definition">
+			<put-attribute name="title" value="Spitter page" />
+			<put-attribute name="body" value="/WEB-INF/view/pages/reg.jsp" />
+		</definition>
+	
+		<!-- SpitterFull Page -->
+		<definition name="pages/spitterFullInfo" extends="base.definition">
+			<put-attribute name="title" value="Spitter page" />
+			<put-attribute name="body" value="/WEB-INF/view/pages/spitterFullInfo.jsp" />
+		</definition>
+	
+	</tiles-definitions>  
 
 	add layout.jsp to WebContent-> WEB-INF-> view-> tiles
 	to configure tiles disposal
+		
+		<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+	"http://www.w3.org/TR/html4/loose.dtd">
+	<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title><tiles:insertAttribute name="title" ignore="true" /></title>
+	<link rel="stylesheet" type="text/css"
+		href="${pageContext.request.contextPath}/resources/css/tiles.css">
+	</head>
 	
-	<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><tiles:insertAttribute name="title" ignore="true" /></title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/tiles.css">
-</head>
-
-<body>
-	<div class="wrap">
-		<div class="tilesHeader">
-			<tiles:insertAttribute name="header" />
-		</div>
-
-		<div class="center">
-			<div class="tilesLeft">
-				<tiles:insertAttribute name="left" />
+	<body>
+		<div class="wrap">
+			<div class="tilesHeader">
+				<tiles:insertAttribute name="header" />
 			</div>
-
-			<div class="tilesBody">
-				<tiles:insertAttribute name="body" />
-			</div>
-
-			<div class="tilesRight">
-				<tiles:insertAttribute name="right" />
-			</div>
-		</div>
-		<div class="tilesFooter">
-			<tiles:insertAttribute name="footer" />
-		</div>
-	</div>
-
-</body>
-</html>
-
-
-	add aHeader, aLeft, aRight, aBottom jsps 
-	to WebContent-> WEB-INF-> view-> tiles
 	
-	add tiles.css to WebContent-> resources-> css
-
-	html, .container {
-	height: 100%;
-}
-
-body {
-	background: green;
-/* 	margin:0 auto 0 auto; */
-}
-
-.wrap{
-	width: 1200px;
-/* 	float:left; */
-/* 	height:auto; */
-	margin:0 auto 0 auto;
-}
-.center {
-	min-height: 800px; height : 100%;
-	background: aqua;
-	overflow: hidden;
-	height: 100%;
-	margin: 0 auto 0 auto;
-/* 	margin:5px; */
-}
-
-.tilesHeader {
-	height: 100px;
-	border: solid pink 2px;
-	margin: 5px;
-	padding: 4px;
-	background: red;
-}
-
-.tilesLeft {
-	width: 167px;
-	min-height: 800px;
-	height: 100%;
-	border: solid pink 2px;
-	margin: 5px;
-	padding: 4px;
-	background: orange;
-	float: left;
-	background: orange;
-	overflow: auto;
-}
-
-.tilesBody {
-	width: 700px;
-	min-height: 800px;
-	overflow: auto;
-	border: solid pink 2px;
-	margin: 5px;
-	padding: 4px;
-	float: left;
-	margin: 5px;
-	border: solid pink 2px;
-}
-
-.tilesRight {
-	width: 267px;
-	min-height: 800px;
-	height: 100%;
-	border: solid pink 2px;
-	margin: 5px;
-	padding: 4px;
-	background: yellow;
-	position: relative;
-	float: right;
-}
-
-.tilesFooter {
-	height: 200px;
-	border: solid pink 2px;
-	margin: 5px;
-	padding: 4px;
-	background: blue;
-	clear: both;
-}
+			<div class="center">
+				<div class="tilesLeft">
+					<tiles:insertAttribute name="left" />
+				</div>
+	
+				<div class="tilesBody">
+					<tiles:insertAttribute name="body" />
+				</div>
+	
+				<div class="tilesRight">
+					<tiles:insertAttribute name="right" />
+				</div>
+			</div>
+			<div class="tilesFooter">
+				<tiles:insertAttribute name="footer" />
+			</div>
+		</div>
+	
+	</body>
+	</html>
+	
+	
+		add aHeader, aLeft, aRight, aBottom jsps 
+		to WebContent-> WEB-INF-> view-> tiles
+		
+		add tiles.css to WebContent-> resources-> css
+	
+		html, .container {
+		height: 100%;
+	}
+	
+	body {
+		background: green;
+	/* 	margin:0 auto 0 auto; */
+	}
+	
+	.wrap{
+		width: 1200px;
+	/* 	float:left; */
+	/* 	height:auto; */
+		margin:0 auto 0 auto;
+	}
+	.center {
+		min-height: 800px; height : 100%;
+		background: aqua;
+		overflow: hidden;
+		height: 100%;
+		margin: 0 auto 0 auto;
+	/* 	margin:5px; */
+	}
+	
+	.tilesHeader {
+		height: 100px;
+		border: solid pink 2px;
+		margin: 5px;
+		padding: 4px;
+		background: red;
+	}
+	
+	.tilesLeft {
+		width: 167px;
+		min-height: 800px;
+		height: 100%;
+		border: solid pink 2px;
+		margin: 5px;
+		padding: 4px;
+		background: orange;
+		float: left;
+		background: orange;
+		overflow: auto;
+	}
+	
+	.tilesBody {
+		width: 700px;
+		min-height: 800px;
+		overflow: auto;
+		border: solid pink 2px;
+		margin: 5px;
+		padding: 4px;
+		float: left;
+		margin: 5px;
+		border: solid pink 2px;
+	}
+	
+	.tilesRight {
+		width: 267px;
+		min-height: 800px;
+		height: 100%;
+		border: solid pink 2px;
+		margin: 5px;
+		padding: 4px;
+		background: yellow;
+		position: relative;
+		float: right;
+	}
+	
+	.tilesFooter {
+		height: 200px;
+		border: solid pink 2px;
+		margin: 5px;
+		padding: 4px;
+		background: blue;
+		clear: both;
+	}
 
 
 ////////////////////LOGGING SQL//////////////
 
-Question
-There are many developers asking about Hibernate SQL parameter value question. How to display the Hibernate SQL parameter values that passed to database? Hibernate just display all parameter values as question mark (?). With show_sql property, Hibernate will shows all generated SQL statements, but not the SQL parameter values.
-
-For example
-
-Hibernate: insert into mkyong.stock_transaction (CHANGE, CLOSE, DATE, OPEN, STOCK_ID, VOLUME)
-values (?, ?, ?, ?, ?, ?)
-Is there a way to log or display the exact Hibernate SQL parameter values?
-
-Solution – P6Spy
-Well, if there is a question there is an answer ~
-
-The P6Spy is a useful library to log all SQL statement and parameter values before send it to database. The P6Spy is free, it’s use to intercepts and logs all your database SQL statements into a log file, and it works for any application that uses JDBC driver.
-
-1. Download P6Spy library
-Get the “p6spy-install.jar“, you can download it from
-
-P6Spy official website.
-P6Spy at Sourceforge.net
-2. Extract it
-Extract the p6spy-install.jar file, look for p6spy.jar and spy.properties
-
-3. Add library dependency
-Add p6spy.jar into your project library dependency
-
-4. Modify P6Spy properties file
-Modify your database configuration file. You need to replace your existing JDBC driver with P6Spy JDBC driver – ” com.p6spy.engine.spy.P6SpyDriver”
-
-Original is MySQL JDBC driver – “com.mysql.jdbc.Driver”
-
-<session-factory>
-  <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.password">password</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mkyong</property>
-  <property name="hibernate.connection.username">root</property>
-  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-  <property name="show_sql">true</property>
-</session-factory>
-Changed it to P6Spy JDBC driver – “com.p6spy.engine.spy.P6SpyDriver”
-
-<session-factory>
-  <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-  <property name="hibernate.connection.driver_class">com.p6spy.engine.spy.P6SpyDriver
-  </property>
-  <property name="hibernate.connection.password">password</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mkyong</property>
-  <property name="hibernate.connection.username">root</property>
-  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-  <property name="show_sql">true</property>
-</session-factory>
-5. Modify P6Spy properties file
-Modify the P6Spy properties file – “spy.properties”
-
-Replace the “real driver” with your existing MySQL JDBC driver
-
-realdriver=com.mysql.jdbc.Driver
-
-#specifies another driver to use
-realdriver2=
-#specifies a third driver to use
-realdriver3=
-Change the Log file location
-Change the log file location in logfile property, all SQL statements will log into this file.
-
-Windows
-
-logfile     = c:/spy.log
-*nix
-
-logfile     = /srv/log/spy.log
-6. Copy “spy.properties” to project classpath
-Copy “spy.properties” to your project root folder, make sure your project can locate “spy.properties”, else it will prompt “spy.properties” file not found exception.
-
-7. Done
-Run your application and do some database transaction, you will notice all the SQL statements sent from application to database will be logged into a file you specified in “spy.properties”.
-
-Sample log file as following.
-
-insert into mkyong.stock_transaction (CHANGE, CLOSE, DATE, OPEN, STOCK_ID, VOLUME)
-values (?, ?, ?, ?, ?, ?)|
-insert into mkyong.stock_transaction (CHANGE, CLOSE, DATE, OPEN, STOCK_ID, VOLUME)
-values (10.0, 1.1, '2009-12-30', 1.2, 11, 1000000)
-Conclusion
-Frankly, the P6Spy is really useful in reducing the developers’ debugging time. As long as your project is using JDBC driver for connection , P6Sqp can fir into it and log all SQL statements and parameter values for you.
-
-For Maven User
-You can use Maven to download the P6Spy dependency into your pom.xml
-
-<dependency>
-	<groupId>p6spy</groupId>
-	<artifactId>p6spy</artifactId>
-	<version>1.3</version>
-</dependency>
+	Question
+	There are many developers asking about Hibernate SQL parameter value 
+	question. How to display the Hibernate SQL parameter values that passed 
+	to database? Hibernate just display all parameter values as question 
+	mark (?). With show_sql property, Hibernate will shows all generated 
+	SQL statements, but not the SQL parameter values.
+	
+	For example
+	
+	Hibernate: insert into mkyong.stock_transaction (CHANGE, CLOSE, DATE, OPEN, STOCK_ID, VOLUME)
+	values (?, ?, ?, ?, ?, ?)
+	Is there a way to log or display the exact Hibernate SQL parameter values?
+	
+	Solution – P6Spy
+	Well, if there is a question there is an answer ~
+	
+	The P6Spy is a useful library to log all SQL statement and parameter values 
+	before send it to database. The P6Spy is free, it’s use to intercepts 
+	and logs all your database SQL statements into a log file, and it works 
+	for any application that uses JDBC driver.
+	
+	1. Download P6Spy library
+	Get the “p6spy-install.jar“, you can download it from
+	
+	P6Spy official website.
+	P6Spy at Sourceforge.net
+	2. Extract it
+	Extract the p6spy-install.jar file, look for p6spy.jar and spy.properties
+	
+	3. Add library dependency
+	Add p6spy.jar into your project library dependency
+	
+	4. Modify P6Spy properties file
+	Modify your database configuration file. You need to replace your existing 
+	JDBC driver with P6Spy JDBC driver – ” com.p6spy.engine.spy.P6SpyDriver”
+	
+	Original is MySQL JDBC driver – “com.mysql.jdbc.Driver”
+	
+	<session-factory>
+	  <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+	  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+	  <property name="hibernate.connection.password">password</property>
+	  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mkyong</property>
+	  <property name="hibernate.connection.username">root</property>
+	  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+	  <property name="show_sql">true</property>
+	</session-factory>
+	Changed it to P6Spy JDBC driver – “com.p6spy.engine.spy.P6SpyDriver”
+	
+	<session-factory>
+	  <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+	  <property name="hibernate.connection.driver_class">com.p6spy.engine.spy.P6SpyDriver
+	  </property>
+	  <property name="hibernate.connection.password">password</property>
+	  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mkyong</property>
+	  <property name="hibernate.connection.username">root</property>
+	  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+	  <property name="show_sql">true</property>
+	</session-factory>
+	5. Modify P6Spy properties file
+	Modify the P6Spy properties file – “spy.properties”
+	
+	Replace the “real driver” with your existing MySQL JDBC driver
+	
+	realdriver=com.mysql.jdbc.Driver
+	
+	#specifies another driver to use
+	realdriver2=
+	#specifies a third driver to use
+	realdriver3=
+	Change the Log file location
+	Change the log file location in logfile property, all SQL statements will 
+	log into this file.
+	
+	Windows
+	
+	logfile     = c:/spy.log
+	*nix
+	
+	logfile     = /srv/log/spy.log
+	6. Copy “spy.properties” to project classpath
+	Copy “spy.properties” to your project root folder, make sure your project 
+	can locate “spy.properties”, else it will prompt “spy.properties” file 
+	not found exception.
+	
+	7. Done
+	Run your application and do some database transaction, you will notice 
+	all the SQL statements sent from application to database will be logged 
+	into a file you specified in “spy.properties”.
+	
+	Sample log file as following.
+	
+	insert into mkyong.stock_transaction (CHANGE, CLOSE, DATE, OPEN, STOCK_ID, VOLUME)
+	values (?, ?, ?, ?, ?, ?)|
+	insert into mkyong.stock_transaction (CHANGE, CLOSE, DATE, OPEN, STOCK_ID, VOLUME)
+	values (10.0, 1.1, '2009-12-30', 1.2, 11, 1000000)
+	Conclusion
+	Frankly, the P6Spy is really useful in reducing the developers’ debugging 
+	time. As long as your project is using JDBC driver for connection , P6Sqp 
+	can fir into it and log all SQL statements and parameter values for you.
+	
+	For Maven User
+	You can use Maven to download the P6Spy dependency into your pom.xml
+	
+	<dependency>
+		<groupId>p6spy</groupId>
+		<artifactId>p6spy</artifactId>
+		<version>1.3</version>
+	</dependency>
 
 
 ////////////////VALIDATION DATA/////////////////
 
-add validation libs to WebContent-> WEB-INF -> lib 
-	+validation-api-1.1.0.Final
-	+hibernate-validator-5.4.0.Final
-	+hibernate-validator-annotation-processor-5.4.0.Final
-	+hibernate-validator-cdi-5.4.0.Final
+	add validation libs to WebContent-> WEB-INF -> lib 
+		+validation-api-1.1.0.Final
+		+hibernate-validator-5.4.0.Final
+		+hibernate-validator-annotation-processor-5.4.0.Final
+		+hibernate-validator-cdi-5.4.0.Final
 	
+	add to appContext.xml
+	<bean id="validator" 
+	class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 	
 	add validation parameters to Entity class with 
 	@NotNull @Size @Min @Max @Pattern etc like 
 	
 	@Column(name = "username", unique = true)
 	@NotNull(message = "Can't be empty")
-	@Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters long")
-	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric with no spaces")
+	@Size(min = 3, max = 20, message = "Username must be between 3 and 20 
+	characters long")
+	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be 
+	alphanumeric with no spaces")
 	private String userName;
 
 	@Column(name = "password")
-	@Size(min = 6, max = 9, message = "Password must be at least 6 characters long, and not longer than 20")
+	@Size(min = 6, max = 9, message = "Password must be at least 6 characters 
+	long, and not longer than 20")
 	private String password;
 
 	@Column(name = "fullname")
-	@Size(min = 3, max = 50, message = "YOur full name must be between 3 and 50 characters long")
+	@Size(min = 3, max = 50, message = "YOur full name must be between 3 and 
+	50 characters long")
 	private String fullName;
 
 	@Column(name = "age")
@@ -854,7 +879,8 @@ add validation libs to WebContent-> WEB-INF -> lib
 	private int age;
 
 	@Column(name = "email")
-	@Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", message = "Invalid email address")
+	@Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", 
+	message = "Invalid email address")
 	private String email;
 	
     
@@ -873,7 +899,8 @@ add validation libs to WebContent-> WEB-INF -> lib
     
     @Transactional
 	@PostMapping("/saveSpitter")
-		public String saveSpitter(@Valid @ModelAttribute("spitter")  Spitter spitter, BindingResult bindingResult) {
+		public String saveSpitter(@Valid @ModelAttribute("spitter")  Spitter 
+		spitter, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors()){
 			return "pages/reg";
@@ -889,19 +916,23 @@ add validation libs to WebContent-> WEB-INF -> lib
 	}
 	
 	
-	add errors to jsp.page with <form:errors> - is used to display BindingResult in JSP
+	add errors to jsp.page with <form:errors> - is used to display 
+	BindingResult in JSP
 	If we use
 	<form:errors path="fieldName" cssClass="error"/>
-	then it will display field specific error and if we use <form:errors/> without field name, it will display all errors.
+	then it will display field specific error and if we use <form:errors/> 
+	without field name, it will display all errors.
 	
 	<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
 		<table>
 
-			<!-- need to associate this data with customer id, when we use this form 
+			<!-- need to associate this data with customer id, when we use 
+			this form 
 	to update current customer -->
 			<form:hidden path="id" />
 			<form:errors path="*" cssClass="error" />
-			<%-- 			<form:errors path="*" cssClass="error" element="error"/> --%>
+			<%-- 			<form:errors path="*" cssClass="error" element=
+			"error"/> --%>
 			<tbody>
 				<tr>
 					<td><label>UserName</label></td>
@@ -935,23 +966,35 @@ add validation libs to WebContent-> WEB-INF -> lib
 		</table>
 	</form:form>
 	
-	This is nice, but does not support internationalization. Plus, do we really want our messages in our Java objects? Fortunately, we can easily override the default messages in our message bundle. To do this, first set up a message bundle:
+	This is nice, but does not support internationalization. Plus, do we really
+	 want our messages in our Java objects? Fortunately, we can easily override 
+	 the default messages in our message bundle. To do this, first set up 
+	 a message bundle:
 
 	JavaConfig:
 	@Bean
 	public MessageSource messageSource() {
-	    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+	    ResourceBundleMessageSource messageSource = 
+	    new ResourceBundleMessageSource();
 	    messageSource.setBasename("messages");
 	    return messageSource;
 	}
 	XML Config:
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<bean id="messageSource" 
+	class="org.springframework.context.support.ResourceBundleMessageSource">
 	    <property name="basename" value="messages"/>
 	</bean>
-	Now, create a file called “messages.properties” in “src/main/resources”. Now, we can override the default error messages. Error messages are resolved using the following pattern:
+	Now, create a file called “messages.properties” in “src/main/resources”. 
+	Now, we can override the default error messages. Error messages are 
+	resolved using the following pattern:
 	
 	{ValidationClass}.{modelObjectName}.{field}
-	For example, if the age field of our “subscriber” model object fails the “NotNull” validation, the “NotNull.subscriber.age” message would be looked up. If the message isn’t found, “NotNull.subscriber” would be looked for. Finally, if not found, “NotNull” message would be looked for. If that also isn’t found, the default message (what we saw above) would be rendered. With this convention in mind, let’s define our error messages:
+	For example, if the age field of our “subscriber” model object fails 
+	the “NotNull” validation, the “NotNull.subscriber.age” message would 
+	be looked up. If the message isn’t found, “NotNull.subscriber” would be 
+	looked for. Finally, if not found, “NotNull” message would be looked for. 
+	If that also isn’t found, the default message (what we saw above) would be 
+	rendered. With this convention in mind, let’s define our error messages:
 	
 	Size=the {0} field must be between {2} and {1} characters long
 	Size.subscriber.name=Name must be between {2} and {1} characters
@@ -970,8 +1013,15 @@ add validation libs to WebContent-> WEB-INF -> lib
 	methodInvocation.myRequest.amount=Invalid format
 	Notice the use of {0}, {1}, etc. These are arguments that can be passed in to the message.
 	 
-	
-	
+
+/////////////////MULTIPLE VIEW RESOLVER////////////
+
+	to add multiple view resolvers just add resolvers one by one
+	but to every add 
+	<property name="order" value="0"/>
+	where value will define order in which spring will invoke resolvers, if
+	spring don't see resolver to use with first priority, he will try
+	next in line
 	
 	
 	

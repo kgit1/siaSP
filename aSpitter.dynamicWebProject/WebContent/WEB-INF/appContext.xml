@@ -82,10 +82,16 @@
 
 	<!-- Step 6: Setup tiles -->
 	<!-- Tiles configuration -->
-	<bean id="viewResolver1"
+	<bean 
 		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
-		<!-- <property name="prefix" value="/WEB-INF/view/" /> -->
-		<!-- <property name="suffix" value=".jsp" /> -->
+		<property name="order" value="0" />
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="0" />
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
 	</bean>
 
 	<bean id="tilesConfigurer"
@@ -99,20 +105,21 @@
 
 
 
-<!-- Add support for conversion, formatting and validation support -->
+	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven />
-	
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
-<!-- <bean id="annotationMethodHandlerAdapter" class="org.springframework.web.portlet.mvc.annotation.AnnotationMethodHandlerAdapter"> -->
-<!--     <property name="webBindingInitializer"> -->
-<!--         <bean id="configurableWebBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer"> -->
-<!--             <property name="validator"> -->
-<!--                 <ref bean="validator"/> -->
-<!--             </property> -->
-<!--         </bean> -->
-<!--     </property> -->
-<!-- </bean> -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+	<!-- <bean id="annotationMethodHandlerAdapter" class="org.springframework.web.portlet.mvc.annotation.AnnotationMethodHandlerAdapter"> -->
+	<!-- <property name="webBindingInitializer"> -->
+	<!-- <bean id="configurableWebBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer"> -->
+	<!-- <property name="validator"> -->
+	<!-- <ref bean="validator"/> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+	<!-- </property> -->
+	<!-- </bean> -->
 </beans>
 
 
