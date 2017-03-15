@@ -1028,6 +1028,19 @@ create new Dynamic Web Project
 
 	to have access to spittles for left tile, just add spittles to model for
 	body controller of chosen page
+	
+		// spitters and spittless lists for left panel
+		// get spitters from db
+		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+	
+		// add spitters list to model which will go to return page
+		theModel.addAttribute("spitters", spitters);
+	
+		// get spittles from db
+		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
+		// add spittles list to model which will go to return page
+		theModel.addAttribute("spittlesLeft", spittles);
+		
 	so modify page/list controller to	
 	
 	@Transactional
@@ -1049,6 +1062,51 @@ create new Dynamic Web Project
 		
 		// lead to list page
 		return "pages/list";
+	}	
+		
+	and if there collision if we read and write same piece of data like in
+	update controller
+		
+		// clear session to avoid collision between read spitter and write some
+		// of them at same time
+		session.clear();
+		
+	and it will be like this 
+	
+	@Transactional
+	@PostMapping("/saveSpitter")
+	public String saveSpitter(@Valid @ModelAttribute("spitter") Spitter spitter, BindingResult bindingResult,
+			Model theModel) {
+
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		// spitters and spittless lists for left panel
+		// get spitters from db
+		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+
+		// add spitters list to model which will go to return page
+		theModel.addAttribute("spitters", spitters);
+
+		// get spittles from db
+		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
+		// add spittles list to model which will go to return page
+		theModel.addAttribute("spittlesLeft", spittles);
+
+		// clear session to avoid collision between read spitter and write some
+		// of them at same time
+		session.clear();
+
+		if (bindingResult.hasErrors()) {
+			return "pages/reg";
+		}
+
+		// save or update
+		session.saveOrUpdate(spitter);
+
+		// redirect to list page, redirect will recreate page with new
+		// independent model
+		return "redirect:/home/list";
 	}
 	
 	than modify left page to display spittles with info and spitter name
