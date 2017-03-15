@@ -1,11 +1,25 @@
 package com.k1.spitter.controller;
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.k1.spitter.entity.Spitter;
+import com.k1.spitter.entity.Spittle;
 
 //add controller annotation to help spring find controller
 @Controller
 public class HomeController {
+
+	@Autowired
+	SessionFactory factory;
 
 	// add requestMapping to give link for our method
 	// @RequestMapping("/list") - work for all HTTP request methods
@@ -23,9 +37,27 @@ public class HomeController {
 	// @RequestMapping(path-"/list". method=RequestMethod.POST)
 	// same as
 	// PostMapping("/list")
-	
+
+	@Transactional
 	@GetMapping("/home")
-	public String home() {
+	public String home(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+		
+
+		// spitters and spittless lists for left panel
+		// get spitters from db
+		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+
+		// add spitters list to model which will go to return page
+		theModel.addAttribute("spitters", spitters);
+
+		// get spittles from db
+		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
+		// add spittles list to model which will go to return page
+		theModel.addAttribute("spittlesLeft", spittles);
+
+		// lead to home page
 		return "home";
 	}
 

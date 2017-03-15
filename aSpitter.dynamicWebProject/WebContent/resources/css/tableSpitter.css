@@ -4,7 +4,12 @@ html, body {
 
 table {
 	border-collapse: collapse;
-/* 	border-collapse:separate;  */
+/* 	border-bottom: 1px solid gray; */
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+
+table.spittersTable {
+	border-collapse: collapse;
 	border-bottom: 1px solid gray;
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
 }
@@ -26,53 +31,20 @@ table.spittersTable td {
 	padding: 10px;
 }
 
-tr:nth-child(even) {
+table.spittersTable tr:nth-child(even) {
 	background: #FFFFFF
 }
 
-tr:nth-child(odd) {
+table.spittersTable tr:nth-child(odd) {
 	background: #BBBBBB
 }
 
-tr:hover {
+table.spittersTable tr:hover {
 	background-color: #f5f5f5
 }
 
 .spitter {
 	overflow-x: auto;
-}
-
-table.spittleTable tr:nth-child(4n+1) {
-	background: red;
-	text-align: left;
-	font-size: 9px;
-	border-top: 3px solid white;
-	border-right: 3px solid white;
-	border-left: 3px solid white;
-}
-
-table.spittleTable tr:nth-child(4n+1) td:nth-child(2){
-	text-align:right;
-}
-
-table.spittleTable tr:nth-child(4n+2) {
-	background: green;
-	border-left: 3px solid white;
-	border-right: 3px solid white;
-}
-
-table.spittleTable tr:nth-child(4n+3) {
-	background: aqua;
-	text-align: right;
-	font-size: 10px;
-	border-left: 3px solid white;
-	border-right: 3px solid white;
-	border-bottom: 3px solid white;
-}
-
-table.spittleTable tr:nth-child(4n+4){
-	height:10px;
-	background:transparent;
 }
 
 /* table.spittle tr:nth-child(4n+4) > td{ */

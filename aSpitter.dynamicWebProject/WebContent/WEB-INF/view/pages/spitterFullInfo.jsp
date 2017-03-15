@@ -7,13 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/table.css">
+	href="${pageContext.request.contextPath}/resources/css/tableSpitter.css">
 <title>${spitter.userName}${spitter.fullName}</title>
 </head>
 <body>
 
 	<div class="spitter">
-		<table>
+		<table class="spittersTable">
 			<tr>
 				<th>ID</th>
 				<th>User</th>
@@ -67,7 +67,7 @@
 		</div>
 
 		<!-- 	Spittlesssss -->
-		<table>
+		<table class="spittersTable">
 			<tr>
 				<th>ID</th>
 				<th>Spittle</th>

@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources//css/tableSpittle.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,7 +17,7 @@
 	<c:set var="spitters" value="${spitters}" />
 	
 	<table class="spittleTable">
-		<c:forEach var="spittle" items="${spittles}">
+		<c:forEach var="spittle" items="${spittlesLeft}">
 			<tr>
 				<td>${spitters[spittle.id].userName}</td>
 				<td>ID: ${spittle.id}</td>
