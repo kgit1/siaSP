@@ -42,7 +42,7 @@ tr:hover {
 	overflow-x: auto;
 }
 
-table.spittle tr:nth-child(4n+1) {
+table.spittleTable tr:nth-child(4n+1) {
 	background: red;
 	text-align: left;
 	font-size: 9px;
@@ -51,13 +51,13 @@ table.spittle tr:nth-child(4n+1) {
 	border-left: 3px solid white;
 }
 
-table.spittle tr:nth-child(4n+2) {
+table.spittleTable tr:nth-child(4n+2) {
 	background: green;
 	border-left: 3px solid white;
 	border-right: 3px solid white;
 }
 
-table.spittle tr:nth-child(4n+3) {
+table.spittleTable tr:nth-child(4n+3) {
 	background: aqua;
 	text-align: right;
 	font-size: 10px;
@@ -66,28 +66,15 @@ table.spittle tr:nth-child(4n+3) {
 	border-bottom: 3px solid white;
 }
 
-table.spittle tr:nth-child(4n+4){
+table.spittleTable tr:nth-child(4n+4){
 	height:10px;
 	background:transparent;
 }
 
-table.spittle tr:nth-child(4n+4) > td{
-	height:10px;
-	background:transparent;
-}
-
-.aLeft {
-	height: 200px;
-	background: red; padding 5px;
-	margin: 5px;
-	border: 1px solid green;
-}
-
-ol.spittleTable{
-	list-style-type:none;
-	margin:0px;
-	padding:0px;
-}
+/* table.spittle tr:nth-child(4n+4) > td{ */
+/* 	height:10px; */
+/* 	background:transparent; */
+/* } */
 
 /* this will go to the 2nd column of a table directly  */
 /* table td+td { */

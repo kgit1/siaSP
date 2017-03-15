@@ -11,17 +11,7 @@
 <body>
 	LAST SPITTLES
 
-<!-- 	<ol class="spittleTable"> -->
-<%-- 		<c:forEach var="spittle" items="${spittles}"> --%>
-<!-- 			<div class="aLeft"> -->
-<%-- 			<li>ID: ${spittle.id}</li> --%>
-<%-- 			<li>${spittle.text}</li> --%>
-<%-- 			<li>Date: ${spittle.when}</li> --%>
-<!-- 			</div> -->
-<%-- 		</c:forEach> --%>
-<!-- 	</ol> -->
-
-	<table class="spittle">
+	<table class="spittleTable">
 		<c:forEach var="spittle" items="${spittles}">
 			<tr>
 				<td>ID: ${spittle.id}</td>
@@ -33,7 +23,6 @@
 				<td>Date: ${spittle.when}</td>
 			</tr>
 			<tr>
-				<td></td>
 			</tr>
 		</c:forEach>
 	</table>
