@@ -44,7 +44,7 @@ public class Spitter implements Comparable<Spitter> {
 	private String userName;
 
 	@Column(name = "password")
-	@Size(min = 6, max = 9, message = "Password must be at least 6 characters long, and not longer than 20")
+	@Size(min = 6, max = 20, message = "Password must be at least 6 characters long, and not longer than 20")
 	private String password;
 
 	@Column(name = "fullname")

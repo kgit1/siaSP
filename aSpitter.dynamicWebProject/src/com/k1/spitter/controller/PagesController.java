@@ -81,25 +81,29 @@ public class PagesController {
 		// get current hibernate session
 		Session session = factory.getCurrentSession();
 
-//		 // spitters and spittless lists for left panel
-//		 // get spitters from db
-//		 List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
-//		
-//		 // add spitters list to model which will go to return page
-//		 theModel.addAttribute("spitters", spitters);
-//		
-//		 // get spittles from db
-//		 List<Spittle> spittles = session.createQuery("from Spittle",
-//		 Spittle.class).getResultList();
-//		 // add spittles list to model which will go to return page
-//		 theModel.addAttribute("spittlesLeft", spittles);
+		// spitters and spittless lists for left panel
+		// get spitters from db
+		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+
+		// add spitters list to model which will go to return page
+		theModel.addAttribute("spitters", spitters);
+
+		// get spittles from db
+		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
+		// add spittles list to model which will go to return page
+		theModel.addAttribute("spittlesLeft", spittles);
+
+		// clear session to avoid collision between read spitter and write some
+		// of them at same time
+		session.clear();
 
 		if (bindingResult.hasErrors()) {
 			return "pages/reg";
 		}
-				
+
 		// save or update
 		session.saveOrUpdate(spitter);
+
 		// redirect to list page, redirect will recreate page with new
 		// independent model
 		return "redirect:/home/list";
@@ -125,18 +129,17 @@ public class PagesController {
 		// requests as params - objects name in model and object
 		theModel.addAttribute("spitter", spitter);
 
-		 // spitters and spittless lists for left panel
-		 // get spitters from db
-		 List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
-		
-		 // add spitters list to model which will go to return page
-		 theModel.addAttribute("spitters", spitters);
-		
-		 // get spittles from db
-		 List<Spittle> spittles = session.createQuery("from Spittle",
-		 Spittle.class).getResultList();
-		 // add spittles list to model which will go to return page
-		 theModel.addAttribute("spittlesLeft", spittles);
+		// spitters and spittless lists for left panel
+		// get spitters from db
+		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+
+		// add spitters list to model which will go to return page
+		theModel.addAttribute("spitters", spitters);
+
+		// get spittles from db
+		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
+		// add spittles list to model which will go to return page
+		theModel.addAttribute("spittlesLeft", spittles);
 
 		// lead us with model next to reg page
 		return "pages/reg";
@@ -182,6 +185,13 @@ public class PagesController {
 		// lead us with model next to info page
 		return "pages/spitterFullInfo";
 	}
+
+	// public List<Spitter> listSpitters() {
+	// Session session = factory.getCurrentSession();
+	// List<Spitter> spitters = session.createQuery("from
+	// Spitter").getResultList();
+	// return spitters;
+	// }
 
 	// @Transactional
 	// @GetMapping("left")
