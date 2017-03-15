@@ -38,6 +38,7 @@ public class PagesController {
 		// add spitters list to model which will go to return page
 		theModel.addAttribute("spitters", spitters);
 		
+		//spittles for left panel
 		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
 		theModel.addAttribute("spittles", spittles);
 		

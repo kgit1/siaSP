@@ -1024,6 +1024,103 @@ create new Dynamic Web Project
 	next in line
 	
 	
+//////////////LEFT/////////////////////////////////
+
+	to have access to spittles for left tile, just add spittles to model for
+	body controller of chosen page
+	so modify page/list controller to	
 	
+	@Transactional
+	// get spitters list and send it to page by adding as attribute to model
+	@GetMapping("/home/list")
+	public String printList(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		// get spitters from db
+		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+
+		// add spitters list to model which will go to return page
+		theModel.addAttribute("spitters", spitters);
+		
+		//spittles for left panel
+		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
+		theModel.addAttribute("spittles", spittles);
+		
+		// lead to list page
+		return "pages/list";
+	}
+	
+	than modify left page to display spittles with info and spitter name
+	
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1"%>
+	<!-- add jstl tags library  -->
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Insert title here</title>
+	</head>
+	<body>
+		LAST SPITTLES
+	
+		<!-- use var spitters to hold list of spitters from model to have access to names -->
+		<c:set var="spitters" value="${spitters}" />
+		
+		<table class="spittleTable">
+			<c:forEach var="spittle" items="${spittles}">
+				<tr>
+					<td>${spitters[spittle.id].userName}</td>
+					<td>ID: ${spittle.id}</td>
+				</tr>
+				<tr>
+					<td colspan="2">${spittle.text}</td>
+				</tr>
+				<tr>
+					<td colspan="2">Date: ${spittle.when}</td>
+				</tr>
+				<tr>
+				</tr>
+			</c:forEach>
+		</table>
+	</body>
+	</html>
+	
+	and add css settings for it
+	
+	table.spittleTable tr:nth-child(4n+1) {
+	background: red;
+	text-align: left;
+	font-size: 9px;
+	border-top: 3px solid white;
+	border-right: 3px solid white;
+	border-left: 3px solid white;
+	}
+	
+	table.spittleTable tr:nth-child(4n+1) td:nth-child(2){
+		text-align:right;
+	}
+	
+	table.spittleTable tr:nth-child(4n+2) {
+		background: green;
+		border-left: 3px solid white;
+		border-right: 3px solid white;
+	}
+	
+	table.spittleTable tr:nth-child(4n+3) {
+		background: aqua;
+		text-align: right;
+		font-size: 10px;
+		border-left: 3px solid white;
+		border-right: 3px solid white;
+		border-bottom: 3px solid white;
+	}
+	
+	table.spittleTable tr:nth-child(4n+4){
+		height:10px;
+		background:transparent;
+	}
 	
 	
