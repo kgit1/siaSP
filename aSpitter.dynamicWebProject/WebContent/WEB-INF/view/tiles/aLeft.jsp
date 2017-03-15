@@ -11,16 +11,20 @@
 <body>
 	LAST SPITTLES
 
+	<!-- use var spitters to hold list of spitters from model to have access to names -->
+	<c:set var="spitters" value="${spitters}" />
+	
 	<table class="spittleTable">
 		<c:forEach var="spittle" items="${spittles}">
 			<tr>
+				<td>${spitters[spittle.id].userName}</td>
 				<td>ID: ${spittle.id}</td>
 			</tr>
 			<tr>
-				<td>${spittle.text}</td>
+				<td colspan="2">${spittle.text}</td>
 			</tr>
 			<tr>
-				<td>Date: ${spittle.when}</td>
+				<td colspan="2">Date: ${spittle.when}</td>
 			</tr>
 			<tr>
 			</tr>
