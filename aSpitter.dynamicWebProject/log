@@ -191,6 +191,12 @@ create new Dynamic Web Project
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<!-- tells hibernate to show sql queries -->
 				<prop key="hibernate.show_sql">true</prop>
+				<!--to format sql queries -->
+				<!-- <prop key="hibernate.format_sql">true</prop> -->
+				<!-- add this prop to avoid sequense name not found error 
+				in hibernate 5 -->
+				<prop key="hibernate.id.new_generator_mappings">false</prop>
+			
 			</props>
 		</property>
 	</bean>
@@ -211,7 +217,8 @@ create new Dynamic Web Project
 
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 	
-	//////////////FIRST PAGE////////////
+	
+////////////////////FIRST PAGE////////////
 	create index.jsp in the Web-Content root 
 	in Dispatcher Servlet we define it as welcome-page
 	on index.jsp we create redirect to first page of our app
@@ -225,7 +232,7 @@ create new Dynamic Web Project
 	
 	add links on first page to our other pages like "list" and "registration"
 	
-	////////////////LIST///////////////
+///////////////////////LIST///////////////
 	
 	create new controller to map jsp page with list
 	
@@ -312,6 +319,74 @@ create new Dynamic Web Project
 			</tr>
 		</c:forEach>
 	</table>
+	
+	add css to define spittersTable look
+	
+		html, body {
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+		}
+		
+		table {
+			width:100%;
+			border-collapse: collapse;
+		/* 	border-bottom: 1px solid gray; */
+			font-family: Tahoma, Verdana, Segoe, sans-serif;
+		}
+		
+		table.spittersTable {
+			border-collapse: collapse;
+			border-bottom: 1px solid gray;
+			font-family: Tahoma, Verdana, Segoe, sans-serif;
+		}
+		
+		table.spittersTable th {
+			border-bottom: 1px solid gray;
+			background: #09c332;
+			padding: 10px;
+			color: #FFFFFF;
+			text-align: left;
+		}
+		
+		table.spittersTabletr {
+			border-top: 1px solid gray;
+			text-align: left;
+		}
+		
+		table.spittersTable td {
+			padding: 10px;
+		}
+		
+		
+		table.spittersTable tr:nth-child(even) {
+			background: #FFFFFF
+		}
+		
+		table.spittersTable tr:nth-child(odd) {
+			background: #BBBBBB
+		}
+		
+		table.spittersTable tr:hover {
+			background-color: #f5f5f5
+		}
+		
+		.spitter {
+			overflow-x: auto;
+		}
+		table.spittersTable td{
+			max-width: 1px;
+			overflow:hidden;
+		/* 	background:red; */
+		}
+		
+		/* table.spittle tr:nth-child(4n+4) > td{ */
+		/* 	height:10px; */
+		/* 	background:transparent; */
+		/* } */
+		
+		/* this will go to the 2nd column of a table directly  */
+		/* table td+td { */
+		/* 	background: red */
+		/* } */
 	
 	
 ////////////////REGISTRATION/////////////
@@ -1148,37 +1223,64 @@ create new Dynamic Web Project
 	
 	and add css settings for it
 	
-	table.spittleTable tr:nth-child(4n+1) {
-	background: red;
-	text-align: left;
-	font-size: 9px;
-	border-top: 3px solid white;
-	border-right: 3px solid white;
-	border-left: 3px solid white;
-	}
-	
-	table.spittleTable tr:nth-child(4n+1) td:nth-child(2){
-		text-align:right;
-	}
-	
-	table.spittleTable tr:nth-child(4n+2) {
-		background: green;
-		border-left: 3px solid white;
-		border-right: 3px solid white;
-	}
-	
-	table.spittleTable tr:nth-child(4n+3) {
-		background: aqua;
-		text-align: right;
-		font-size: 10px;
-		border-left: 3px solid white;
-		border-right: 3px solid white;
-		border-bottom: 3px solid white;
-	}
-	
-	table.spittleTable tr:nth-child(4n+4){
-		height:10px;
-		background:transparent;
-	}
-	
+	html, body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+		}
+		
+		table {
+			width:100%;
+			border-collapse: collapse;
+			/* 	border-bottom: 1px solid gray; */
+			font-family: Tahoma, Verdana, Segoe, sans-serif;
+		}
+		
+		table.spittleTable td {
+			overflow: hidden;
+			max-width:20px;
+		/* 	width:50px; */
+		}
+		
+		table.spittleTable tr:nth-child(4n+1) {
+			background: red;
+			text-align: left;
+			font-size: 9px;
+			border-top: 3px solid white;
+			border-right: 3px solid white;
+			border-left: 3px solid white;
+		}
+		
+		table.spittleTable tr:nth-child(4n+1) td:nth-child(2) {
+			text-align: right;
+		}
+		
+		table.spittleTable tr:nth-child(4n+2) {
+			background: green;
+			border-left: 3px solid white;
+			border-right: 3px solid white;
+		}
+		
+		table.spittleTable tr:nth-child(4n+3) {
+			background: aqua;
+			text-align: right;
+			font-size: 10px;
+			border-left: 3px solid white;
+			border-right: 3px solid white;
+			border-bottom: 3px solid white;
+		}
+		
+		table.spittleTable tr:nth-child(4n+4) {
+			height: 10px;
+			background: transparent;
+		}
+		
+		/* table.spittle tr:nth-child(4n+4) > td{ */
+		/* 	height:10px; */
+		/* 	background:transparent; */
+		/* } */
+		
+		/* this will go to the 2nd column of a table directly  */
+		/* table td+td { */
+		/* 	background: red */
+		/* } */
+			
 	

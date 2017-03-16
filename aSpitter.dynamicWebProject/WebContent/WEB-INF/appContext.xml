@@ -53,13 +53,15 @@
 		<property name="packagesToScan" value="com.k1.spitter" />
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.id.new_generator_mappings">false</prop>
 				<!-- which dialect use to talk with database -->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<!-- to show sql queries -->
 				<prop key="hibernate.show_sql">true</prop>
 				<!--to format sql queries -->
 				<!-- <prop key="hibernate.format_sql">true</prop> -->
+				<!-- add this prop to avoid sequense name not found error in hibernate 
+					5 -->
+				<prop key="hibernate.id.new_generator_mappings">false</prop>
 			</props>
 		</property>
 	</bean>
