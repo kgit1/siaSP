@@ -41,24 +41,41 @@ public class HomeController {
 	@Transactional
 	@GetMapping("/home")
 	public String home(Model theModel) {
-		// get current hibernate session
-		Session session = factory.getCurrentSession();
-		
+		// // get current hibernate session
+		// Session session = factory.getCurrentSession();
 
-		// spitters and spittless lists for left panel
-		// get spitters from db
-		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+		//// spitters and spittless lists for left panel
+		//// get spitters from db
+		// List<Spitter> spitters = session.createQuery("from
+		// Spitter").getResultList();
+		//
+		// // add spitters list to model which will go to return page
+		// theModel.addAttribute("spitters", spitters);
 
-		// add spitters list to model which will go to return page
-		theModel.addAttribute("spitters", spitters);
+		// // get spittles from db
+		// List<Spittle> spittles = session.createQuery("from Spittle",
+		// Spittle.class).getResultList();
+		// // add spittles list to model which will go to return page
+		// theModel.addAttribute("spittlesLeft", spittles);
 
-		// get spittles from db
-		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
-		// add spittles list to model which will go to return page
-		theModel.addAttribute("spittlesLeft", spittles);
+		theModel.addAttribute("spitters", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
 
 		// lead to home page
 		return "home";
+	}
+
+	public List<Spitter> listSpitters() {
+		Session session = factory.getCurrentSession();
+		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+		return spitters;
+	}
+
+	public List<Spittle> listSpittles() {
+		Session session = factory.getCurrentSession();
+		List<Spittle> spittles = session.createQuery("from Spittle s order by s.id desc").setMaxResults(5)
+				.getResultList();
+		return spittles;
 	}
 
 }
