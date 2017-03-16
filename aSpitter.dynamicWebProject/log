@@ -1283,4 +1283,93 @@ create new Dynamic Web Project
 		/* 	background: red */
 		/* } */
 			
+////////////////NEW SPITTLE/////////////	
+
+	add to home page link to page for new spittle
+	<a href="newSpittle">Spittle</a>
+	
+	add controller for this link
+	
+	@Transactional
+	@GetMapping("newSpittle")
+	public String newSpittle(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		System.out.println("NEW SPITTLE");
+
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spitters", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
+
+		// lead us with model next to newSpittle page
+		return "pages/newSpittle";
+	}
+
+	add jsp page for new spittle
+	
+		<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1"%>
+		<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+		<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<link rel="stylesheet type="text/css" href="${pageContent.request.contextPath}/resources/css/newSpittle.css">
+		<link rel="stylesheet" type="text/css"
+			href="${pageContext.request.contextPath}/resources/css/newSpittle.css">
+		<title>New Spittle</title>
+		</head>
+		<body>
+			<h3>NEW SPITTLE</h3>
+		<%-- 	<c:set var="spitters" value="${spitters}" /> --%>
+		
+			<!-- on form load - spring will execute getters to populate fields -->
+			<!-- on form submit - spring will use setters to change field's values -->
+			
+			<form action="saveSpittle" method="POST">
+			<table>
+			<tr><td><input type="text" name="id"></td></tr>
+			<tr><td><input type="text" name="text" id="text"></td></tr>
+			<tr><td><input type="text" name="data"></td></tr>
+			<tr><td><input type="submit" value="Save"></td></tr>
+			
+			</table>
+			</form>
+		</body>
+		</html>
+		
+	add controller to save Spittle
+	
+		@Transactional
+		@PostMapping("/saveSpittle")
+		public String saveSpittle(@RequestParam String id, @RequestParam String text, @RequestParam String data,
+				Model theModel) {
+			// get current hibernate session
+			Session session = factory.getCurrentSession();
+			
+			DateFormat format = new SimpleDateFormat("hh:mma MMM d, YYYY");
+			// 2010-06-19
+			Date date1 = new Date();
+			try {
+				date1 = format.parse(data);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+	
+			Spitter spitter = session.get(Spitter.class, Integer.valueOf(id));
+	
+			Spittle spittle = new Spittle();
+			spittle.setSpitter(spitter);
+			spittle.setText(text);
+			spittle.setWhen(date1);
+			 session.save(spittle);
+	
+			// spitters and spittless lists for left panel
+			theModel.addAttribute("spitters", listSpitters());
+			theModel.addAttribute("spittlesLeft", listSpittles());
+			
+			// lead to home/list page
+			return "redirect:/home/list";
+		}
 	

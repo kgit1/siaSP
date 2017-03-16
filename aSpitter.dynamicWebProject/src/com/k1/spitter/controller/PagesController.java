@@ -178,40 +178,29 @@ public class PagesController {
 			Model theModel) {
 		// get current hibernate session
 		Session session = factory.getCurrentSession();
+		
 		DateFormat format = new SimpleDateFormat("hh:mma MMM d, YYYY");
 		// 2010-06-19
 		Date date1 = new Date();
 		try {
 			date1 = format.parse(data);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(Integer.valueOf(id));
-		System.out.println(text);
-		System.out.println(date1);
 
 		Spitter spitter = session.get(Spitter.class, Integer.valueOf(id));
-		System.out.println("\nSPITTER " + spitter + "\n");
 
 		Spittle spittle = new Spittle();
 		spittle.setSpitter(spitter);
 		spittle.setText(text);
 		spittle.setWhen(date1);
-		System.out.println("\nSPITTLE " + spittle + "\n");
-		// // // Spittle spittle = new
-		// // // Spittle(session.get(Spitter.class,Integer.valueOf(id)));
-		// //
 		 session.save(spittle);
 
 		// spitters and spittless lists for left panel
 		theModel.addAttribute("spitters", listSpitters());
 		theModel.addAttribute("spittlesLeft", listSpittles());
-
-		System.out.println("SAVE SPITTLE 1");
-
-		// System.out.println(id + "\n" + text + "\n" + data);
-		System.out.println("SAVE SPITTLE 2");
+		
+		// lead to home/list page
 		return "redirect:/home/list";
 	}
 
