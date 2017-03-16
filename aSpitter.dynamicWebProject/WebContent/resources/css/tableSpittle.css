@@ -3,9 +3,16 @@ html, body {
 }
 
 table {
+	width:100%;
 	border-collapse: collapse;
-/* 	border-bottom: 1px solid gray; */
+	/* 	border-bottom: 1px solid gray; */
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+
+table.spittleTable td {
+	overflow: hidden;
+	max-width:20px;
+/* 	width:50px; */
 }
 
 table.spittleTable tr:nth-child(4n+1) {
@@ -17,8 +24,8 @@ table.spittleTable tr:nth-child(4n+1) {
 	border-left: 3px solid white;
 }
 
-table.spittleTable tr:nth-child(4n+1) td:nth-child(2){
-	text-align:right;
+table.spittleTable tr:nth-child(4n+1) td:nth-child(2) {
+	text-align: right;
 }
 
 table.spittleTable tr:nth-child(4n+2) {
@@ -36,9 +43,9 @@ table.spittleTable tr:nth-child(4n+3) {
 	border-bottom: 3px solid white;
 }
 
-table.spittleTable tr:nth-child(4n+4){
-	height:10px;
-	background:transparent;
+table.spittleTable tr:nth-child(4n+4) {
+	height: 10px;
+	background: transparent;
 }
 
 /* table.spittle tr:nth-child(4n+4) > td{ */

@@ -2,6 +2,7 @@ package com.k1.spitter.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,8 @@ public class Spittle {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "spitter_id", referencedColumnName = "id", insertable = false, updatable = false)
+//	(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "spitter_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Spitter spitter;
 
 	@Column(name = "spittleText")
@@ -40,9 +42,9 @@ public class Spittle {
 	public Spittle() {
 	}
 
-	public Spittle(Spitter spitter) {
-		this.spitter = spitter;
-	}
+//	public Spittle() {
+//		this.spitter = new Spitter();
+//	}
 
 	public Long getId() {
 		return id;

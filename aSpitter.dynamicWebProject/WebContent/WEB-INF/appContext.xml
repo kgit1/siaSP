@@ -53,6 +53,7 @@
 		<property name="packagesToScan" value="com.k1.spitter" />
 		<property name="hibernateProperties">
 			<props>
+				<prop key="hibernate.id.new_generator_mappings">false</prop>
 				<!-- which dialect use to talk with database -->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<!-- to show sql queries -->
@@ -82,8 +83,7 @@
 
 	<!-- Step 6: Setup tiles -->
 	<!-- Tiles configuration -->
-	<bean 
-		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
 		<property name="order" value="0" />
 	</bean>
 

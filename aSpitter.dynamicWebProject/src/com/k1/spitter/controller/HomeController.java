@@ -60,6 +60,15 @@ public class HomeController {
 
 		theModel.addAttribute("spitters", listSpitters());
 		theModel.addAttribute("spittlesLeft", listSpittles());
+		
+		System.out.println("SPITTERS++++++++++++++++++++++++++++++");
+		for (Spitter spitter : listSpitters()) {
+			System.out.println(spitter);
+		}
+		System.out.println("SPITTLES++++++++++++++++++++++++++++++");
+		for (Spittle spittle : listSpittles()) {
+			System.out.println(spittle);
+		}
 
 		// lead to home page
 		return "home";
@@ -73,7 +82,7 @@ public class HomeController {
 
 	public List<Spittle> listSpittles() {
 		Session session = factory.getCurrentSession();
-		List<Spittle> spittles = session.createQuery("from Spittle s order by s.id desc").setMaxResults(5)
+		List<Spittle> spittles = session.createQuery("from Spittle s order by s.id desc").setMaxResults(15)
 				.getResultList();
 		return spittles;
 	}

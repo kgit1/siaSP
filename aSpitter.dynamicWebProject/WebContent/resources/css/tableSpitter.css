@@ -3,6 +3,7 @@ html, body {
 }
 
 table {
+	width:100%;
 	border-collapse: collapse;
 /* 	border-bottom: 1px solid gray; */
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
@@ -31,6 +32,7 @@ table.spittersTable td {
 	padding: 10px;
 }
 
+
 table.spittersTable tr:nth-child(even) {
 	background: #FFFFFF
 }
@@ -45,6 +47,11 @@ table.spittersTable tr:hover {
 
 .spitter {
 	overflow-x: auto;
+}
+table.spittersTable td{
+	max-width: 1px;
+	overflow:hidden;
+/* 	background:red; */
 }
 
 /* table.spittle tr:nth-child(4n+4) > td{ */

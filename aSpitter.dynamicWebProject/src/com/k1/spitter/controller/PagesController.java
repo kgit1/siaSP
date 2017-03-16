@@ -195,7 +195,7 @@ public class PagesController {
 		System.out.println("\nSPITTER " + spitter + "\n");
 
 		Spittle spittle = new Spittle();
-//		spittle.setSpitter(spitter);
+		spittle.setSpitter(spitter);
 		spittle.setText(text);
 		spittle.setWhen(date1);
 		System.out.println("\nSPITTLE " + spittle + "\n");
@@ -240,7 +240,7 @@ public class PagesController {
 
 	public List<Spittle> listSpittles() {
 		Session session = factory.getCurrentSession();
-		List<Spittle> spittles = session.createQuery("from Spittle s order by s.id desc").setMaxResults(5)
+		List<Spittle> spittles = session.createQuery("from Spittle s order by s.id desc").setMaxResults(15)
 				.getResultList();
 		return spittles;
 	}
