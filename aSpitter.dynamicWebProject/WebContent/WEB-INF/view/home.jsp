@@ -9,13 +9,19 @@
 </head>
 <body>
 
-<%-- <tiles:insertAttribute name="header" /> --%>
+	<%-- <tiles:insertAttribute name="header" /> --%>
 	<p1>HOME</p1>
 	<p>
 		<a href="home/list">LIST</a>
 	</p>
 	<p>
 		<a href="reg">Registration</a>
+	</p>
+	<p>
+		<a href="newSpittle">Spittle</a>
+	</p>
+	<p>
+		<a href="saveSpittle">save</a>
 	</p>
 
 </body>

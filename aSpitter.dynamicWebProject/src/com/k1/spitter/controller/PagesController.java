@@ -1,5 +1,10 @@
 package com.k1.spitter.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -150,6 +155,82 @@ public class PagesController {
 		// lead us with model next to info page
 		return "pages/spitterFullInfo";
 	}
+
+	@Transactional
+	@GetMapping("newSpittle")
+	public String newSpittle(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		System.out.println("NEW SPITTLE");
+
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spitters", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
+
+		// lead us with model next to newSpittle page
+		return "pages/newSpittle";
+	}
+
+	@Transactional
+	@PostMapping("/saveSpittle")
+	public String saveSpittle(@RequestParam String id, @RequestParam String text, @RequestParam String data,
+			Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+		DateFormat format = new SimpleDateFormat("hh:mma MMM d, YYYY");
+		// 2010-06-19
+		Date date1 = new Date();
+		try {
+			date1 = format.parse(data);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(Integer.valueOf(id));
+		System.out.println(text);
+		System.out.println(date1);
+
+		Spitter spitter = session.get(Spitter.class, Integer.valueOf(id));
+		System.out.println("\nSPITTER " + spitter + "\n");
+
+		Spittle spittle = new Spittle();
+//		spittle.setSpitter(spitter);
+		spittle.setText(text);
+		spittle.setWhen(date1);
+		System.out.println("\nSPITTLE " + spittle + "\n");
+		// // // Spittle spittle = new
+		// // // Spittle(session.get(Spitter.class,Integer.valueOf(id)));
+		// //
+		 session.save(spittle);
+
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spitters", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
+
+		System.out.println("SAVE SPITTLE 1");
+
+		// System.out.println(id + "\n" + text + "\n" + data);
+		System.out.println("SAVE SPITTLE 2");
+		return "redirect:/home/list";
+	}
+
+	// @Transactional
+	// @PostMapping("/saveSpittle")
+	// public String saveSpittle(@ModelAttribute List<Object> spittle, Model
+	// theModel) {
+	// // get current hibernate session
+	// Session session = factory.getCurrentSession();
+	//
+	// // spitters and spittless lists for left panel
+	// theModel.addAttribute("spitters", listSpitters());
+	// theModel.addAttribute("spittlesLeft", listSpittles());
+	// System.out.println("SAVE SPITTLE 1");
+	//
+	// session.save(spittle);
+	// System.out.println("SAVE SPITTLE 2");
+	// return "redirect:/home/list";
+	// }
 
 	public List<Spitter> listSpitters() {
 		Session session = factory.getCurrentSession();
