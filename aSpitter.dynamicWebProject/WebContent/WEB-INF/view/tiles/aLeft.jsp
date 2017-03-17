@@ -14,7 +14,7 @@
 	LAST SPITTLES
 
 	<!-- use var spitters to hold list of spitters from model to have access to names -->
-	<c:set var="spitters" value="${spitters}" />
+	<c:set var="spitters" value="${spittersLeft}" />
 	
 	<table class="spittleTable">
 		<c:forEach var="spittle" items="${spittlesLeft}">

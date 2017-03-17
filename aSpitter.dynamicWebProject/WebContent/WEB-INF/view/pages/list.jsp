@@ -16,10 +16,30 @@
 	<hr>
 	<table class="spittersTable">
 		<tr>
-			<th>ID</th>
-			<th>UserName</th>
-			<th>FullName</th>
-			<th>Age</th>
+			<th>ID
+				<div class="arrow">
+					<a href="spittersByIdDesc" class="down-arrow"></a> <a
+						href="spittersByIdAsc" class="up-arrow"></a>
+				</div>
+			</th>
+			<th>UserName
+				<div class="arrow">
+					<a href="spittersByUserDesc" class="down-arrow"></a> <a
+						href="spittersByUserAsc" class="up-arrow"></a>
+				</div>
+			</th>
+			<th>FullName
+				<div class="arrow">
+					<a href="spittersByFullnameDesc" class="down-arrow"></a> <a
+						href="spittersByFullnameAsc" class="up-arrow"></a>
+				</div>
+			</th>
+			<th>Age
+				<div class="arrow">
+					<a href="spittersByAgeDesc" class="down-arrow"></a> <a
+						href="spittersByAgeAsc" class="up-arrow"></a>
+				</div>
+			</th>
 			<th>Creation/Update</th>
 			<th>UPDATE</th>
 			<th>DELETE</th>

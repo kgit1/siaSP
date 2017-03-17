@@ -3,35 +3,31 @@ html, body {
 }
 
 table {
-	width:100%;
+	width: 100%;
 	border-collapse: collapse;
-/* 	border-bottom: 1px solid gray; */
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
 }
 
 table.spittersTable {
 	border-collapse: collapse;
-	border-bottom: 1px solid gray;
+	/* 	border-bottom: 1px solid gray; */
 	font-family: Tahoma, Verdana, Segoe, sans-serif;
 }
 
 table.spittersTable th {
+	overflow: hidden;
+	border: none;
 	border-bottom: 1px solid gray;
 	background: #09c332;
-	padding: 10px;
+	padding: 10px 5px 10px 5px;
+	margin: 0px;
 	color: #FFFFFF;
-	text-align: left;
-}
-
-table.spittersTabletr {
-	border-top: 1px solid gray;
 	text-align: left;
 }
 
 table.spittersTable td {
 	padding: 10px;
 }
-
 
 table.spittersTable tr:nth-child(even) {
 	background: #FFFFFF
@@ -48,11 +44,139 @@ table.spittersTable tr:hover {
 .spitter {
 	overflow-x: auto;
 }
-table.spittersTable td{
+
+table.spittersTable td {
 	max-width: 1px;
-	overflow:hidden;
-/* 	background:red; */
+	overflow: hidden;
 }
+
+table.spittersTable th:nth-child(1) {
+	min-width: 46px;
+}
+
+table.spittersTable th:nth-child(2) {
+	min-width: 110px;
+}
+
+table.spittersTable th:nth-child(3) {
+	min-width: 103px;
+}
+
+table.spittersTable th:nth-child(4) {
+	min-width: 58px;
+}
+
+.arrow {
+	/* 	background: aqua; */
+	display: inline-block;
+	float: right;
+	position: relative;
+}
+
+a.up-arrow {
+	display: inline-block;
+	position: relative;
+	border-bottom: 5px solid red;
+	border-top: 5px solid transparent;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+}
+
+a.down-arrow {
+	display: inline-block;
+	border-bottom: 5px solid transparent;
+	border-top: 5px solid red;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+}
+
+/* .up-arrow, .down-arrow { */
+/* 	position: relative; */
+/* 	/* 	widht:25px; */
+* /
+	/* 	/* 	height:25px; */ * /
+	/* 	cursor: pointer; */
+	/* 	background: red; */
+	/* 	/* 	margin:5px; */ * /
+	/* } */
+	/* a.up-arrow { */
+	/* 	content: ""; */
+	/* /* 	position: absolute; */ * /
+	/* /* 	top: -10%:  */ * /
+	/* /* 	bottom:60%;  */ * /
+	/* /* 	right : 80%; */ * /
+	/* 	left: 10%; */
+	/* 	width: 0; */
+	/* 	height: 0; */
+	/* 	margin:-5px; */
+	/* 	margin-bottom:-15px; */
+	/* 	padding-bottom:-25px; */
+	/* 	border-bottom: 15px solid green; */
+	/* 	border-top: 10px solid transparent; */
+	/* 	border-left: 5px solid transparent; */
+	/* 	border-right: 5px solid transparent; */
+	/* } */
+	/* a.down-arrow { */
+	/* 	content: ""; */
+	/* 	position: relative; */
+	/* 		top:100%; */
+	/* 		left:-10%; */
+	/* /* 	bottom: 100%;  */ * /
+	/* 	width : 0; */
+	/* 	height: 0; */
+	/* 	border-bottom: 0px solid green; */
+	/* 	border-top: 15px solid green; */
+	/* 	border-left: 5px solid transparent; */
+	/* 	border-right: 5px solid transparent; */
+	/* } */       
+
+a:hower.up-arrow, a.down-arrow:hover {
+	border-bottom-color: blue;
+}
+
+/* .up-arrow { */
+/* 	display: inline-block; */
+/* 	position: relative; */
+/* 	background: red; */
+/* /* 	color: #FFF; */
+*
+/
+/* /* 	text-decoration: none; */
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+*
+/
+/* } */
+
+/* a.up-arrow:after { */
+/* 	content: ''; */
+/* 	display: block; */
+/* 	position: absolute; */
+/* 	bottom: 100%; */
+/* 	width: 0; */
+/* 	height: 0; */
+/* 	border-bottom: 15px solid green; */
+/* 	border-top: 10px solid transparent; */
+/* 	border-left: 5px solid transparent; */
+/* 	border-right: 5px solid transparent; */
+/* } */
+
+/* a:hover.up-arrow:after { */
+/* 	border-bottom-color: brown; */
+/* } */
 
 /* table.spittle tr:nth-child(4n+4) > td{ */
 /* 	height:10px; */

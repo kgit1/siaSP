@@ -15,13 +15,16 @@
 		<a href="home/list">LIST</a>
 	</p>
 	<p>
+		<a href="spittersByIdAsc">LIST A</a>
+	</p>
+	<p>
 		<a href="reg">Registration</a>
 	</p>
 	<p>
 		<a href="newSpittle">Spittle</a>
 	</p>
 	<p>
-		<a href="saveSpittle">save</a>
+		<a href="spittersByIdDesc">D</a>
 	</p>
 
 </body>

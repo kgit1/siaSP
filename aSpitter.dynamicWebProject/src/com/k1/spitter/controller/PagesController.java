@@ -30,23 +30,190 @@ public class PagesController {
 	@Autowired
 	SessionFactory factory;
 
+	// @Transactional
+	// // get spitters list and send it to page by adding as attribute to model
+	// @GetMapping("home/list")
+	// public String spittersList(Model theModel) {
+	// // get current hibernate session
+	// Session session = factory.getCurrentSession();
+	//
+	// // get spitters from db
+	// List<Spitter> spitters = session.createQuery("from
+	// Spitter").getResultList();
+	//
+	// // add spitters list to model which will go to return page
+	// theModel.addAttribute("spitters", spitters);
+	//
+	// // spitters and spittless lists for left panel
+	// theModel.addAttribute("spittersLeft", listSpitters());
+	// theModel.addAttribute("spittlesLeft", listSpittles());
+	//
+	// // lead to list page
+	// return "pages/list";
+	// }
+
+	//////////////// SORT BY ID /////////////////////
 	@Transactional
-	// get spitters list and send it to page by adding as attribute to model
-	@GetMapping("/home/list")
-	public String printList(Model theModel) {
+	@GetMapping("spittersByIdAsc")
+	public String spitterByIdAsc(Model theModel) {
 		// get current hibernate session
 		Session session = factory.getCurrentSession();
 
-		// get spitters from db
-		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+		System.out.println("\nSPITTERS ASC\n");
 
-		// add spitters list to model which will go to return page
+		// create list of spitters and fill it with result of query to database
+		List<Spitter> spitters = session.createQuery("from Spitter s order by s.id asc").getResultList();
 		theModel.addAttribute("spitters", spitters);
 
-		// spittles for left panel
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spittersLeft", listSpitters());
 		theModel.addAttribute("spittlesLeft", listSpittles());
 
-		// lead to list page
+		// lead to pages/list page
+		return "pages/list";
+	}
+
+	@Transactional
+	@GetMapping("spittersByIdDesc")
+	public String spitterByIdDesc(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		System.out.println("\nSPITTERS DESC\n");
+
+		// create list of spitters and fill it with result of query to database
+		List<Spitter> spitters = session.createQuery("from Spitter s order by s.id desc").getResultList();
+		theModel.addAttribute("spitters", spitters);
+
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spittersLeft", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
+
+		// lead to pages/list page
+		return "pages/list";
+	}
+
+	//////////////// SORT BY USERNAME /////////////////////
+	@Transactional
+	@GetMapping("spittersByUserAsc")
+	public String spitterByUserAsc(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		System.out.println("\nSPITTERS ASC NAME\n");
+
+		// create list of spitters and fill it with result of query to database
+		List<Spitter> spitters = session.createQuery("from Spitter s order by s.userName asc").getResultList();
+		theModel.addAttribute("spitters", spitters);
+
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spittersLeft", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
+
+		// lead to pages/list page
+		return "pages/list";
+	}
+
+	@Transactional
+	@GetMapping("spittersByUserDesc")
+	public String spitterByUserDesc(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		System.out.println("\nSPITTERS DESC NAME\n");
+
+		// create list of spitters and fill it with result of query to database
+		List<Spitter> spitters = session.createQuery("from Spitter s order by s.userName desc").getResultList();
+		theModel.addAttribute("spitters", spitters);
+
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spittersLeft", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
+
+		// lead to pages/list page
+		return "pages/list";
+	}
+
+	//////////////// SORT BY FULLNAME /////////////////////
+	@Transactional
+	@GetMapping("spittersByFullnameAsc")
+	public String spitterByFullnameAsc(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		System.out.println("\nSPITTERS ASC FULLNAME\n");
+
+		// create list of spitters and fill it with result of query to database
+		List<Spitter> spitters = session.createQuery("from Spitter s order by s.fullName asc").getResultList();
+		theModel.addAttribute("spitters", spitters);
+
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spittersLeft", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
+
+		// lead to pages/list page
+		return "pages/list";
+	}
+
+	@Transactional
+	@GetMapping("spittersByFullnameDesc")
+	public String spitterByFullnameDesc(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		System.out.println("\nSPITTERS DESC FULLNAME\n");
+
+		// create list of spitters and fill it with result of query to database
+		List<Spitter> spitters = session.createQuery("from Spitter s order by s.fullName desc").getResultList();
+		theModel.addAttribute("spitters", spitters);
+
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spittersLeft", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
+
+		// lead to pages/list page
+		return "pages/list";
+	}
+
+	//////////////// SORT BY AGE /////////////////////
+	/////////////////////////////////////////////////
+	@Transactional
+	@GetMapping("spittersByAgeAsc")
+	public String spitterByAgeAsc(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		System.out.println("\nSPITTERS ASC AGE\n");
+
+		// create list of spitters and fill it with result of query to database
+		List<Spitter> spitters = session.createQuery("from Spitter s order by s.age asc").getResultList();
+		theModel.addAttribute("spitters", spitters);
+
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spittersLeft", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
+
+		// lead to pages/list page
+		return "pages/list";
+	}
+
+	@Transactional
+	@GetMapping("spittersByAgeDesc")
+	public String spitterByAgeDesc(Model theModel) {
+		// get current hibernate session
+		Session session = factory.getCurrentSession();
+
+		System.out.println("\nSPITTERS DESC AGE\n");
+
+		// create list of spitters and fill it with result of query to database
+		List<Spitter> spitters = session.createQuery("from Spitter s order by s.age desc").getResultList();
+		theModel.addAttribute("spitters", spitters);
+
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spittersLeft", listSpitters());
+		theModel.addAttribute("spittlesLeft", listSpittles());
+
+		// lead to pages/list page
 		return "pages/list";
 	}
 
@@ -61,7 +228,8 @@ public class PagesController {
 		// add spitter to model as atribute "spitter"
 		theModel.addAttribute("spitter", spitter);
 
-		theModel.addAttribute("spitters", listSpitters());
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spittersLeft", listSpitters());
 		theModel.addAttribute("spittlesLeft", listSpittles());
 
 		// lead to reg page
@@ -76,7 +244,8 @@ public class PagesController {
 		// get current hibernate session
 		Session session = factory.getCurrentSession();
 
-		theModel.addAttribute("spitters", listSpitters());
+		// spitters and spittless lists for left panel
+		theModel.addAttribute("spittersLeft", listSpitters());
 		theModel.addAttribute("spittlesLeft", listSpittles());
 
 		// clear session to avoid collision between read spitter and write some
@@ -116,10 +285,10 @@ public class PagesController {
 		theModel.addAttribute("spitter", spitter);
 
 		// spitters and spittless lists for left panel
-		theModel.addAttribute("spitters", listSpitters());
+		theModel.addAttribute("spittersLeft", listSpitters());
 		theModel.addAttribute("spittlesLeft", listSpittles());
 
-		// lead us with model next to reg page
+		// lead with model next to reg page
 		return "pages/reg";
 	}
 
@@ -149,10 +318,10 @@ public class PagesController {
 		theModel.addAttribute("spittles", spitter.spittles);
 
 		// spitters and spittless lists for left panel
-		theModel.addAttribute("spitters", listSpitters());
+		theModel.addAttribute("spittersLeft", listSpitters());
 		theModel.addAttribute("spittlesLeft", listSpittles());
 
-		// lead us with model next to info page
+		// lead with model next to info page
 		return "pages/spitterFullInfo";
 	}
 
@@ -165,10 +334,10 @@ public class PagesController {
 		System.out.println("NEW SPITTLE");
 
 		// spitters and spittless lists for left panel
-		theModel.addAttribute("spitters", listSpitters());
+		theModel.addAttribute("spittersLeft", listSpitters());
 		theModel.addAttribute("spittlesLeft", listSpittles());
 
-		// lead us with model next to newSpittle page
+		// lead with model next to newSpittle page
 		return "pages/newSpittle";
 	}
 
@@ -178,7 +347,7 @@ public class PagesController {
 			Model theModel) {
 		// get current hibernate session
 		Session session = factory.getCurrentSession();
-		
+
 		DateFormat format = new SimpleDateFormat("hh:mma MMM d, YYYY");
 		// 2010-06-19
 		Date date1 = new Date();
@@ -194,13 +363,13 @@ public class PagesController {
 		spittle.setSpitter(spitter);
 		spittle.setText(text);
 		spittle.setWhen(date1);
-		 session.save(spittle);
+		session.save(spittle);
 
 		// spitters and spittless lists for left panel
-		theModel.addAttribute("spitters", listSpitters());
+		theModel.addAttribute("spittersLeft", listSpitters());
 		theModel.addAttribute("spittlesLeft", listSpittles());
-		
-		// lead to home/list page
+
+		// lead on home/list url
 		return "redirect:/home/list";
 	}
 
@@ -222,13 +391,19 @@ public class PagesController {
 	// }
 
 	public List<Spitter> listSpitters() {
+		// get current hibernate session
 		Session session = factory.getCurrentSession();
+
+		// create list of spitters and fill it with result of query to database
 		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
 		return spitters;
 	}
 
 	public List<Spittle> listSpittles() {
+		// get current hibernate session
 		Session session = factory.getCurrentSession();
+
+		// create list of spittles and fill it with result of query to database
 		List<Spittle> spittles = session.createQuery("from Spittle s order by s.id desc").setMaxResults(15)
 				.getResultList();
 		return spittles;
