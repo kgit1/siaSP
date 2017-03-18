@@ -5,11 +5,11 @@ create new Dynamic Web Project
 /////////////////////////////////////////
 
 	put libs to WebContent-> WEB-INF -> lib
-	+ hibernate required libs 
-	+ commons-dbcp for BasicDataSource
-	+ commons-pool2 for connections pool for dataSource
-	+ commons-logging
-	+ mysql-connector-java
+		+ hibernate required libs 
+		+ commons-dbcp for BasicDataSource
+		+ commons-pool2 for connections pool for dataSource
+		+ commons-logging
+		+ mysql-connector-java
 	
 	
 ////// DATABASE /////////////////////////
@@ -19,41 +19,41 @@ create new Dynamic Web Project
 	drop table if exists spittle;
 	drop table if exists spitter;
 	
-	create table spitter (
-	  id int not null auto_increment primary key,
-	  username varchar(25) not null,
-	  password varchar(25) not null,
-	  fullname varchar(100) not null,
-	  email varchar(50) not null,
-	  update_by_email boolean not null
-	);
-	
-	create table spittle (
-	  id int not null auto_increment primary key,
-	  spitter_id integer not null,
-	  spittleText varchar(2000) not null,
-	  postedTime date not null,
-	  foreign key (spitter_id) references spitter(id)
-	);
-	
-	alter table spitter add timestamp timestamp;
-	alter table spitter add date timestamp;
-	alter table spitter add time timestamp;
-	
-	insert into spitter (username, password, fullname, age, email, update_by_email) values 
-	('habuma', 'password', 'Craig Walls', 19,'craig@habuma.com', false),
-	('habum', 'password', 'Craig Wal', 21, 'ig@habuma.com', false),
-	('habu', 'password', 'Cr Walls', 20, 'aig@habuma.com', false),
-	('hab', 'password', 'Walls', 35,'raig@habuma.com', false);
-	insert into spitter (username, password, fullname, age, email, update_by_email) values 
-	('artnames', 'password', 'Art Names', 46,'artnames@habuma.com', false);
-	
-	insert into spittle (spitter_id, spittleText, postedTime) values 
-	(1, 'Have you read Spring in Action 3? I hear it is awesome!', '2010-06-09');
-	insert into spittle (spitter_id, spittleText, postedTime) values 
-	(2, 'Trying out Spring''s new expression language.', '2010-06-11');
-	insert into spittle (spitter_id, spittleText, postedTime) values 
-	(1, 'Who''s going to SpringOne/2GX this year?', '2010-06-19');
+		create table spitter (
+		  id int not null auto_increment primary key,
+		  username varchar(25) not null,
+		  password varchar(25) not null,
+		  fullname varchar(100) not null,
+		  email varchar(50) not null,
+		  update_by_email boolean not null
+		);
+		
+		create table spittle (
+		  id int not null auto_increment primary key,
+		  spitter_id integer not null,
+		  spittleText varchar(2000) not null,
+		  postedTime date not null,
+		  foreign key (spitter_id) references spitter(id)
+		);
+		
+		alter table spitter add timestamp timestamp;
+		alter table spitter add date timestamp;
+		alter table spitter add time timestamp;
+		
+		insert into spitter (username, password, fullname, age, email, update_by_email) values 
+		('habuma', 'password', 'Craig Walls', 19,'craig@habuma.com', false),
+		('habum', 'password', 'Craig Wal', 21, 'ig@habuma.com', false),
+		('habu', 'password', 'Cr Walls', 20, 'aig@habuma.com', false),
+		('hab', 'password', 'Walls', 35,'raig@habuma.com', false);
+		insert into spitter (username, password, fullname, age, email, update_by_email) values 
+		('artnames', 'password', 'Art Names', 46,'artnames@habuma.com', false);
+		
+		insert into spittle (spitter_id, spittleText, postedTime) values 
+		(1, 'Have you read Spring in Action 3? I hear it is awesome!', '2010-06-09');
+		insert into spittle (spitter_id, spittleText, postedTime) values 
+		(2, 'Trying out Spring''s new expression language.', '2010-06-11');
+		insert into spittle (spitter_id, spittleText, postedTime) values 
+		(1, 'Who''s going to SpringOne/2GX this year?', '2010-06-19');
 
 	test database with simple connection in DbTest.class
 	
@@ -94,33 +94,33 @@ create new Dynamic Web Project
 	in which we assign welcome file and indicates where spring configuration is, 
 	and maps "/" to be default path
 
-	<?xml version="1.0" encoding="UTF-8"?>
-	<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
-	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-	  <display-name>Spitter</display-name>
-	
-	  <welcome-file-list>
-	    <welcome-file>index.jsp</welcome-file>
-	    <welcome-file>index.html</welcome-file>
-	  </welcome-file-list>
-	
-	  <servlet>
-	    <servlet-name>dispatcher</servlet-name>
-	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-	    <init-param>
-	      <param-name>contextConfigLocation</param-name>
-	      <param-value>/WEB-INF/appContext.xml</param-value>
-	    </init-param>
-	    <load-on-startup>1</load-on-startup>
-	  </servlet>
-	  
-	  <servlet-mapping>
-	    <servlet-name>dispatcher</servlet-name>
-	    <url-pattern>/</url-pattern>
-	  </servlet-mapping>
-	</web-app>
+		<?xml version="1.0" encoding="UTF-8"?>
+		<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+		xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+		http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+		  <display-name>Spitter</display-name>
+		
+		  <welcome-file-list>
+		    <welcome-file>index.jsp</welcome-file>
+		    <welcome-file>index.html</welcome-file>
+		  </welcome-file-list>
+		
+		  <servlet>
+		    <servlet-name>dispatcher</servlet-name>
+		    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		    <init-param>
+		      <param-name>contextConfigLocation</param-name>
+		      <param-value>/WEB-INF/appContext.xml</param-value>
+		    </init-param>
+		    <load-on-startup>1</load-on-startup>
+		  </servlet>
+		  
+		  <servlet-mapping>
+		    <servlet-name>dispatcher</servlet-name>
+		    <url-pattern>/</url-pattern>
+		  </servlet-mapping>
+		</web-app>
 
 
 	put libs to WebContent-> WEB-INF -> lib
@@ -128,101 +128,101 @@ create new Dynamic Web Project
 	
 	put spring context.xml to webContent -> WEB-INF
 	assign this context.xml location in web.xml
-	 <servlet>
-	    <servlet-name>dispatcher</servlet-name>
-	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-	    <init-param>
-	      <param-name>contextConfigLocation</param-name>
-	      <param-value>/WEB-INF/appContext.xml</param-value>
-	    </init-param>
-	    <load-on-startup>1</load-on-startup>
-	  </servlet>
+		 <servlet>
+		    <servlet-name>dispatcher</servlet-name>
+		    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		    <init-param>
+		      <param-name>contextConfigLocation</param-name>
+		      <param-value>/WEB-INF/appContext.xml</param-value>
+		    </init-param>
+		    <load-on-startup>1</load-on-startup>
+		  </servlet>
 
 
 	in spring context.xml
 	add tx namespace -transactions properties and annotations
 	add mvc namespace - for SpringMVC properties and annotations
 
-	<?xml version="1.0" encoding="UTF-8"?>
-	<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"	
-    xmlns:tx="http://www.springframework.org/schema/tx"    
-	xmlns:mvc="http://www.springframework.org/schema/mvc"	
-	xsi:schemaLocation="
-		http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/mvc
-		http://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/tx 
-		http://www.springframework.org/schema/tx/spring-tx.xsd">
-
-	<!-- Add support for component scanning -->
-	<context:component-scan base-package="com.k1.spitter" />
-	<!-- Add support for conversion, formatting and validation support -->
-	<mvc:annotation-driven />
-
-	<!-- Define Spring MVC view resolver -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/view/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+		<?xml version="1.0" encoding="UTF-8"?>
+		<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:context="http://www.springframework.org/schema/context"	
+	    xmlns:tx="http://www.springframework.org/schema/tx"    
+		xmlns:mvc="http://www.springframework.org/schema/mvc"	
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
-	<!-- Step 1: Define Database DataSource / connection pool -->
-	<!-- dataSource MySql connection -->
-	<!-- we use dbcp BasicDataSource because it provides ability to use pool 
-		of connections(c3p0 popular to) anlike as DriverManagerDataSource which just 
-		create new connection every transaction -->
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql//localhost:3306/spitter/spitter" />
-		<property name="username" value="root" />
-		<property name="password" value="123456" />
-	</bean>
-
-	<!-- Step 2: Setup Hibernate session factory -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<!-- dataSource - connection to database -->
-		<property name="dataSource" ref="dataSource" />
-		<!-- when all annotated classes would be searched in one package we can 
-			not point each class, but just show package to scan -->
-		<property name="packagesToScan" value="com.k1.spitter" />
-		<property name="hibernateProperties">
-			<props>
-				<!-- tells hibernate which dialect use to talk with database -->
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<!-- tells hibernate to show sql queries -->
-				<prop key="hibernate.show_sql">true</prop>
-				<!--to format sql queries -->
-				<!-- <prop key="hibernate.format_sql">true</prop> -->
-				<!-- add this prop to avoid sequense name not found error 
-				in hibernate 5 -->
-				<prop key="hibernate.id.new_generator_mappings">false</prop>
-			
-			</props>
-		</property>
-	</bean>
-
-	<!-- Step 3: Setup Hibernate transaction manager -->
-	<!-- transactions for Hibernate -->
-	<!-- transactionmanager default name for transaction managers, can be changed 
-		if required, but better not -->
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<!-- give session factory which will be wrapped by our transaction manager 
-			to property "sessionFactory" -->
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<!-- Step 4: Enable configuration of transactional behavior based on annotations -->
-	<tx:annotation-driven transaction-manager="myTransactionManager" />
-
-	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+		<!-- Add support for component scanning -->
+		<context:component-scan base-package="com.k1.spitter" />
+		<!-- Add support for conversion, formatting and validation support -->
+		<mvc:annotation-driven />
+	
+		<!-- Define Spring MVC view resolver -->
+		<bean
+			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+			<property name="prefix" value="/WEB-INF/view/" />
+			<property name="suffix" value=".jsp" />
+		</bean>
+		
+		<!-- Step 1: Define Database DataSource / connection pool -->
+		<!-- dataSource MySql connection -->
+		<!-- we use dbcp BasicDataSource because it provides ability to use pool 
+			of connections(c3p0 popular to) anlike as DriverManagerDataSource which just 
+			create new connection every transaction -->
+		<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+			destroy-method="close">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+			<property name="url" value="jdbc:mysql//localhost:3306/spitter/spitter" />
+			<property name="username" value="root" />
+			<property name="password" value="123456" />
+		</bean>
+	
+		<!-- Step 2: Setup Hibernate session factory -->
+		<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+			<!-- dataSource - connection to database -->
+			<property name="dataSource" ref="dataSource" />
+			<!-- when all annotated classes would be searched in one package we can 
+				not point each class, but just show package to scan -->
+			<property name="packagesToScan" value="com.k1.spitter" />
+			<property name="hibernateProperties">
+				<props>
+					<!-- tells hibernate which dialect use to talk with database -->
+					<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+					<!-- tells hibernate to show sql queries -->
+					<prop key="hibernate.show_sql">true</prop>
+					<!--to format sql queries -->
+					<!-- <prop key="hibernate.format_sql">true</prop> -->
+					<!-- add this prop to avoid sequense name not found error 
+					in hibernate 5 -->
+					<prop key="hibernate.id.new_generator_mappings">false</prop>
+				
+				</props>
+			</property>
+		</bean>
+	
+		<!-- Step 3: Setup Hibernate transaction manager -->
+		<!-- transactions for Hibernate -->
+		<!-- transactionmanager default name for transaction managers, can be changed 
+			if required, but better not -->
+		<bean id="transactionManager"
+			class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+			<!-- give session factory which will be wrapped by our transaction manager 
+				to property "sessionFactory" -->
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+	
+		<!-- Step 4: Enable configuration of transactional behavior based on annotations -->
+		<tx:annotation-driven transaction-manager="myTransactionManager" />
+	
+		<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 	
 	
 ////// FIRST PAGE ///////////////////////
@@ -231,13 +231,13 @@ create new Dynamic Web Project
 	create index.jsp in the Web-Content root 
 	in Dispatcher Servlet we define it as welcome-page
 	on index.jsp we create redirect to first page of our app
-	<% response.sendRedirect("home"); %>
+		<% response.sendRedirect("home"); %>
 	
 	create HomeController for our first page
-	@GetMapping("/home")
-	public String home() {
-		return "home";
-	}
+		@GetMapping("/home")
+		public String home() {
+			return "home";
+		}
 	
 	add links on first page to our other pages like "list" and "registration"
 	
@@ -247,89 +247,89 @@ create new Dynamic Web Project
 
 	create new controller to map jsp page with list
 	
-	@Transactional
-	// get spitters list and send it to page by adding as attribute to model
-	@GetMapping("/home/list")
-	public String printList(Model theModel) {
-		// get current hibernate session
-		Session session = factory.getCurrentSession();
-
-		// get spitters from db
-		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
-
-		// add spitters list to model which will go to return page
-		theModel.addAttribute("spitters", spitters);
-		// lead to list page
-		return "pages/list";
-	}
+		@Transactional
+		// get spitters list and send it to page by adding as attribute to model
+		@GetMapping("/home/list")
+		public String printList(Model theModel) {
+			// get current hibernate session
+			Session session = factory.getCurrentSession();
+	
+			// get spitters from db
+			List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+	
+			// add spitters list to model which will go to return page
+			theModel.addAttribute("spitters", spitters);
+			// lead to list page
+			return "pages/list";
+		}
 	
 	add jstl libs to WebContent-> WEB-INF -> lib
 	add <!-- add jstl tags namespace  -->
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 	to begining of jsp page
 	
 	add table to recreate look of our db table on list page
 	
-	<p6>LIST HERE</p6>
-	<hr>
-	<table>
-		<tr>
-			<th>ID</th>
-			<th>UserName</th>
-			<th>FullName</th>
-			<th>Age</th>
-			<th>Creation/Update</th>
-			<th>UPDATE</th>
-			<th>DELETE</th>
-			<th>INFO</th>
-		</tr>
-
-		<!-- foreach iterator which will iterate through list "spitters" 
-		sended by adding attribute to model 
-		items="${spitters} <- customers name from MVC theModel-->
-		<c:forEach var="spitter" items="${spitters}">
+		<p6>LIST HERE</p6>
+		<hr>
+		<table>
 			<tr>
-
-				<!-- construct an "udpate" link with customer id --->
-				<!--var - variable name to use somewhere,--->
-				<!--value - urlpath which will be given,--->
-				<!--c:param name - name of parameter added to model,--->
-				<!--value - value of parameter added to model, in our case - spitter's id--->
-				<c:url var="updateLink" value="/showFormForUpdate">
-					<c:param name="spitterId" value="${spitter.id}" />
-				</c:url>
-
-				<c:url var="deleteLink" value="/delete">
-					<c:param name="spitterId" value="${spitter.id}" />
-				</c:url>
-
-				<c:url var="fullInfo" value="/info">
-					<c:param name="spitterId" value="${spitter.id}" />
-				</c:url>
-
-				<%-- <td>Spitter ID: <c:out value="${spitter.id}"/></td> --%>
-				<td>${spitter.id}</td>
-				<!-- will call spitters.getUserName() -->
-				<td>${spitter.userName}</td>
-				<!-- will call spitters.getFullName() -->
-				<td>${spitter.fullName}</td>
-				<!-- will call spitter.getAge() -->
-				<td>${spitter.age}</td>
-				<!-- will call spitters.getTimestamp() -->
-				<td>${spitter.date}</td>
-
-				<!-- display the update and delete link -->
-				<!-- will call updateLink variable from this page -->
-				<td><a href="${updateLink}">UPDATE</a></td>
-				<!-- will call deleteLink variable from this page -->
-				<td><a href="${deleteLink}"
-					onclick="if(!(confirm('Are you sure you want to delete this 
-					customer?'))) return false">DELETE</a></td>
-				<!-- will call fullInfo variable from this page -->
-				<td><a href="${fullInfo}">INFO</a></td>
+				<th>ID</th>
+				<th>UserName</th>
+				<th>FullName</th>
+				<th>Age</th>
+				<th>Creation/Update</th>
+				<th>UPDATE</th>
+				<th>DELETE</th>
+				<th>INFO</th>
 			</tr>
-		</c:forEach>
-	</table>
+	
+			<!-- foreach iterator which will iterate through list "spitters" 
+			sended by adding attribute to model 
+			items="${spitters} <- customers name from MVC theModel-->
+			<c:forEach var="spitter" items="${spitters}">
+				<tr>
+	
+					<!-- construct an "udpate" link with customer id --->
+					<!--var - variable name to use somewhere,--->
+					<!--value - urlpath which will be given,--->
+					<!--c:param name - name of parameter added to model,--->
+					<!--value - value of parameter added to model, in our case - spitter's id--->
+					<c:url var="updateLink" value="/showFormForUpdate">
+						<c:param name="spitterId" value="${spitter.id}" />
+					</c:url>
+	
+					<c:url var="deleteLink" value="/delete">
+						<c:param name="spitterId" value="${spitter.id}" />
+					</c:url>
+	
+					<c:url var="fullInfo" value="/info">
+						<c:param name="spitterId" value="${spitter.id}" />
+					</c:url>
+	
+					<%-- <td>Spitter ID: <c:out value="${spitter.id}"/></td> --%>
+					<td>${spitter.id}</td>
+					<!-- will call spitters.getUserName() -->
+					<td>${spitter.userName}</td>
+					<!-- will call spitters.getFullName() -->
+					<td>${spitter.fullName}</td>
+					<!-- will call spitter.getAge() -->
+					<td>${spitter.age}</td>
+					<!-- will call spitters.getTimestamp() -->
+					<td>${spitter.date}</td>
+	
+					<!-- display the update and delete link -->
+					<!-- will call updateLink variable from this page -->
+					<td><a href="${updateLink}">UPDATE</a></td>
+					<!-- will call deleteLink variable from this page -->
+					<td><a href="${deleteLink}"
+						onclick="if(!(confirm('Are you sure you want to delete this 
+						customer?'))) return false">DELETE</a></td>
+					<!-- will call fullInfo variable from this page -->
+					<td><a href="${fullInfo}">INFO</a></td>
+				</tr>
+			</c:forEach>
+		</table>
 	
 	add css to define spittersTable look
 	
@@ -407,71 +407,71 @@ create new Dynamic Web Project
 	
 	create controller which redirects to registration page and sends empty 
 	spitter object
-	@GetMapping("reg")
-	public String reg(Model theModel) {
-		Spitter spitter = new Spitter();
-		theModel.addAttribute("spitter",spitter);
-		return "pages/reg";
-	}
+		@GetMapping("reg")
+		public String reg(Model theModel) {
+			Spitter spitter = new Spitter();
+			theModel.addAttribute("spitter",spitter);
+			return "pages/reg";
+		}
 	
 	add to the registration jsp for form namespace
-	 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+	 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 	 
 	 add to header 
-	<title>${spitter.userName} ${spitter.fullName}</title>
+		<title>${spitter.userName} ${spitter.fullName}</title>
 	
 	add form to hold table with inputs and submit buttons and fields
 	
-	<!-- on form load - spring will execute getters to populate fields -->
-	<!-- on form submit - spring will use setters to change field's values -->
-	<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
-	
-	<!-- need to associate this data with customer id, when we use this form 
-	to update current customer -->
-	<form:hidden path="id"/>
-	
-		<table>
-			<tbody>
-				<tr>
-					<td><label>UserName</label></td>
-					<td><form:input path="userName" /></td>
-				</tr>
-				<tr>
-					<td><label>FullName</label></td>
-					<td><form:input path="fullName" /></td>
-				</tr>
-				<tr>
-					<td><label>Age</label></td>
-					<td><form:input path="age"/></td>
-				<tr>
-					<td><label>Password</label></td>
-					<td><form:password path="password" /></td>
-				</tr>
-				<tr>
-					<td><label>Email</label></td>
-					<td><form:input path="email" /></td>
-				</tr>
-				<tr>
-					<td><label></label></td>
-					<td><input type="submit" value="Save" /></td>
-				</tr>
-			</tbody>
-		</table>
-	</form:form>
+		<!-- on form load - spring will execute getters to populate fields -->
+		<!-- on form submit - spring will use setters to change field's values -->
+		<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
+		
+		<!-- need to associate this data with customer id, when we use this form 
+		to update current customer -->
+		<form:hidden path="id"/>
+		
+			<table>
+				<tbody>
+					<tr>
+						<td><label>UserName</label></td>
+						<td><form:input path="userName" /></td>
+					</tr>
+					<tr>
+						<td><label>FullName</label></td>
+						<td><form:input path="fullName" /></td>
+					</tr>
+					<tr>
+						<td><label>Age</label></td>
+						<td><form:input path="age"/></td>
+					<tr>
+						<td><label>Password</label></td>
+						<td><form:password path="password" /></td>
+					</tr>
+					<tr>
+						<td><label>Email</label></td>
+						<td><form:input path="email" /></td>
+					</tr>
+					<tr>
+						<td><label></label></td>
+						<td><input type="submit" value="Save" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</form:form>
 	
 	add save controller which save spitter to db and redirect us 
 	to spitters list
-	@Transactional
-	@PostMapping("/saveSpitter")
-	public String saveSpitter(@ModelAttribute("spitter") Spitter spitter) {
-		// get current hibernate session
-		Session session = factory.getCurrentSession();
-		// save or update
-		session.saveOrUpdate(spitter);
-		// redirect to list page, redirect will recreate page with new
-		// independent model
-		return "redirect:/home/list";
-	}
+		@Transactional
+		@PostMapping("/saveSpitter")
+		public String saveSpitter(@ModelAttribute("spitter") Spitter spitter) {
+			// get current hibernate session
+			Session session = factory.getCurrentSession();
+			// save or update
+			session.saveOrUpdate(spitter);
+			// redirect to list page, redirect will recreate page with new
+			// independent model
+			return "redirect:/home/list";
+		}
 	
 	
 ////// BUTTONS ///////////////////////////
@@ -507,30 +507,30 @@ create new Dynamic Web Project
 			
 	than create controllers to use this buttons
 	
-	@Transactional
-	@GetMapping("showFormForUpdate")
-	// here we sent to method parameter id, requesting it from model by
-	// @RequestParam("spitterId") int id
-	public String showFormForUpdate(@RequestParam("spitterId") int id, Model 
-	theModel) {
-		// get current hibernate session
-		Session session = factory.getCurrentSession();
-
-		// create spitter and transfer certain spitter from db, received by id
-		Spitter spitter = session.get(Spitter.class, id);
-		// set timestamp time and date in our spitter to null, because they
-		// automatically created by db
-		spitter.setTimestamp(null);
-		spitter.setTime(null);
-		spitter.setDate(null);
-
-		// add spitter as attribute to model by addAttribute() method which
-		// requests as params - objects name in model and object
-		theModel.addAttribute("spitter", spitter);
-
-		// lead us with model next to reg page
-		return "pages/reg";
-	}
+		@Transactional
+		@GetMapping("showFormForUpdate")
+		// here we sent to method parameter id, requesting it from model by
+		// @RequestParam("spitterId") int id
+		public String showFormForUpdate(@RequestParam("spitterId") int id, Model 
+		theModel) {
+			// get current hibernate session
+			Session session = factory.getCurrentSession();
+	
+			// create spitter and transfer certain spitter from db, received by id
+			Spitter spitter = session.get(Spitter.class, id);
+			// set timestamp time and date in our spitter to null, because they
+			// automatically created by db
+			spitter.setTimestamp(null);
+			spitter.setTime(null);
+			spitter.setDate(null);
+	
+			// add spitter as attribute to model by addAttribute() method which
+			// requests as params - objects name in model and object
+			theModel.addAttribute("spitter", spitter);
+	
+			// lead us with model next to reg page
+			return "pages/reg";
+		}
 	
 	
 ////// SINGLE SPITTER ///////////////////
