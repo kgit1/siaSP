@@ -1397,7 +1397,11 @@ create new Dynamic Web Project
 ////// SECUTITY /////////////////////////
 /////////////////////////////////////////
 
-
+	add spring security libs to WebContent-> WEB-INF -> lib
+	+spring-security-core-4.2.2.RELEASE
+	+spring-security-config-4.2.2.RELEASE
+	+spring-security-web-4.2.2.RELEASE
+	+spring-security-taglibs-4.2.2.RELEASE
 
 
 

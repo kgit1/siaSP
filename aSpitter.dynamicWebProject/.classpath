@@ -134,5 +134,9 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-validator-5.4.0.Final.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-validator-annotation-processor-5.4.0.Final.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-validator-cdi-5.4.0.Final.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-config-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-core-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-taglibs-4.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-web-4.2.2.RELEASE.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
