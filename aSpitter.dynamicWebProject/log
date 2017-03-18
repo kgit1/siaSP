@@ -1,5 +1,9 @@
 create new Dynamic Web Project
 
+
+////// START ////////////////////////////
+/////////////////////////////////////////
+
 	put libs to WebContent-> WEB-INF -> lib
 	+ hibernate required libs 
 	+ commons-dbcp for BasicDataSource
@@ -7,7 +11,9 @@ create new Dynamic Web Project
 	+ commons-logging
 	+ mysql-connector-java
 	
-	test database
+	
+////// DATABASE /////////////////////////
+/////////////////////////////////////////
 
 	create and populate MySql database 
 	drop table if exists spittle;
@@ -48,8 +54,7 @@ create new Dynamic Web Project
 	(2, 'Trying out Spring''s new expression language.', '2010-06-11');
 	insert into spittle (spitter_id, spittleText, postedTime) values 
 	(1, 'Who''s going to SpringOne/2GX this year?', '2010-06-19');
-	
-	
+
 	test database with simple connection in DbTest.class
 	
 	test database with hibernate connection in HibernateDbTest.classs
@@ -70,8 +75,10 @@ create new Dynamic Web Project
 	
 	at Java Resources -> src - create packages for controllers, dao, services 
 	and entity(model)
+	
 
-/////////////////////SPRING MVC///////////
+////// SPRING MVC ///////////////////////
+/////////////////////////////////////////
 
 	request from web page of our app will be handled in first by DIspatcherServlet,
 	than he will found controller which fits to request,
@@ -218,7 +225,9 @@ create new Dynamic Web Project
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 	
 	
-////////////////////FIRST PAGE////////////
+////// FIRST PAGE ///////////////////////
+/////////////////////////////////////////
+
 	create index.jsp in the Web-Content root 
 	in Dispatcher Servlet we define it as welcome-page
 	on index.jsp we create redirect to first page of our app
@@ -232,8 +241,10 @@ create new Dynamic Web Project
 	
 	add links on first page to our other pages like "list" and "registration"
 	
-///////////////////////LIST///////////////
 	
+////// LIST /////////////////////////////
+/////////////////////////////////////////	
+
 	create new controller to map jsp page with list
 	
 	@Transactional
@@ -389,7 +400,8 @@ create new Dynamic Web Project
 		/* } */
 	
 	
-////////////////REGISTRATION/////////////
+////// REGISTRATION //////////////////////
+/////////////////////////////////////////
 	
 	create registration jsp
 	
@@ -462,8 +474,9 @@ create new Dynamic Web Project
 	}
 	
 	
-////////////////BUTTONS///////////////
-	
+////// BUTTONS ///////////////////////////
+/////////////////////////////////////////	
+
 	add update, delete, and search buttons to "list" page
 	
 	to create update and delete buttons in list, which will use spitter.id to
@@ -520,8 +533,9 @@ create new Dynamic Web Project
 	}
 	
 	
-//////////////////SINGLE SPITTER/////////////////
-	
+////// SINGLE SPITTER ///////////////////
+/////////////////////////////////////////	
+
 	create new jsp page for single spitter with full info
 	
 	add <!-- add jstl tags namespace  -->
@@ -598,7 +612,8 @@ create new Dynamic Web Project
 	}
 	
 	
-///////////TILES//////////////////////
+////// TILES ////////////////////////////
+/////////////////////////////////////////
 	
 	add tiles libs to WebContent-> WEB-INF -> lib
 	+slf4j-api-1.7.6
@@ -802,7 +817,8 @@ create new Dynamic Web Project
 	}
 
 
-////////////////////LOGGING SQL//////////////
+////// LOGGING SQL //////////////////////
+/////////////////////////////////////////
 
 	Question
 	There are many developers asking about Hibernate SQL parameter value 
@@ -915,7 +931,8 @@ create new Dynamic Web Project
 	</dependency>
 
 
-////////////////VALIDATION DATA/////////////////
+////// VALIDATION DATA //////////////////
+/////////////////////////////////////////
 
 	add validation libs to WebContent-> WEB-INF -> lib 
 		+validation-api-1.1.0.Final
@@ -1089,7 +1106,8 @@ create new Dynamic Web Project
 	Notice the use of {0}, {1}, etc. These are arguments that can be passed in to the message.
 	 
 
-/////////////////MULTIPLE VIEW RESOLVER////////////
+////// MULTIPLE VIEW RESOLVER ///////////
+/////////////////////////////////////////
 
 	to add multiple view resolvers just add resolvers one by one
 	but to every add 
@@ -1099,7 +1117,8 @@ create new Dynamic Web Project
 	next in line
 	
 	
-//////////////LEFT/////////////////////////////////
+////// LEFT TILE/////////////////////////
+/////////////////////////////////////////
 
 	to have access to spittles for left tile, just add spittles to model for
 	body controller of chosen page
@@ -1282,8 +1301,10 @@ create new Dynamic Web Project
 		/* table td+td { */
 		/* 	background: red */
 		/* } */
+		
 			
-////////////////NEW SPITTLE/////////////	
+////// NEW SPITTLE //////////////////////	
+/////////////////////////////////////////
 
 	add to home page link to page for new spittle
 	<a href="newSpittle">Spittle</a>
@@ -1372,4 +1393,17 @@ create new Dynamic Web Project
 			// lead to home/list page
 			return "redirect:/home/list";
 		}
+		
+////// SECUTITY /////////////////////////
+/////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
 	
