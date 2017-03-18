@@ -78,17 +78,19 @@ public class HomeController {
 
 	@GetMapping("/admin")
 	public String adminPage(Model theModel) {
-		 theModel.addAttribute("user", getPrincipal());
+		// getPrincipal is a generic function which returns the logged in user
+		// name
+		theModel.addAttribute("user", getPrincipal());
 		return "utility/admin";
 	}
 
-	public List<Spitter> listSpitters() {
+	private List<Spitter> listSpitters() {
 		Session session = factory.getCurrentSession();
 		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
 		return spitters;
 	}
 
-	public List<Spittle> listSpittles() {
+	private List<Spittle> listSpittles() {
 		Session session = factory.getCurrentSession();
 		List<Spittle> spittles = session.createQuery("from Spittle s order by s.id desc").setMaxResults(15)
 				.getResultList();
@@ -104,18 +106,17 @@ public class HomeController {
 	// missing, it is because it will be generated and handled by default by
 	// Spring Security.
 
-	 private String getPrincipal() {
-	 String userName = null;
-	 Object principal =
-	 SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	
-	 if (principal instanceof UserDetails) {
-	 userName = ((UserDetails) principal).getUsername();
-	 } else {
-	 userName = principal.toString();
-	 }
-	 return userName;
-	 }
+	private String getPrincipal() {
+		String userName = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+			userName = ((UserDetails) principal).getUsername();
+		} else {
+			userName = principal.toString();
+		}
+		return userName;
+	}
 
 }
 

@@ -539,11 +539,11 @@ create new Dynamic Web Project
 	create new jsp page for single spitter with full info
 	
 	add <!-- add jstl tags namespace  -->
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
-	to begining of jsp page
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+		to begining of jsp page
 	
 	add to header 
-	<title>${spitter.userName} ${spitter.fullName}</title>
+		<title>${spitter.userName} ${spitter.fullName}</title>
 	
 	add table to represent spitter's info
 	
@@ -601,15 +601,15 @@ create new Dynamic Web Project
 	</table>
 	
 	add controller to handle this page
-	@Transactional
-	@GetMapping("info")
-	public String fullInfoOnSpitter(@RequestParam("spitterId") int id, Model 
-	theModel) {
-		Session session = factory.getCurrentSession();
-		Spitter spitter = session.get(Spitter.class, id);
-		theModel.addAttribute("spitter", spitter);
-		return "pages/spitterFullInfo";
-	}
+		@Transactional
+		@GetMapping("info")
+		public String fullInfoOnSpitter(@RequestParam("spitterId") int id, Model 
+		theModel) {
+			Session session = factory.getCurrentSession();
+			Spitter spitter = session.get(Spitter.class, id);
+			theModel.addAttribute("spitter", spitter);
+			return "pages/spitterFullInfo";
+		}
 	
 	
 ////// TILES ////////////////////////////
@@ -623,198 +623,198 @@ create new Dynamic Web Project
 	
 	add tiles beans to appContext.xml
 	
-	<!-- Step 6: Setup tiles -->
-	<!-- add tiles viewResolver, and don't forget to comment SpringMvc 
-	viewResolver, because they can't work together-->
-	<bean id="viewResolver"  
-        class="org.springframework.web.servlet.view.UrlBasedViewResolver">  
-        <property name="viewClass">  
-            <value>  
-                org.springframework.web.servlet.view.tiles2.TilesView  
-            </value>  
-        </property>  
-    </bean>
-      
-    <bean id="tilesConfigurer"  
-        class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">  
-        <property name="definitions">  
-            <list>  
-                <value>/WEB-INF/tiles.xml</value>  
-            </list>  
-        </property>  
-    </bean>  
+		<!-- Step 6: Setup tiles -->
+		<!-- add tiles viewResolver, and don't forget to comment SpringMvc 
+		viewResolver, because they can't work together-->
+		<bean id="viewResolver"  
+	        class="org.springframework.web.servlet.view.UrlBasedViewResolver">  
+	        <property name="viewClass">  
+	            <value>  
+	                org.springframework.web.servlet.view.tiles2.TilesView  
+	            </value>  
+	        </property>  
+	    </bean>
+	      
+	    <bean id="tilesConfigurer"  
+	        class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">  
+	        <property name="definitions">  
+	            <list>  
+	                <value>/WEB-INF/tiles.xml</value>  
+	            </list>  
+	        </property>  
+	    </bean>  
     
     add tiles.xml at Web-Content-> WEB-INF root
     
     add to tiles.xml
     
-	<?xml version="1.0" encoding="UTF-8" ?>  
-	<!DOCTYPE tiles-definitions PUBLIC
-	  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
-	  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-	
-	<tiles-definitions>
-	
-		<!-- Base Definition -->
-		<definition name="base.definition" template="/WEB-INF/view/tiles/layout.jsp">
-			<put-attribute name="title" value="" />
-			<put-attribute name="header" value="/WEB-INF/view/tiles/aHeader.jsp" />
-			<put-attribute name="left" value="/WEB-INF/view/tiles/aLeft.jsp" />
-			<put-attribute name="body" value="" />
-			<put-attribute name="right" value="/WEB-INF/view/tiles/aRight.jsp" />
-			<put-attribute name="footer" value="/WEB-INF/view/tiles/aFooter.jsp" />
-		</definition>
-	
-		<!-- List Page -->
-		<definition name="home" extends="base.definition">
-			<put-attribute name="title" value="Home" />
-			<put-attribute name="body" value="/WEB-INF/view/home.jsp" />
-		</definition>
-	
-		<!-- List Page -->
-		<definition name="pages/list" extends="base.definition">
-			<put-attribute name="title" value="List Of Spitters" />
-			<put-attribute name="body" value="/WEB-INF/view/pages/list.jsp" />
-		</definition>
-	
-		<!-- Reg Page -->
-		<definition name="pages/reg" extends="base.definition">
-			<put-attribute name="title" value="Spitter page" />
-			<put-attribute name="body" value="/WEB-INF/view/pages/reg.jsp" />
-		</definition>
-	
-		<!-- SpitterFull Page -->
-		<definition name="pages/spitterFullInfo" extends="base.definition">
-			<put-attribute name="title" value="Spitter page" />
-			<put-attribute name="body" value="/WEB-INF/view/pages/spitterFullInfo.jsp" />
-		</definition>
-	
-	</tiles-definitions>  
+		<?xml version="1.0" encoding="UTF-8" ?>  
+		<!DOCTYPE tiles-definitions PUBLIC
+		  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+		  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+		
+		<tiles-definitions>
+		
+			<!-- Base Definition -->
+			<definition name="base.definition" template="/WEB-INF/view/tiles/layout.jsp">
+				<put-attribute name="title" value="" />
+				<put-attribute name="header" value="/WEB-INF/view/tiles/aHeader.jsp" />
+				<put-attribute name="left" value="/WEB-INF/view/tiles/aLeft.jsp" />
+				<put-attribute name="body" value="" />
+				<put-attribute name="right" value="/WEB-INF/view/tiles/aRight.jsp" />
+				<put-attribute name="footer" value="/WEB-INF/view/tiles/aFooter.jsp" />
+			</definition>
+		
+			<!-- List Page -->
+			<definition name="home" extends="base.definition">
+				<put-attribute name="title" value="Home" />
+				<put-attribute name="body" value="/WEB-INF/view/home.jsp" />
+			</definition>
+		
+			<!-- List Page -->
+			<definition name="pages/list" extends="base.definition">
+				<put-attribute name="title" value="List Of Spitters" />
+				<put-attribute name="body" value="/WEB-INF/view/pages/list.jsp" />
+			</definition>
+		
+			<!-- Reg Page -->
+			<definition name="pages/reg" extends="base.definition">
+				<put-attribute name="title" value="Spitter page" />
+				<put-attribute name="body" value="/WEB-INF/view/pages/reg.jsp" />
+			</definition>
+		
+			<!-- SpitterFull Page -->
+			<definition name="pages/spitterFullInfo" extends="base.definition">
+				<put-attribute name="title" value="Spitter page" />
+				<put-attribute name="body" value="/WEB-INF/view/pages/spitterFullInfo.jsp" />
+			</definition>
+		
+		</tiles-definitions>  
 
 	add layout.jsp to WebContent-> WEB-INF-> view-> tiles
 	to configure tiles disposal
 		
 		<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
-	"http://www.w3.org/TR/html4/loose.dtd">
-	<html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title><tiles:insertAttribute name="title" ignore="true" /></title>
-	<link rel="stylesheet" type="text/css"
-		href="${pageContext.request.contextPath}/resources/css/tiles.css">
-	</head>
-	
-	<body>
-		<div class="wrap">
-			<div class="tilesHeader">
-				<tiles:insertAttribute name="header" />
-			</div>
-	
-			<div class="center">
-				<div class="tilesLeft">
-					<tiles:insertAttribute name="left" />
-				</div>
-	
-				<div class="tilesBody">
-					<tiles:insertAttribute name="body" />
-				</div>
-	
-				<div class="tilesRight">
-					<tiles:insertAttribute name="right" />
-				</div>
-			</div>
-			<div class="tilesFooter">
-				<tiles:insertAttribute name="footer" />
-			</div>
-		</div>
-	
-	</body>
-	</html>
-	
-	
-		add aHeader, aLeft, aRight, aBottom jsps 
-		to WebContent-> WEB-INF-> view-> tiles
+		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+		"http://www.w3.org/TR/html4/loose.dtd">
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title><tiles:insertAttribute name="title" ignore="true" /></title>
+		<link rel="stylesheet" type="text/css"
+			href="${pageContext.request.contextPath}/resources/css/tiles.css">
+		</head>
 		
-		add tiles.css to WebContent-> resources-> css
+		<body>
+			<div class="wrap">
+				<div class="tilesHeader">
+					<tiles:insertAttribute name="header" />
+				</div>
+		
+				<div class="center">
+					<div class="tilesLeft">
+						<tiles:insertAttribute name="left" />
+					</div>
+		
+					<div class="tilesBody">
+						<tiles:insertAttribute name="body" />
+					</div>
+		
+					<div class="tilesRight">
+						<tiles:insertAttribute name="right" />
+					</div>
+				</div>
+				<div class="tilesFooter">
+					<tiles:insertAttribute name="footer" />
+				</div>
+			</div>
+		
+		</body>
+		</html>
+	
+	
+	add aHeader, aLeft, aRight, aBottom jsps 
+	to WebContent-> WEB-INF-> view-> tiles
+		
+	add tiles.css to WebContent-> resources-> css
 	
 		html, .container {
 		height: 100%;
-	}
+		}
 	
-	body {
-		background: green;
-	/* 	margin:0 auto 0 auto; */
-	}
-	
-	.wrap{
-		width: 1200px;
-	/* 	float:left; */
-	/* 	height:auto; */
-		margin:0 auto 0 auto;
-	}
-	.center {
-		min-height: 800px; height : 100%;
-		background: aqua;
-		overflow: hidden;
-		height: 100%;
-		margin: 0 auto 0 auto;
-	/* 	margin:5px; */
-	}
-	
-	.tilesHeader {
-		height: 100px;
-		border: solid pink 2px;
-		margin: 5px;
-		padding: 4px;
-		background: red;
-	}
-	
-	.tilesLeft {
-		width: 167px;
-		min-height: 800px;
-		height: 100%;
-		border: solid pink 2px;
-		margin: 5px;
-		padding: 4px;
-		background: orange;
-		float: left;
-		background: orange;
-		overflow: auto;
-	}
-	
-	.tilesBody {
-		width: 700px;
-		min-height: 800px;
-		overflow: auto;
-		border: solid pink 2px;
-		margin: 5px;
-		padding: 4px;
-		float: left;
-		margin: 5px;
-		border: solid pink 2px;
-	}
-	
-	.tilesRight {
-		width: 267px;
-		min-height: 800px;
-		height: 100%;
-		border: solid pink 2px;
-		margin: 5px;
-		padding: 4px;
-		background: yellow;
-		position: relative;
-		float: right;
-	}
-	
-	.tilesFooter {
-		height: 200px;
-		border: solid pink 2px;
-		margin: 5px;
-		padding: 4px;
-		background: blue;
-		clear: both;
-	}
+		body {
+			background: green;
+		/* 	margin:0 auto 0 auto; */
+		}
+		
+		.wrap{
+			width: 1200px;
+		/* 	float:left; */
+		/* 	height:auto; */
+			margin:0 auto 0 auto;
+		}
+		.center {
+			min-height: 800px; height : 100%;
+			background: aqua;
+			overflow: hidden;
+			height: 100%;
+			margin: 0 auto 0 auto;
+		/* 	margin:5px; */
+		}
+		
+		.tilesHeader {
+			height: 100px;
+			border: solid pink 2px;
+			margin: 5px;
+			padding: 4px;
+			background: red;
+		}
+		
+		.tilesLeft {
+			width: 167px;
+			min-height: 800px;
+			height: 100%;
+			border: solid pink 2px;
+			margin: 5px;
+			padding: 4px;
+			background: orange;
+			float: left;
+			background: orange;
+			overflow: auto;
+		}
+		
+		.tilesBody {
+			width: 700px;
+			min-height: 800px;
+			overflow: auto;
+			border: solid pink 2px;
+			margin: 5px;
+			padding: 4px;
+			float: left;
+			margin: 5px;
+			border: solid pink 2px;
+		}
+		
+		.tilesRight {
+			width: 267px;
+			min-height: 800px;
+			height: 100%;
+			border: solid pink 2px;
+			margin: 5px;
+			padding: 4px;
+			background: yellow;
+			position: relative;
+			float: right;
+		}
+		
+		.tilesFooter {
+			height: 200px;
+			border: solid pink 2px;
+			margin: 5px;
+			padding: 4px;
+			background: blue;
+			clear: both;
+		}
 
 
 ////// LOGGING SQL //////////////////////
@@ -924,11 +924,11 @@ create new Dynamic Web Project
 	For Maven User
 	You can use Maven to download the P6Spy dependency into your pom.xml
 	
-	<dependency>
-		<groupId>p6spy</groupId>
-		<artifactId>p6spy</artifactId>
-		<version>1.3</version>
-	</dependency>
+		<dependency>
+			<groupId>p6spy</groupId>
+			<artifactId>p6spy</artifactId>
+			<version>1.3</version>
+		</dependency>
 
 
 ////// VALIDATION DATA //////////////////
@@ -941,39 +941,39 @@ create new Dynamic Web Project
 		+hibernate-validator-cdi-5.4.0.Final
 	
 	add to appContext.xml
-	<bean id="validator" 
-	class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+		<bean id="validator" 
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 	
 	add validation parameters to Entity class with 
-	@NotNull @Size @Min @Max @Pattern etc like 
+		@NotNull @Size @Min @Max @Pattern etc like 
+		
+		@Column(name = "username", unique = true)
+		@NotNull(message = "Can't be empty")
+		@Size(min = 3, max = 20, message = "Username must be between 3 and 20 
+		characters long")
+		@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be 
+		alphanumeric with no spaces")
+		private String userName;
 	
-	@Column(name = "username", unique = true)
-	@NotNull(message = "Can't be empty")
-	@Size(min = 3, max = 20, message = "Username must be between 3 and 20 
-	characters long")
-	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be 
-	alphanumeric with no spaces")
-	private String userName;
-
-	@Column(name = "password")
-	@Size(min = 6, max = 9, message = "Password must be at least 6 characters 
-	long, and not longer than 20")
-	private String password;
-
-	@Column(name = "fullname")
-	@Size(min = 3, max = 50, message = "YOur full name must be between 3 and 
-	50 characters long")
-	private String fullName;
-
-	@Column(name = "age")
-	@NotNull(message = "Can't be 0")
-	@Min(18)
-	private int age;
-
-	@Column(name = "email")
-	@Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", 
-	message = "Invalid email address")
-	private String email;
+		@Column(name = "password")
+		@Size(min = 6, max = 9, message = "Password must be at least 6 characters 
+		long, and not longer than 20")
+		private String password;
+	
+		@Column(name = "fullname")
+		@Size(min = 3, max = 50, message = "YOur full name must be between 3 and 
+		50 characters long")
+		private String fullName;
+	
+		@Column(name = "age")
+		@NotNull(message = "Can't be 0")
+		@Min(18)
+		private int age;
+	
+		@Column(name = "email")
+		@Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", 
+		message = "Invalid email address")
+		private String email;
 	
     
     add validation to controller with help of @Valid and BindingResults class 
@@ -989,74 +989,74 @@ create new Dynamic Web Project
 	and puts any errors in the BindingResult and adds the BindingResult to 
 	the view model.
     
-    @Transactional
-	@PostMapping("/saveSpitter")
-		public String saveSpitter(@Valid @ModelAttribute("spitter")  Spitter 
-		spitter, BindingResult bindingResult) {
-		
-		if(bindingResult.hasErrors()){
-			return "pages/reg";
+	    @Transactional
+		@PostMapping("/saveSpitter")
+			public String saveSpitter(@Valid @ModelAttribute("spitter")  Spitter 
+			spitter, BindingResult bindingResult) {
+			
+			if(bindingResult.hasErrors()){
+				return "pages/reg";
+			}
+			
+			// get current hibernate session
+			Session session = factory.getCurrentSession();
+			// save or update
+			session.saveOrUpdate(spitter);
+			// redirect to list page, redirect will recreate page with new
+			// independent model
+			return "redirect:/home/list";
 		}
-		
-		// get current hibernate session
-		Session session = factory.getCurrentSession();
-		// save or update
-		session.saveOrUpdate(spitter);
-		// redirect to list page, redirect will recreate page with new
-		// independent model
-		return "redirect:/home/list";
-	}
 	
 	
 	add errors to jsp.page with <form:errors> - is used to display 
 	BindingResult in JSP
 	If we use
-	<form:errors path="fieldName" cssClass="error"/>
-	then it will display field specific error and if we use <form:errors/> 
-	without field name, it will display all errors.
+		<form:errors path="fieldName" cssClass="error"/>
+		then it will display field specific error and if we use <form:errors/> 
+		without field name, it will display all errors.
 	
-	<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
-		<table>
-
+		<form:form action="saveSpitter" modelAttribute="spitter" method="POST">
+			<table>
+	
 			<!-- need to associate this data with customer id, when we use 
 			this form 
-	to update current customer -->
-			<form:hidden path="id" />
-			<form:errors path="*" cssClass="error" />
-			<%-- 			<form:errors path="*" cssClass="error" element=
-			"error"/> --%>
-			<tbody>
-				<tr>
-					<td><label>UserName</label></td>
-					<td><form:input path="userName" /></td>
-					<td><form:errors path="userName" cssClass="error" /></td>
-				</tr>
-				<tr>
-					<td><label>FullName</label></td>
-					<td><form:input path="fullName" /></td>
-					<td><form:errors path="fullName" cssClass="error" /></td>
-				</tr>
-				<tr>
-					<td><label>Age</label></td>
-					<td><form:input path="age" /></td>
-					<td><form:errors path="age" cssClass="error" /></td>
-				<tr>
-					<td><label>Password</label></td>
-					<td><form:password path="password" /></td>
-					<td><form:errors path="password" cssClass="error" /></td>
-				</tr>
-				<tr>
-					<td><label>Email</label></td>
-					<td><form:input path="email" /></td>
-					<td><form:errors path="email" cssClass="error" /></td>
-				</tr>
-				<tr>
-					<td><label></label></td>
-					<td><input type="submit" value="Save" /></td>
-				</tr>
-			</tbody>
-		</table>
-	</form:form>
+			to update current customer -->
+				<form:hidden path="id" />
+				<form:errors path="*" cssClass="error" />
+				<%-- 			<form:errors path="*" cssClass="error" element=
+				"error"/> --%>
+				<tbody>
+					<tr>
+						<td><label>UserName</label></td>
+						<td><form:input path="userName" /></td>
+						<td><form:errors path="userName" cssClass="error" /></td>
+					</tr>
+					<tr>
+						<td><label>FullName</label></td>
+						<td><form:input path="fullName" /></td>
+						<td><form:errors path="fullName" cssClass="error" /></td>
+					</tr>
+					<tr>
+						<td><label>Age</label></td>
+						<td><form:input path="age" /></td>
+						<td><form:errors path="age" cssClass="error" /></td>
+					<tr>
+						<td><label>Password</label></td>
+						<td><form:password path="password" /></td>
+						<td><form:errors path="password" cssClass="error" /></td>
+					</tr>
+					<tr>
+						<td><label>Email</label></td>
+						<td><form:input path="email" /></td>
+						<td><form:errors path="email" cssClass="error" /></td>
+					</tr>
+					<tr>
+						<td><label></label></td>
+						<td><input type="submit" value="Save" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</form:form>
 	
 	This is nice, but does not support internationalization. Plus, do we really
 	 want our messages in our Java objects? Fortunately, we can easily override 
@@ -1137,26 +1137,26 @@ create new Dynamic Web Project
 		
 	so modify page/list controller to	
 	
-	@Transactional
-	// get spitters list and send it to page by adding as attribute to model
-	@GetMapping("/home/list")
-	public String printList(Model theModel) {
-		// get current hibernate session
-		Session session = factory.getCurrentSession();
-
-		// get spitters from db
-		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
-
-		// add spitters list to model which will go to return page
-		theModel.addAttribute("spitters", spitters);
-		
-		//spittles for left panel
-		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
-		theModel.addAttribute("spittles", spittles);
-		
-		// lead to list page
-		return "pages/list";
-	}	
+		@Transactional
+		// get spitters list and send it to page by adding as attribute to model
+		@GetMapping("/home/list")
+		public String printList(Model theModel) {
+			// get current hibernate session
+			Session session = factory.getCurrentSession();
+	
+			// get spitters from db
+			List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+	
+			// add spitters list to model which will go to return page
+			theModel.addAttribute("spitters", spitters);
+			
+			//spittles for left panel
+			List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
+			theModel.addAttribute("spittles", spittles);
+			
+			// lead to list page
+			return "pages/list";
+		}	
 		
 	and if there collision if we read and write same piece of data like in
 	update controller
@@ -1167,98 +1167,98 @@ create new Dynamic Web Project
 		
 	and it will be like this 
 	
-	@Transactional
-	@PostMapping("/saveSpitter")
-	public String saveSpitter(@Valid @ModelAttribute("spitter") Spitter spitter, BindingResult bindingResult,
-			Model theModel) {
-
-		// get current hibernate session
-		Session session = factory.getCurrentSession();
-
-		// spitters and spittless lists for left panel
-		// get spitters from db
-		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
-
-		// add spitters list to model which will go to return page
-		theModel.addAttribute("spitters", spitters);
-
-		// get spittles from db
-		List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
-		// add spittles list to model which will go to return page
-		theModel.addAttribute("spittlesLeft", spittles);
-
-		// clear session to avoid collision between read spitter and write some
-		// of them at same time
-		session.clear();
-
-		if (bindingResult.hasErrors()) {
-			return "pages/reg";
+		@Transactional
+		@PostMapping("/saveSpitter")
+		public String saveSpitter(@Valid @ModelAttribute("spitter") Spitter spitter, BindingResult bindingResult,
+				Model theModel) {
+	
+			// get current hibernate session
+			Session session = factory.getCurrentSession();
+	
+			// spitters and spittless lists for left panel
+			// get spitters from db
+			List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
+	
+			// add spitters list to model which will go to return page
+			theModel.addAttribute("spitters", spitters);
+	
+			// get spittles from db
+			List<Spittle> spittles = session.createQuery("from Spittle", Spittle.class).getResultList();
+			// add spittles list to model which will go to return page
+			theModel.addAttribute("spittlesLeft", spittles);
+	
+			// clear session to avoid collision between read spitter and write some
+			// of them at same time
+			session.clear();
+	
+			if (bindingResult.hasErrors()) {
+				return "pages/reg";
+			}
+	
+			// save or update
+			session.saveOrUpdate(spitter);
+	
+			// redirect to list page, redirect will recreate page with new
+			// independent model
+			return "redirect:/home/list";
 		}
-
-		// save or update
-		session.saveOrUpdate(spitter);
-
-		// redirect to list page, redirect will recreate page with new
-		// independent model
-		return "redirect:/home/list";
-	}
 	
 	than modify left page to display spittles with info and spitter name
 	
-	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-		pageEncoding="ISO-8859-1"%>
-	<!-- add jstl tags library  -->
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-	<html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Insert title here</title>
-	</head>
-	<body>
-		LAST SPITTLES
-	
-		<!-- use var spitters to hold list of spitters from model to have access to names -->
-		<c:set var="spitters" value="${spitters}" />
+		<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+			pageEncoding="ISO-8859-1"%>
+		<!-- add jstl tags library  -->
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+		<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Insert title here</title>
+		</head>
+		<body>
+			LAST SPITTLES
 		
-		<table class="spittleTable">
-			<c:forEach var="spittle" items="${spittles}">
-				<tr>
-					<td>${spitters[spittle.id].userName}</td>
-					<td>ID: ${spittle.id}</td>
-				</tr>
-				<tr>
-					<td colspan="2">${spittle.text}</td>
-				</tr>
-				<tr>
-					<td colspan="2">Date: ${spittle.when}</td>
-				</tr>
-				<tr>
-				</tr>
-			</c:forEach>
-		</table>
-	</body>
-	</html>
+			<!-- use var spitters to hold list of spitters from model to have access to names -->
+			<c:set var="spitters" value="${spitters}" />
+			
+			<table class="spittleTable">
+				<c:forEach var="spittle" items="${spittles}">
+					<tr>
+						<td>${spitters[spittle.id].userName}</td>
+						<td>ID: ${spittle.id}</td>
+					</tr>
+					<tr>
+						<td colspan="2">${spittle.text}</td>
+					</tr>
+					<tr>
+						<td colspan="2">Date: ${spittle.when}</td>
+					</tr>
+					<tr>
+					</tr>
+				</c:forEach>
+			</table>
+		</body>
+		</html>
 	
 	and add css settings for it
 	
-	html, body {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-		}
-		
+		html, body {
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+			}
+			
 		table {
 			width:100%;
 			border-collapse: collapse;
 			/* 	border-bottom: 1px solid gray; */
 			font-family: Tahoma, Verdana, Segoe, sans-serif;
 		}
-		
+			
 		table.spittleTable td {
 			overflow: hidden;
 			max-width:20px;
 		/* 	width:50px; */
 		}
-		
+			
 		table.spittleTable tr:nth-child(4n+1) {
 			background: red;
 			text-align: left;
@@ -1267,17 +1267,17 @@ create new Dynamic Web Project
 			border-right: 3px solid white;
 			border-left: 3px solid white;
 		}
-		
+			
 		table.spittleTable tr:nth-child(4n+1) td:nth-child(2) {
 			text-align: right;
 		}
-		
+			
 		table.spittleTable tr:nth-child(4n+2) {
 			background: green;
 			border-left: 3px solid white;
 			border-right: 3px solid white;
 		}
-		
+			
 		table.spittleTable tr:nth-child(4n+3) {
 			background: aqua;
 			text-align: right;
@@ -1286,17 +1286,17 @@ create new Dynamic Web Project
 			border-right: 3px solid white;
 			border-bottom: 3px solid white;
 		}
-		
+			
 		table.spittleTable tr:nth-child(4n+4) {
 			height: 10px;
 			background: transparent;
 		}
-		
+			
 		/* table.spittle tr:nth-child(4n+4) > td{ */
 		/* 	height:10px; */
 		/* 	background:transparent; */
 		/* } */
-		
+			
 		/* this will go to the 2nd column of a table directly  */
 		/* table td+td { */
 		/* 	background: red */
@@ -1307,25 +1307,25 @@ create new Dynamic Web Project
 /////////////////////////////////////////
 
 	add to home page link to page for new spittle
-	<a href="newSpittle">Spittle</a>
+		<a href="newSpittle">Spittle</a>
 	
 	add controller for this link
 	
-	@Transactional
-	@GetMapping("newSpittle")
-	public String newSpittle(Model theModel) {
-		// get current hibernate session
-		Session session = factory.getCurrentSession();
-
-		System.out.println("NEW SPITTLE");
-
-		// spitters and spittless lists for left panel
-		theModel.addAttribute("spitters", listSpitters());
-		theModel.addAttribute("spittlesLeft", listSpittles());
-
-		// lead us with model next to newSpittle page
-		return "pages/newSpittle";
-	}
+		@Transactional
+		@GetMapping("newSpittle")
+		public String newSpittle(Model theModel) {
+			// get current hibernate session
+			Session session = factory.getCurrentSession();
+	
+			System.out.println("NEW SPITTLE");
+	
+			// spitters and spittless lists for left panel
+			theModel.addAttribute("spitters", listSpitters());
+			theModel.addAttribute("spittlesLeft", listSpittles());
+	
+			// lead us with model next to newSpittle page
+			return "pages/newSpittle";
+		}
 
 	add jsp page for new spittle
 	
@@ -1398,16 +1398,173 @@ create new Dynamic Web Project
 /////////////////////////////////////////
 
 	add spring security libs to WebContent-> WEB-INF -> lib
-	+spring-security-core-4.2.2.RELEASE
-	+spring-security-config-4.2.2.RELEASE
-	+spring-security-web-4.2.2.RELEASE
-	+spring-security-taglibs-4.2.2.RELEASE
+		+spring-security-core-4.2.2.RELEASE
+		+spring-security-config-4.2.2.RELEASE
+		+spring-security-web-4.2.2.RELEASE
+		+spring-security-taglibs-4.2.2.RELEASE
 
+	add to web.xml
+	
+		<!-- Spring Security -->  
+	   	<filter>  
+	     <filter-name>springSecurityFilterChain</filter-name>  
+	     <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>  
+	   	</filter>  
+	   	<filter-mapping>  
+	     <filter-name>springSecurityFilterChain</filter-name>  
+	     <url-pattern>/*</url-pattern>  
+	   	</filter-mapping>  
+   	
+   	
+   	add java class for configuration by annotation
+	
+		import org.springframework.beans.factory.annotation.Autowired;
+		import org.springframework.context.annotation.Configuration;
+		import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+		import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+		import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+		import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+		
+		@Configuration
+		// @EnableWebSecurity Annotation is used to enable web security in any web
+		// application.
+		// @EnableWebMVCSecurity Annotation is used to enable web security in Spring MVC
+		// based web application.
+		// @EnableWebSecurity = @EnableWebMVCSecurity + Extra features.
+		@EnableWebSecurity
+		
+		// This configuration creates a Servlet Filter known as the
+		// springSecurityFilterChain which is responsible for all the security
+		// (protecting the application URLs, validating submitted username and
+		// passwords, redirecting to the log in form, etc) within our application.
+		public class SecurityMvcConfiguration extends WebSecurityConfigurerAdapter {
+	
+		// Method configureGlobalSecurity in above class configures
+		// AuthenticationManagerBuilder with user credentials and allowed roles.
+		// This AuthenticationManagerBuilder creates AuthenticationManager which is
+		// responsible for processing any authentication request. Notice that in
+		// above example, we have used in-memory authentication while you are free
+		// to choose from JDBC, LDAP and other authentications.
+		@Autowired
+		public void configureGlobalSecutiry(AuthenticationManagerBuilder auth) throws Exception {
+	
+			auth.inMemoryAuthentication().withUser("one").password("111").roles("USER");
+			auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+			auth.inMemoryAuthentication().withUser("dba").password("dba").roles("ADMIN", "DBA");
+	
+		}
+	
+		// The overridden Method Configure configures HttpSecurity which allows
+		// configuring web based security for specific http requests. By default it
+		// will be applied to all requests, but can be restricted using
+		// requestMatcher(RequestMatcher)/antMathchers or other similar methods
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+	
+			http.authorizeRequests()
+					// URL’s ‘/’ & ‘/home’ are not secured, anyone can access them
+					.antMatchers("/", "/home").permitAll()
+	
+					// URL ‘/admin/**’ can only be accessed by someone who have
+					// ADMIN role
+					.antMatchers("/admin/**").access("hasRole('ADMIN')")
+	
+					// URL ‘/db/**’ can only be accessed by someone who have both
+					// ADMIN and DBA roles
+					.antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
+	
+					// Method formLogin provides support for form based
+					// authentication and will generate a default form asking for
+					// user credentials
+					.and().formLogin()
+	
+					// We have also used exceptionHandling().accessDeniedPage()
+					// which in this case will catch all 403 [http access denied]
+					// exceptions and display our user defined page instead of
+					// showing default HTTP 403 page [ which is not so helpful
+					// anyway]
+					.and().exceptionHandling().accessDeniedPage("/Access_Denied");
+			}
+		}
+	
+	
+		///// FOR XML //////////////////////
+		
+		// <beans:beans xmlns="http://www.springframework.org/schema/security"
+		// xmlns:beans="http://www.springframework.org/schema/beans"
+		// xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		// xsi:schemaLocation="http://www.springframework.org/schema/beans
+		// http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		// http://www.springframework.org/schema/security
+		// http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+		//
+		// <http auto-config="true" >
+		// <intercept-url pattern="/" access="permitAll" />
+		// <intercept-url pattern="/home" access="permitAll" />
+		// <intercept-url pattern="/admin**" access="hasRole('ADMIN')" />
+		// <intercept-url pattern="/dba**" access="hasRole('ADMIN') and hasRole('DBA')"
+		// />
+		// <form-login authentication-failure-url="/Access_Denied" />
+		// </http>
+		//
+		// <authentication-manager >
+		// <authentication-provider>
+		// <user-service>
+		// <user name="bill" password="abc123" authorities="ROLE_USER" />
+		// <user name="admin" password="root123" authorities="ROLE_ADMIN" />
+		// <user name="dba" password="root123" authorities="ROLE_ADMIN,ROLE_DBA" />
+		// </user-service>
+		// </authentication-provider>
+		// </authentication-manager>
+		//
+		//
+		// </beans:beans>
 
+	add controller for /admin to home controller
+	
+		@GetMapping("/admin")
+		public String adminPage(Model theModel) {
+			// getPrincipal is a generic function which returns the logged in user
+			// name
+			theModel.addAttribute("user", getPrincipal());
+			return "utility/admin";
+		}
+		
+		// Method getPrincipal is a generic function which returns the logged in
+		// user name from Spring SecurityContext. Method logoutPage handles the
+		// logging out with a simple call to
+		// SecurityContextLogoutHandler().logout(request, response, auth);. It’s
+		// handy and saves you from putting cryptic logout logic in your JSP’s which
+		// is not really manageable. You might have noticed that ‘/login’ is
+		// missing, it is because it will be generated and handled by default by
+		// Spring Security.
 
+		private String getPrincipal() {
+			String userName = null;
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	
+			if (principal instanceof UserDetails) {
+				userName = ((UserDetails) principal).getUsername();
+			} else {
+				userName = principal.toString();
+			}
+			return userName;
+		}
+		
+	add admin.jsp to view/utility/
 
-
-
+		<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+		<html>
+		<head>
+		    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		    <title>HelloWorld Admin page</title>
+		</head>
+		<body>
+		    Dear <strong>${user}</strong>, Welcome to Admin Page.
+		    <a href="<c:url value="/logout" />">Logout</a>
+		</body>
+		</html>
 
 
 	
