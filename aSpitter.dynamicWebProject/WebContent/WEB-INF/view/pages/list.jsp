@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources//css/tableSpitter.css">
+	href="${pageContext.request.contextPath}/resources/css/tableSpitter.css">
 <title>List of Spitters</title>
 </head>
 <body>
