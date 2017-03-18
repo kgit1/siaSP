@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,6 +76,12 @@ public class HomeController {
 		return "home";
 	}
 
+	@GetMapping("/admin")
+	public String adminPage(Model theModel) {
+		 theModel.addAttribute("user", getPrincipal());
+		return "utility/admin";
+	}
+
 	public List<Spitter> listSpitters() {
 		Session session = factory.getCurrentSession();
 		List<Spitter> spitters = session.createQuery("from Spitter").getResultList();
@@ -86,6 +94,28 @@ public class HomeController {
 				.getResultList();
 		return spittles;
 	}
+
+	// Method getPrincipal is a generic function which returns the logged in
+	// user name from Spring SecurityContext. Method logoutPage handles the
+	// logging out with a simple call to
+	// SecurityContextLogoutHandler().logout(request, response, auth);. It’s
+	// handy and saves you from putting cryptic logout logic in your JSP’s which
+	// is not really manageable. You might have noticed that ‘/login’ is
+	// missing, it is because it will be generated and handled by default by
+	// Spring Security.
+
+	 private String getPrincipal() {
+	 String userName = null;
+	 Object principal =
+	 SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	
+	 if (principal instanceof UserDetails) {
+	 userName = ((UserDetails) principal).getUsername();
+	 } else {
+	 userName = principal.toString();
+	 }
+	 return userName;
+	 }
 
 }
 

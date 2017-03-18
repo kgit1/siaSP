@@ -10,10 +10,7 @@
 <body>
 
 	<%-- <tiles:insertAttribute name="header" /> --%>
-	<p1>HOME</p1>
-	<p>
-		<a href="home/list">LIST</a>
-	</p>
+	<p1>HOME</p1>	
 	<p>
 		<a href="spittersByIdAsc">LIST A</a>
 	</p>
@@ -25,6 +22,13 @@
 	</p>
 	<p>
 		<a href="spittersByIdDesc">D</a>
+	</p>
+	
+	<p>
+		<a href="admin">ADMIN</a>
+	</p>
+	<p>
+		<a href="utility/db">DB</a>
 	</p>
 
 </body>

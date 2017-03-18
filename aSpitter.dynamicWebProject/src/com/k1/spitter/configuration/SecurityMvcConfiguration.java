@@ -8,6 +8,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
+// @EnableWebSecurity Annotation is used to enable web security in any web
+// application.
+// @EnableWebMVCSecurity Annotation is used to enable web security in Spring MVC
+// based web application.
+// @EnableWebSecurity = @EnableWebMVCSecurity + Extra features.
 @EnableWebSecurity
 
 // This configuration creates a Servlet Filter known as the
