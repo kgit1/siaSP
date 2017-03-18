@@ -96,7 +96,7 @@ public class RegUpdateDeleteController {
 
 		// redirect to list page, redirect will recreate page with new
 		// independent model
-		return "redirect:/home/list";
+		return "redirect:spittersByIdAsc";
 	}
 
 	@Transactional
