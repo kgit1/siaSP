@@ -1520,7 +1520,7 @@ create new Dynamic Web Project
 		//
 		// </beans:beans>
 
-	add controller for /admin to home controller
+	add controllers for /admin and /dba to home controller
 	
 		@GetMapping("/admin")
 		public String adminPage(Model theModel) {
@@ -1529,6 +1529,12 @@ create new Dynamic Web Project
 			theModel.addAttribute("user", getPrincipal());
 			return "utility/admin";
 		}
+		
+		@GetMapping("/dba")
+	    public String dbaPage(Model theModel) {
+	        theModel.addAttribute("user", getPrincipal());
+	        return "utility/dba";
+	    }
 		
 		// Method getPrincipal is a generic function which returns the logged in
 		// user name from Spring SecurityContext. Method logoutPage handles the
@@ -1566,5 +1572,53 @@ create new Dynamic Web Project
 		</body>
 		</html>
 
-
+	add db.jsp to view/utility
 	
+		<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1"%>
+		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>DBA page</title>
+		</head>
+		<body>
+			Dear
+			<strong>${user}</strong>, Welcome to DBA Page.
+			<a href="<c:url value="/logout" />">Logout</a>
+		</body>
+		</html>
+	
+	add controllers for /logout to home controller
+		
+		 @GetMapping("/logout")
+	       public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+	          Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	          if (auth != null){    
+	             new SecurityContextLogoutHandler().logout(request, response, auth);
+	          }
+	          return "home";
+	       }
+	 
+	    @GetMapping("/Access_Denied")
+	    public String accessDeniedPage(Model theModel) {
+	    	theModel.addAttribute("user", getPrincipal());
+	        return "utility/accessDenied";
+	    }
+	    
+	add accessDenied.jsp to view/utility
+	
+		<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1"%>
+		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>AccessDenied page</title>
+		</head>
+		<body>
+			Dear
+			<strong>${user}</strong>, You are not authorized to access this page
+			<a href="<c:url value="/logout" />">Logout</a>
+		</body>
+		</html>
